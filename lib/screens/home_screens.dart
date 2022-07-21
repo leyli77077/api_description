@@ -1,14 +1,7 @@
-import 'dart:convert';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/models/feauture_product.dart';
-import 'package:flutter_shop/models/promo_banner.dart';
-import 'package:flutter_shop/repository/feauture_product_service.dart';
-import 'package:flutter_shop/repository/repository.dart';
-import 'package:flutter_shop/widgets/home_feauture_products.dart';
-import 'package:flutter_shop/widgets/home_product_categories.dart';
-import 'package:flutter_shop/widgets/home_promo_banners.dart';
-import '../models/category.dart';
-import '../repository/promo_banner_service.dart';
+import 'package:flutter_shop/pages/homepage.dart';
+import '../constants/my_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,62 +11,31 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final Repository _categoryService = Repository();
-  final PromoBannerService _promoBannerService = PromoBannerService();
-  final FeautureProductService _feautureProductService =
-      FeautureProductService();
-
   var items = [];
 
-  final List<Category> _categoryList = [];
-  final List<PromoBanner> _promoBannerList = [];
-  final List<FeautureProduct> _feautureProductList = [];
-  int _currentIndex = 0;
+  int _currentIndex = 2;
+  late final PageController _pageController;
 
   @override
   void initState() {
+    _pageController = PageController(initialPage: _currentIndex);
     super.initState();
-    _getAllCategories();
-    _getAllPromoBanners();
-    _getAllFeautureProducts();
+    // _getAllProductDetail();
   }
 
-  _getAllCategories() async {
-    var categories = await _categoryService.httpGet();
-    var result = json.decode(categories.body);
-    print(Category.fromJson(result['data'][0]));
+  // _getAllProductDetail() async {
+  //   var productDetail = await _productDetailService.httpGet();
+  //   var result = json.decode(productDetail.body);
+  //   // print(ProductDetail.fromJson(result['data']));
+  //   List data = result['data'];
+  //   // for (var productDetail in result['data']) {
+  //   //   var model = ProductDetail.fromJson(productDetail);
 
-    for (var category in result['data']) {
-      var model = Category.fromJson(category);
-
-      setState(() {
-        _categoryList.add(model);
-      });
-    }
-  }
-
-  _getAllPromoBanners() async {
-    var promoBanners = await _promoBannerService.httpGet();
-    var result = json.decode(promoBanners.body);
-    print(PromoBanner.fromJson(result['data'][0]));
-
-    for (var promoBanner in result['data']) {
-      var model = PromoBanner.fromJson(promoBanner);
-
-      setState(() {
-        _promoBannerList.add(model);
-      });
-    }
-  }
-
-  _getAllFeautureProducts() async {
-    var feautureProducts = await _feautureProductService.httpGet();
-    var result = json.decode(feautureProducts.body);
-    // print(FeautureProduct.fromJson(result['data'][0]).shortName);
-    List data = result['data'];
-    _feautureProductList.addAll(data.map((e) => FeautureProduct.fromJson(e)));
-    setState(() {});
-  }
+  //   _productDetailList.addAll(data.map((e) => ProductDetail.fromJson(e)));
+  //   setState(() {
+  //     // _productDetailList.add(ProductDetail.fromJson(productDetail));
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -85,58 +47,88 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: ListView(
-        children: <Widget>[
-          const Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text('Shop By Category',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold))),
-          HomeProductCategories(
-            categoryList: _categoryList,
-          ),
-          HomePromoBanners(promoBannerList: _promoBannerList),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text('Feautures Product'),
-          ),
-          HomeFeautureProducts(feautureProductList: _feautureProductList)
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue[700],
-        selectedFontSize: 13,
-        unselectedFontSize: 13,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: _currentIndex,
-        iconSize: 30,
-        onTap: (index) {
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
-            label: '',
-            icon: Icon(Icons.menu),
+        children: [
+          Container(
+            color: Colors.green,
           ),
-          BottomNavigationBarItem(
-            label: "Search",
-            icon: Icon(Icons.search),
+          Container(
+            color: Colors.blue,
           ),
-          BottomNavigationBarItem(
-              label: "Categories", icon: Icon(Icons.home_outlined)),
-          BottomNavigationBarItem(
-            label: "My Account",
-            icon: Icon(Icons.shopping_bag_outlined),
+          const HomePage(),
+          Container(
+            color: Colors.green,
           ),
-          BottomNavigationBarItem(
-            label: "My Account",
-            icon: Icon(Icons.account_circle_outlined),
+          Container(
+            color: Colors.blue,
           ),
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        // color: Colors.white,
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 0.01,
+        clipBehavior: Clip.antiAlias,
+        child: Container(
+          height: kBottomNavigationBarHeight * 0.98,
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
+              ),
+            ),
+            child: BottomNavigationBar(
+              // onTap: initState,
+              backgroundColor: Theme.of(context).primaryColor,
+              unselectedItemColor: Theme.of(context).textSelectionColor,
+              selectedItemColor: Colors.purple,
+              currentIndex: _currentIndex,
+              // selectedLabelStyle: TextStyle(fontSize: 16),
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(EvaIcons.home),
+                  // title: Text('Home'),
+                  label: 'Home',
+                ),
+                const BottomNavigationBarItem(
+                    activeIcon: null, icon: Icon(null), label: 'Search'),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      EvaIcons.alertTriangleOutline,
+                    ),
+                    label: 'Cart'),
+                BottomNavigationBarItem(
+                    icon: Icon(EvaIcons.arrowBack), label: 'User'),
+              ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+          backgroundColor: Colors.purple,
+          hoverElevation: 10,
+          splashColor: Colors.grey,
+          tooltip: 'Search',
+          elevation: 4,
+          child: Icon(EvaIcons.search),
+          onPressed: () => setState(() {
+            _currentIndex = 2;
+          }),
+        ),
       ),
     );
   }

@@ -7,14 +7,15 @@ class HomeFeautureProducts extends StatelessWidget {
   HomeFeautureProducts({required this.feautureProductList});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      padding: const EdgeInsets.only(right: 10),
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        physics: const BouncingScrollPhysics(),
-        itemCount: feautureProductList.length,
-        itemBuilder: (context, index) {
+    return SliverGrid(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 13,
+        childAspectRatio: 0.7,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
           return HomeFeautureProduct(
             feautureProductId: feautureProductList[index].id,
             feautureProductThumbPic: feautureProductList[index].thumbPic,
@@ -25,6 +26,7 @@ class HomeFeautureProducts extends StatelessWidget {
             feautureProductStruckPrice: feautureProductList[index].struckPrice,
           );
         },
+        childCount: feautureProductList.length,
       ),
     );
   }

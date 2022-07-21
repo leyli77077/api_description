@@ -11,9 +11,9 @@ class HomePromoBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(promoBannerpicUrl);
-    return Padding(
-        padding: EdgeInsets.fromLTRB(10, 10, 5, 10),
+    //print(promoBannerpicUrl);
+    return Container(
+        padding: const EdgeInsets.all(16.0),
         child: CachedNetworkImage(
           imageUrl: promoBannerpicUrl,
           imageBuilder: (context, imageProvider) => Material(
