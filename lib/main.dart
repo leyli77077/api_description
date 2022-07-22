@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'l10n/l10n.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // Eger main-da şeýdip prefs-y Settings(prefs)-e geçirsek
   // Future() hökmän däl Settings-da dili set etmek üçin
   var prefs = await SharedPreferences.getInstance();
@@ -18,7 +19,7 @@ Future<void> main() async {
         create: (_) => HomePageNotifier()..add(LoadEvent()),
       ),
       // her notifiery aýratyn provide etmeli !
-    ChangeNotifierProvider(
+      ChangeNotifierProvider(
         create: (_) => Settings(prefs: prefs),
       ),
     ],
@@ -37,7 +38,11 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         locale: settings.language,
-        supportedLocales: const [],
+        supportedLocales: const [
+          const Locale('en', 'US'),
+          const Locale('tk', 'TK'),
+          const Locale('ru', 'RU'),
+        ],
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,

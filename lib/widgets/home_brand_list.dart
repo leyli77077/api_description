@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class HomeBrandList extends StatelessWidget {
-  final int? brandListId;
-  final String? brandListMedia;
-  final String? brandListName;
-
+  final int brandListId;
+  final String brandListMedia;
+  final String brandListName;
 
   const HomeBrandList(
       {Key? key,
-      this.brandListId,
+      required this.brandListId,
       required this.brandListMedia,
       required this.brandListName})
       : super(key: key);

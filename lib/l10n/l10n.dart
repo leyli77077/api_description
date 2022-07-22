@@ -259,7 +259,7 @@ class AppLocalizations {
 
   Future<bool> load() async {
     String jsonString = await rootBundle
-        .loadString('assets/languages/${locale.languageCode}.json');
+        .loadString('assets/images/${locale.languageCode}.json');
     Map<String, dynamic> jsonMap = jsonDecode(jsonString);
 
     _localizedStrings = jsonMap.map((key, value) {

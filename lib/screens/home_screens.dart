@@ -23,20 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // _getAllProductDetail();
   }
 
-  // _getAllProductDetail() async {
-  //   var productDetail = await _productDetailService.httpGet();
-  //   var result = json.decode(productDetail.body);
-  //   // print(ProductDetail.fromJson(result['data']));
-  //   List data = result['data'];
-  //   // for (var productDetail in result['data']) {
-  //   //   var model = ProductDetail.fromJson(productDetail);
-
-  //   _productDetailList.addAll(data.map((e) => ProductDetail.fromJson(e)));
-  //   setState(() {
-  //     // _productDetailList.add(ProductDetail.fromJson(productDetail));
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,18 +75,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: BottomNavigationBar(
               // onTap: initState,
-              backgroundColor: Theme.of(context).primaryColor,
-              unselectedItemColor: Theme.of(context).textSelectionColor,
-              selectedItemColor: Colors.purple,
-              currentIndex: _currentIndex,
-              // selectedLabelStyle: TextStyle(fontSize: 16),
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                   icon: Icon(EvaIcons.home),
                   // title: Text('Home'),
                   label: 'Home',
                 ),
-                const BottomNavigationBarItem(
+                BottomNavigationBarItem(
                     activeIcon: null, icon: Icon(null), label: 'Search'),
                 BottomNavigationBarItem(
                     icon: Icon(
@@ -112,22 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-        ),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FloatingActionButton(
-          backgroundColor: Colors.purple,
-          hoverElevation: 10,
-          splashColor: Colors.grey,
-          tooltip: 'Search',
-          elevation: 4,
-          child: Icon(EvaIcons.search),
-          onPressed: () => setState(() {
-            _currentIndex = 2;
-          }),
         ),
       ),
     );
