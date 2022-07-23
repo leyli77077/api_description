@@ -5,7 +5,8 @@ import 'home_promo_banner.dart';
 
 class HomePromoBanners extends StatelessWidget {
   final List<PromoBanner> promoBannerList;
-  HomePromoBanners({required this.promoBannerList});
+  const HomePromoBanners({Key? key, required this.promoBannerList})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

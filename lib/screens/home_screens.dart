@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/pages/homepage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 2;
+  int _currentIndex = 0;
   late final PageController _pageController;
 
   @override
@@ -23,9 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Ecom',
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          'example'.trs,
+          style: const TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
       ),
@@ -37,18 +38,15 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         children: [
-          Container(
-            color: Colors.green,
-          ),
-          Container(
-            color: Colors.blue,
-          ),
           const HomePage(),
           Container(
-            color: Colors.green,
+            color: Colors.red,
           ),
           Container(
             color: Colors.blue,
+          ),
+          Container(
+            color: Colors.green,
           ),
         ],
       ),
@@ -75,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              EvaIcons.alertTriangleOutline,
+              EvaIcons.shoppingCart,
             ),
             label: 'Cart',
           ),

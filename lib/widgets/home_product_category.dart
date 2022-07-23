@@ -16,41 +16,53 @@ class HomeProductCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //print(categoryThumbImage);
-    return Stack(children: <Widget>[
-      SizedBox(
-        width: 140.0,
-        height: 190.0,
-        child: Column(
-          children: [
-            CachedNetworkImage(
-              imageUrl: categoryThumbImage,
-              fit: BoxFit.fitHeight,
-              imageBuilder: (context, imageProvider) => Container(
-                width: 100.0,
-                height: 100.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image:
-                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
+    return Stack(
+      children: <Widget>[
+        SizedBox(
+          width: 140.0,
+          height: 190.0,
+          child: Column(
+            children: [
+              CachedNetworkImage(
+                imageUrl: categoryThumbImage,
+                fit: BoxFit.fitHeight,
+                imageBuilder: (context, imageProvider) => Container(
+                  width: 100.0,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                  ),
                 ),
+                errorWidget: (context, url, object) {
+                  return Container(
+                    width: 100.0,
+                    height: 100.0,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey,
+                    ),
+                  );
+                },
               ),
-            ),
 
-            // CircleAvatar(
-            //   radius: 80,
-            //   child: Image.network(
-            //     categoryThumbImage,
-            //     errorBuilder: (context, error, trace) {
-            //       print(error);
-            //       return Text('😢');
-            //     },
-            //   ),
-            // ),
-            Container(),
-            Text(categoryName),
-          ],
+              // CircleAvatar(
+              //   radius: 80,
+              //   child: Image.network(
+              //     categoryThumbImage,
+              //     errorBuilder: (context, error, trace) {
+              //       print(error);
+              //       return Text('😢');
+              //     },
+              //   ),
+              // ),
+              Container(),
+              Text(categoryName),
+            ],
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }

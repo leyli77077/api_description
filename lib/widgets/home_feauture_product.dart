@@ -1,31 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/models/feauture_product.dart';
 
 class HomeFeautureProduct extends StatelessWidget {
-  final int? feautureProductId;
-  final String? feautureProductThumbPic;
-  final double? feautureProductPrice;
-  final dynamic feautureProductStruckPrice;
-  final String? feautureProductShortName;
-  final String? feautureProductShortDescription;
+  final FeautureProduct product;
 
-  const HomeFeautureProduct(
-      {Key? key,
-      this.feautureProductId,
-      required this.feautureProductThumbPic,
-      required this.feautureProductPrice,
-      required this.feautureProductShortDescription,
-      required this.feautureProductShortName,
-      required this.feautureProductStruckPrice})
-      : super(key: key);
+  const HomeFeautureProduct({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // print(feautureProductShortName);
     return Stack(
-      alignment: Alignment.center,
       children: [
         Container(
-          margin: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.circular(20),
@@ -38,7 +28,7 @@ class HomeFeautureProduct extends StatelessWidget {
             ],
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Container(
                 margin: const EdgeInsets.only(top: 30),
@@ -47,36 +37,40 @@ class HomeFeautureProduct extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     alignment: Alignment.bottomCenter,
-                    image: NetworkImage(feautureProductThumbPic!),
+                    image: NetworkImage(product.thumbPic!),
                   ),
                 ),
               ),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  feautureProductShortName.toString(),
+                  product.shortName.toString(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(fontSize: 12, color: Colors.black26),
                 ),
               ),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  feautureProductShortDescription.toString(),
+                  product.shortDescription.toString(),
                   style: const TextStyle(fontSize: 15, color: Colors.black26),
                 ),
               ),
+              // const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(feautureProductPrice.toString()),
-                  if (feautureProductPrice != null)
+                  Text(product.price.toString()),
+                  if (product.struckPrice != null)
                     Text(
-                      feautureProductStruckPrice.toString(),
+                      product.struckPrice.toString(),
                       style: const TextStyle(
-                          fontSize: 15,
-                          height: 1.5,
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.black),
+                        fontSize: 15,
+                        height: 1.5,
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.black,
+                      ),
                     ),
                 ],
               ),
@@ -85,15 +79,17 @@ class HomeFeautureProduct extends StatelessWidget {
         ),
         Positioned(
           // prosent
-          top: 30,
+          top: 16,
           left: 16,
           child: Container(
             padding: const EdgeInsets.all(5.5),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: Colors.black, borderRadius: BorderRadius.circular(10)),
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Text(
-              (feautureProductStruckPrice.toString()),
+              (product.struckPrice.toString()),
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.white,

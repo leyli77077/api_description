@@ -4,7 +4,7 @@ import 'package:flutter_shop/widgets/home_brand_list.dart';
 
 class HomeBrandLists extends StatelessWidget {
   final List<BrandList> brandList;
-  HomeBrandLists({required this.brandList});
+  const HomeBrandLists({Key? key, required this.brandList}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SliverGrid(

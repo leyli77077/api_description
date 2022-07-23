@@ -13,23 +13,32 @@ class HomePromoBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     //print(promoBannerpicUrl);
     return Container(
-        padding: const EdgeInsets.all(16.0),
-        child: CachedNetworkImage(
-          imageUrl: promoBannerpicUrl,
-          imageBuilder: (context, imageProvider) => Material(
-            elevation: 8,
-            shadowColor: Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              width: 270,
-              height: 140,
-              decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(10),
-                  image:
-                      DecorationImage(image: imageProvider, fit: BoxFit.cover)),
+      padding: const EdgeInsets.all(16.0),
+      child: CachedNetworkImage(
+        imageUrl: promoBannerpicUrl,
+        imageBuilder: (context, imageProvider) => Material(
+          elevation: 8,
+          shadowColor: Colors.grey.shade300,
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            width: 270,
+            height: 140,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
             ),
           ),
-        ));
+        ),
+        errorWidget: (context, url, object) {
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

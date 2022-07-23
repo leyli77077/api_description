@@ -55,22 +55,15 @@ class _HomePageState extends State<HomePage> {
                   child: Text('Feautures Product'),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: state.feautureProductList.isNotEmpty
-                    ? HomeFeautureProduct(
-                        feautureProductId: state.feautureProductList.first.id,
-                        feautureProductThumbPic:
-                            state.feautureProductList.first.thumbPic,
-                        feautureProductPrice:
-                            state.feautureProductList.first.price,
-                        feautureProductShortDescription:
-                            state.feautureProductList.first.shortDescription,
-                        feautureProductShortName:
-                            state.feautureProductList.first.shortName,
-                        feautureProductStruckPrice:
-                            state.feautureProductList.first.struckPrice,
-                      )
-                    : const SizedBox.shrink(),
+              SliverPadding(
+                padding: const EdgeInsets.all(16.0),
+                sliver: SliverToBoxAdapter(
+                  child: state.feautureProductList.isNotEmpty
+                      ? HomeFeautureProduct(
+                          product: state.feautureProductList.first,
+                        )
+                      : const SizedBox.shrink(),
+                ),
               ),
               HomeFeautureProducts(
                 feautureProductList: state.feautureProductList..skip(0),

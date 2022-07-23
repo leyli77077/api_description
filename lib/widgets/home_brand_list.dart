@@ -41,7 +41,7 @@ class HomeBrandList extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     alignment: Alignment.bottomCenter,
-                    image: NetworkImage(brandListMedia!),
+                    image: NetworkImage(brandListMedia),
                   ),
                 ),
               ),
