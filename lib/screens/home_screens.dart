@@ -1,7 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/pages/homepage.dart';
-import '../constants/my_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,8 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var items = [];
-
   int _currentIndex = 2;
   late final PageController _pageController;
 
@@ -20,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _pageController = PageController(initialPage: _currentIndex);
     super.initState();
-    // _getAllProductDetail();
   }
 
   @override
@@ -56,44 +52,38 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        // color: Colors.white,
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 0.01,
-        clipBehavior: Clip.antiAlias,
-        child: Container(
-          height: kBottomNavigationBarHeight * 0.98,
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              border: Border(
-                top: BorderSide(
-                  color: Colors.grey,
-                  width: 0.5,
-                ),
-              ),
-            ),
-            child: BottomNavigationBar(
-              // onTap: initState,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(EvaIcons.home),
-                  // title: Text('Home'),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                    activeIcon: null, icon: Icon(null), label: 'Search'),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      EvaIcons.alertTriangleOutline,
-                    ),
-                    label: 'Cart'),
-                BottomNavigationBarItem(
-                    icon: Icon(EvaIcons.arrowBack), label: 'User'),
-              ],
-            ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
+        onTap: (index) {
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn,
+          );
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(EvaIcons.home),
+            label: 'Home',
           ),
-        ),
+          BottomNavigationBarItem(
+            activeIcon: null,
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              EvaIcons.alertTriangleOutline,
+            ),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(EvaIcons.arrowBack),
+            label: 'User',
+          ),
+        ],
       ),
     );
   }

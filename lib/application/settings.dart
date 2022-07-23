@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppConstants {
   // Default gelýän dil hökmünde
+  static const Locale defaultLocale = Locale('tk');
   static const defaultLanguageCode = 'tk';
   // SharedPreference üçin key bolýar
   static const languageCode = 'languageCode';

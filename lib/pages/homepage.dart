@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/homepage.dart';
 import 'package:flutter_shop/widgets/home_feauture_product.dart';
@@ -83,7 +82,14 @@ class _HomePageState extends State<HomePage> {
             child: CircularProgressIndicator(),
           );
         } else {
-          return SizedBox();
+          return Center(
+            child: IconButton(
+              onPressed: () {
+                HomePageNotifier.instance.add(LoadEvent());
+              },
+              icon: const Icon(Icons.refresh),
+            ),
+          );
         }
       },
     );

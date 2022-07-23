@@ -8,8 +8,7 @@ import 'package:intl/date_symbol_data_custom.dart' as date_symbol_data_custom;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../application/settings.dart';
+import 'package:flutter_shop/application/settings.dart';
 
 const _tkDatePatterns = {
   'd': 'd',
@@ -226,7 +225,8 @@ extension L10n on String {
 }
 
 class AppLocalizations {
-  static AppLocalizations _instance = AppLocalizations._(Settings().language);
+  static AppLocalizations _instance =
+      AppLocalizations._(AppConstants.defaultLocale);
   AppLocalizations._(this.locale);
   final Locale locale;
 
@@ -258,8 +258,8 @@ class AppLocalizations {
   Map<String, String> _localizedStrings = {};
 
   Future<bool> load() async {
-    String jsonString = await rootBundle
-        .loadString('assets/images/${locale.languageCode}.json');
+    String jsonString =
+        await rootBundle.loadString('assets/langs/${locale.languageCode}.json');
     Map<String, dynamic> jsonMap = jsonDecode(jsonString);
 
     _localizedStrings = jsonMap.map((key, value) {
@@ -354,7 +354,7 @@ class _TmMaterialLocalizationsDelegate
 
   @override
   Future<MaterialLocalizations> load(Locale locale) async {
-    const String localeName = 'en_US';
+    const String localeName = 'tk_TM';
     return SynchronousFuture<TmMaterialLocalizations>(
       TmMaterialLocalizations(
         localeName: localeName,
@@ -364,7 +364,7 @@ class _TmMaterialLocalizationsDelegate
         mediumDateFormat: intl.DateFormat('EEE, MMM d', localeName),
         longDateFormat: intl.DateFormat('EEEE, MMMM d, y', localeName),
         yearMonthFormat: intl.DateFormat('MMMM y', localeName),
-        shortMonthDayFormat: intl.DateFormat('MMM d'),
+        shortMonthDayFormat: intl.DateFormat('MMM d', localeName),
         decimalFormat: intl.NumberFormat('#,##0.###'),
         twoDigitZeroPaddedFormat: intl.NumberFormat('00'),
       ),
@@ -416,14 +416,14 @@ class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
   String datePickerHour(int hour) => hour.toString();
 
   @override
-  String datePickerHourSemanticsLabel(int hour) => hour.toString() + ' sagat';
+  String datePickerHourSemanticsLabel(int hour) => '$hour sagat';
 
   @override
   String datePickerMinute(int minute) => minute.toString().padLeft(2, '0');
 
   @override
   String datePickerMinuteSemanticsLabel(int minute) {
-    return minute.toString() + ' minut';
+    return '$minute minut';
   }
 
   @override
@@ -502,7 +502,7 @@ class TmCupertinoLocalizations extends GlobalCupertinoLocalizations {
   String get searchTextFieldPlaceholderLabel => 'Gözle';
 
   @override
-  String get modalBarrierDismissLabel => 'Öçür';
+  String get modalBarrierDismissLabel => 'Ýap';
 
   @override
   String get datePickerDateOrderString => 'dmy';
@@ -738,7 +738,7 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get licensesPageTitle => r'Lisenziýalar';
 
   @override
-  String get modalBarrierDismissLabel => r'Öçür';
+  String get modalBarrierDismissLabel => r'Ýap';
 
   @override
   String get nextMonthTooltip => r'Indiki aý';
