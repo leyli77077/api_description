@@ -16,10 +16,9 @@ class HomeBrandList extends StatelessWidget {
   Widget build(BuildContext context) {
     // print(feautureProductShortName);
     return Stack(
-      alignment: Alignment.center,
       children: [
         Container(
-          margin: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.circular(20),
@@ -32,7 +31,7 @@ class HomeBrandList extends StatelessWidget {
             ],
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Container(
                 margin: const EdgeInsets.only(top: 30),
@@ -46,10 +45,12 @@ class HomeBrandList extends StatelessWidget {
                 ),
               ),
               Container(
-                alignment: Alignment.center,
+                alignment: Alignment.centerLeft,
                 child: Text(
                   brandListName.toString(),
-                  style: const TextStyle(fontSize: 15, color: Colors.black26),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 12, color: Colors.black26),
                 ),
               ),
             ],

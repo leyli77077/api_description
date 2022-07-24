@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ColorsConsts {
-  static Color black = const Color(0xFF000000);
-  static Color white = const Color(0xFFFFFFFF);
-  static Color title = const Color(0xDD000000);
-  static Color subTitle = const Color(0x8A000000);
-  static Color backgroundColor = const Color(0xFFE0E0E0); //grey shade 300
+class ColorConstants {
+  static Color gray50 = hexToColor('#e9e9e9');
+  static Color gray100 = hexToColor('#bdbebe');
+  static Color gray200 = hexToColor('#929293');
+  static Color gray300 = hexToColor('#666667');
+  static Color gray400 = hexToColor('#505151');
+  static Color gray500 = hexToColor('#242526');
+  static Color gray600 = hexToColor('#202122');
+  static Color gray700 = hexToColor('#191a1b');
+  static Color gray800 = hexToColor('#121313');
+  static Color gray900 = hexToColor('#0e0f0f');
+}
 
-  static Color favColor = const Color(0xFFF44336); // red 500
-  static Color favBadgeColor = const Color(0xFFE57373); // red 300
+Color hexToColor(String hex) {
+  assert(RegExp(r'^#([0-9a-fA-F]{6})|([0-9a-fA-F]{8})$').hasMatch(hex));
 
-  static Color cartColor = const Color(0xFF5E35B1); //deep purple 600
-  static Color cartBadgeColor = const Color(0xFFBA68C8); //purple 300
-
-  static Color gradiendFStart = const Color(0xFFE040FB); //purpleaccent 100
-  static Color gradiendFEnd = const Color(0xFFE1BEE7); //purple 100
-  static Color endColor = const Color(0xFFCE93D8); //purple 200
-  static Color purple300 = const Color(0xFFBA68C8); //purple 300
-  static Color gradiendLEnd =const  Color(0xFFE91E63); //Pink
-  static Color gradiendLStart = const Color(0xFF9C27B0); //purple 500
-  static Color starterColor = const Color(0xFF8E24AA); //purple 600
-  static Color purple800 =const Color(0xFF6A1B9A);}
+  return Color(int.parse(hex.substring(1), radix: 16) + (hex.length == 7 ? 0xFF000000 : 0x00000000));
+}

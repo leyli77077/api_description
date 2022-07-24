@@ -1,6 +1,5 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/pages/homepage.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,11 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'example'.trs,
-          style: const TextStyle(color: Colors.black),
-        ),
         backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+          ),
+          child: Image.asset(
+            "assets/images/logo.png",
+            height: 100,
+            width: 100,
+          ),
+        ),
       ),
       body: PageView(
         controller: _pageController,
@@ -50,10 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CustomNavigationBar(
         currentIndex: _currentIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
+        iconSize: 30.0,
+        selectedColor: const Color.fromARGB(255, 81, 31, 230),
+        strokeColor: const Color(0x30040307),
+        unSelectedColor: const Color(0xffacacac),
+        backgroundColor: Colors.white,
         onTap: (index) {
           _pageController.animateToPage(
             index,
@@ -61,25 +69,22 @@ class _HomeScreenState extends State<HomeScreen> {
             curve: Curves.easeIn,
           );
         },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(EvaIcons.home),
-            label: 'Home',
+        items: [
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.home),
+            title: const Text("Home"),
           ),
-          BottomNavigationBarItem(
-            activeIcon: null,
-            icon: Icon(Icons.search),
-            label: 'Search',
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.search),
+            title: const Text("Search"),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              EvaIcons.shoppingCart,
-            ),
-            label: 'Cart',
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.shopping_cart),
+            title: const Text("Cart"),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(EvaIcons.arrowBack),
-            label: 'User',
+          CustomNavigationBarItem(
+            icon: const Icon(Icons.account_circle),
+            title: const Text("Me"),
           ),
         ],
       ),
