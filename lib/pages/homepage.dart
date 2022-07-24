@@ -6,6 +6,8 @@ import 'package:flutter_shop/widgets/home_product_categories.dart';
 import 'package:flutter_shop/widgets/home_promo_banners.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/home_brand_lists.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({
     Key? key,
@@ -67,7 +69,14 @@ class _HomePageState extends State<HomePage> {
               ),
               HomeFeautureProducts(
                 feautureProductList: state.feautureProductList..skip(0),
-              )
+              ),
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text('Top Brands'),
+                ),
+              ),
+              HomeBrandLists(brandList: state.brandList),
             ],
           );
         } else if (state is LoadingState) {

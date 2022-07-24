@@ -4,6 +4,7 @@ import 'package:flutter_shop/application/homepage.dart';
 import 'package:flutter_shop/application/settings.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/screens/home_screens.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Settings>(builder: (_, settings, __) {
-      return MaterialApp(
+      return GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -51,8 +52,13 @@ class MyApp extends StatelessWidget {
           ...GlobalMaterialLocalizations.delegates,
           GlobalWidgetsLocalizations.delegate,
         ],
+        
         home: const HomeScreen(),
       );
-    });
+      
+    }
+    );
+    
   }
+  
 }
