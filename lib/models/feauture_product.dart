@@ -1,14 +1,16 @@
+import 'package:flutter_shop/core/parsers.dart';
+
 class FeautureProduct {
-  final int? id;
-  final double? price;
-  final String? code;
-  final String? priceText;
-  final dynamic struckPrice;
-  final dynamic struckPriceText;
-  final String? shortName;
-  final String? shortDescription;
-  final dynamic saleLimitQuantity;
-  final bool? isBundle;
+  final int id;
+  final double price;
+  final String code;
+  final String priceText;
+  final double? struckPrice;
+  final String? struckPriceText;
+  final String shortName;
+  final String shortDescription;
+  final int saleLimitQuantity;
+  final bool isBundle;
   final String thumbPic;
 
   const FeautureProduct({
@@ -27,15 +29,15 @@ class FeautureProduct {
 
   factory FeautureProduct.fromJson(Map<String, dynamic> json) {
     return FeautureProduct(
-      id: json["id"],
+      id: json["id"] ?? 0,
       code: json["code"],
-      price: double.tryParse('${json["price"]}'),
+      price: double.tryParse('${json["price"]}') ?? 0.0,
       priceText: json["price_text"],
-      struckPrice: json["struck_price"],
+      struckPrice: doubleParser(json["struck_price"]),
       struckPriceText: json["struck_price_text"],
       shortName: json["short_name"],
       shortDescription: json["short_description"],
-      saleLimitQuantity: json["sale_limit_quantity"],
+      saleLimitQuantity: json["sale_limit_quantity"] ?? 0,
       isBundle: json["is_bundle"],
       thumbPic: json["thumb_pic"],
     );

@@ -18,7 +18,7 @@ class HomeFeautureProduct extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 255, 255, 255),
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
@@ -94,7 +94,7 @@ class HomeFeautureProduct extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                (product.struckPrice.toString()),
+                '${((product.struckPrice! - product.price) / product.struckPrice! * 100).toStringAsFixed(0)}%',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,

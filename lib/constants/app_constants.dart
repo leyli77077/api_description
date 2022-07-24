@@ -9,4 +9,6 @@ class AppConstants {
   static const defaultLanguageCode = 'tk';
   // SharedPreference üçin key bolýar
   static const languageCode = 'languageCode';
+  static const String user = 'user';
+  static const String accessToken = 'accessToken';
 }
