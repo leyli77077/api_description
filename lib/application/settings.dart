@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/app_constants.dart';
+import 'package:flutter_shop/core/config_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends ChangeNotifier {
-  static Settings? instance;
+  static Settings instance = Settings._internal();
   late String _language;
 
   factory Settings({SharedPreferences? prefs}) {
-    if (instance != null) {
-      return instance!;
-    } else {
-      instance = Settings._internal(prefs!);
-      return instance!;
-    }
+    return instance;
   }
 
-  Settings._internal(SharedPreferences prefs) {
-    _language = prefs.getString(AppConstants.languageCode) ??
-        AppConstants.defaultLanguageCode;
+  Settings._internal() {
+    _language = ConfigPreference.loadLangCode();
   }
 
   void setLanguage(String lang) async {

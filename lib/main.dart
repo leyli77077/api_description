@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/application/homepage.dart';
 import 'package:flutter_shop/application/settings.dart';
+import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/screens/home_screens.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +14,7 @@ Future<void> main() async {
   // Eger main-da şeýdip prefs-y Settings(prefs)-e geçirsek
   // Future() hökmän däl Settings-da dili set etmek üçin
   var prefs = await SharedPreferences.getInstance();
+  ConfigPreference(prefs);
 
   runApp(
     MultiProvider(
@@ -22,6 +24,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => Settings(prefs: prefs),
+        ),
+        ChangeNotifierProvider<Auth>(
+          create: (context) => Auth()..add(InitEvent()),
         ),
       ],
       child: const MyApp(),
@@ -34,10 +39,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<Settings>(builder: (_, settings, __) {
-      return GetMaterialApp(
+      return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
         ),
         locale: settings.language,
         supportedLocales: const [
@@ -52,13 +58,8 @@ class MyApp extends StatelessWidget {
           ...GlobalMaterialLocalizations.delegates,
           GlobalWidgetsLocalizations.delegate,
         ],
-        
         home: const HomeScreen(),
       );
-      
-    }
-    );
-    
+    });
   }
-  
 }
