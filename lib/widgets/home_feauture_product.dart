@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/models/feauture_product.dart';
 
@@ -37,12 +38,15 @@ class HomeFeautureProduct extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     alignment: Alignment.bottomCenter,
-                    image: NetworkImage(product.thumbPic!),
+                    image: CachedNetworkImageProvider(
+                      product.thumbPic,
+                    ),
                   ),
                 ),
               ),
               Container(
                 alignment: Alignment.centerLeft,
+                height: 30,
                 child: Text(
                   product.shortName.toString(),
                   maxLines: 2,
@@ -77,27 +81,28 @@ class HomeFeautureProduct extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(
-          // prosent
-          top: 16,
-          left: 16,
-          child: Container(
-            padding: const EdgeInsets.all(5.5),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              (product.struckPrice.toString()),
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14,
+        if (product.struckPrice != null)
+          Positioned(
+            // prosent
+            top: 16,
+            left: 16,
+            child: Container(
+              padding: const EdgeInsets.all(5.5),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                (product.struckPrice.toString()),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
               ),
             ),
           ),
-        ),
       ],
     );
   }

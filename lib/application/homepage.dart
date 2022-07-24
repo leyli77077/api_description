@@ -3,10 +3,10 @@ import 'package:flutter_shop/models/brand_list.dart';
 import 'package:flutter_shop/models/category.dart';
 import 'package:flutter_shop/models/feauture_product.dart';
 import 'package:flutter_shop/models/promo_banner.dart';
-import 'package:flutter_shop/repository/brand_list_service.dart';
-import 'package:flutter_shop/repository/feauture_product_service.dart';
-import 'package:flutter_shop/repository/promo_banner_service.dart';
-import 'package:flutter_shop/repository/repository.dart';
+import 'package:flutter_shop/repository/brand_repository.dart';
+import 'package:flutter_shop/repository/product_repository.dart';
+import 'package:flutter_shop/repository/banner_repository.dart';
+import 'package:flutter_shop/repository/category_repository.dart';
 
 abstract class HomePageEvent {}
 
@@ -57,17 +57,16 @@ class HomePageNotifier extends ChangeNotifier {
     emit(LoadingState());
     try {
       if (event is LoadEvent) {
-        var banners = await PromoBannerService().loadBanners();
-        var categories = await Repository().loadCategories();
-        var featuredProducts =
-            await FeautureProductService().loadFeatureProduct();
-        var brandLists = await BrandListService().loadBrandLists();
+        var banners = await BannerRepository().loadBanners();
+        var categories = await CategoryRepository().loadCategories();
+        var featuredProducts = await ProductRepository().loadFeatureProduct();
+        var brandLists = await BrandRepository().loadBrandLists();
 
         emit(LoadedState(
           categoryList: categories,
           feautureProductList: featuredProducts,
           promoBannerList: banners,
-          brandList : brandLists,
+          brandList: brandLists,
         ));
       }
     } catch (e) {

@@ -27,48 +27,53 @@ class _HomePageState extends State<HomePage> {
       selector: (_, homePage) => homePage.state,
       builder: (_, state, __) {
         if (state is LoadedState) {
-          return CustomScrollView(
-            slivers: [
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                    'Shop By Category',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+          return RefreshIndicator(
+            onRefresh: () async {
+              HomePageNotifier.instance.add(LoadEvent());
+            },
+            child: CustomScrollView(
+              slivers: [
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      'Shop By Category',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: HomeProductCategories(
-                  categoryList: state.categoryList,
+                SliverToBoxAdapter(
+                  child: HomeProductCategories(
+                    categoryList: state.categoryList,
+                  ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                  child:
-                      HomePromoBanners(promoBannerList: state.promoBannerList)),
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text('Feautures Product'),
+                SliverToBoxAdapter(
+                    child: HomePromoBanners(
+                        promoBannerList: state.promoBannerList)),
+                const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text('Feautures Product'),
+                  ),
                 ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16.0),
-                sliver: SliverToBoxAdapter(
-                  child: state.feautureProductList.isNotEmpty
-                      ? HomeFeautureProduct(
-                          product: state.feautureProductList.first,
-                        )
-                      : const SizedBox.shrink(),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16.0),
+                  sliver: SliverToBoxAdapter(
+                    child: state.feautureProductList.isNotEmpty
+                        ? HomeFeautureProduct(
+                            product: state.feautureProductList.first,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
                 ),
-              ),
-              HomeFeautureProducts(
-                feautureProductList: state.feautureProductList..skip(0),
-              )
-            ],
+                HomeFeautureProducts(
+                  feautureProductList: state.feautureProductList..skip(0),
+                )
+              ],
+            ),
           );
         } else if (state is LoadingState) {
           return const Center(

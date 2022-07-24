@@ -1,18 +1,18 @@
 import 'dart:convert';
 
+import 'package:flutter_shop/constants/app_constants.dart';
 import 'package:flutter_shop/models/brand_list.dart';
 import 'package:http/http.dart' as http;
 
-class BrandListService {
-  final String _baseUrl = 'http://shop.asmantiz.com/api/';
-
+class BrandRepository {
   httpGet() async {
-    return await http.get(Uri.parse('${_baseUrl}customers/brand'));
+    return await http
+        .get(Uri.parse('${AppConstants.currentHost}customers/brand'));
   }
 
   Future<List<BrandList>> loadBrandLists() async {
     http.Response response =
-        await http.get(Uri.parse('${_baseUrl}customers/brand'));
+        await http.get(Uri.parse('${AppConstants.currentHost}customers/brand'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data']['brands'];
