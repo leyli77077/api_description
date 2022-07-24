@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/constants/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-class AppConstants {
-  // Default gelýän dil hökmünde
-  static const Locale defaultLocale = Locale('tk');
-  static const defaultLanguageCode = 'tk';
-  // SharedPreference üçin key bolýar
-  static const languageCode = 'languageCode';
-}
 
 class Settings extends ChangeNotifier {
   static Settings? instance;

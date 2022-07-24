@@ -9,7 +9,7 @@ class FeautureProduct {
   final String? shortDescription;
   final dynamic saleLimitQuantity;
   final bool? isBundle;
-  final String? thumbPic;
+  final String thumbPic;
 
   const FeautureProduct({
     required this.id,
@@ -31,7 +31,7 @@ class FeautureProduct {
       code: json["code"],
       price: double.tryParse('${json["price"]}'),
       priceText: json["price_text"],
-      struckPrice: json["struck_price"],                                                                
+      struckPrice: json["struck_price"],
       struckPriceText: json["struck_price_text"],
       shortName: json["short_name"],
       shortDescription: json["short_description"],
