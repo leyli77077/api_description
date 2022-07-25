@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/constants/app_constants.dart';
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,14 +14,13 @@ class Settings extends ChangeNotifier {
     _language = ConfigPreference.loadLangCode();
   }
 
-  void setLanguage(String lang) async {
+  void setLanguage(String lang) {
     // başda _language-e täze gelen lang-y dakýarys we göni
     // notifyListeners(); edýäris we täze dili SharedPreferences
     // saklaýarys.
     _language = lang;
     notifyListeners();
-    var prefs = await SharedPreferences.getInstance();
-    prefs.setString(AppConstants.languageCode, lang);
+    ConfigPreference.setLangCode(lang);
   }
 
   // bunyda main-da consumerda ýa-da selectorda languagy almak üçin ulanýarys

@@ -46,4 +46,8 @@ class ConfigPreference {
     return instance._pref.getString(AppConstants.languageCode) ??
         AppConstants.defaultLanguageCode;
   }
+
+  static Future<bool> setLangCode(String code) {
+    return instance._pref.setString(AppConstants.languageCode, code);
+  }
 }

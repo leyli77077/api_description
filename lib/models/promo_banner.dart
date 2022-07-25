@@ -15,11 +15,11 @@ class PromoBanner {
 
   factory PromoBanner.fromJson(Map<String, dynamic> json) {
     return PromoBanner(
-     id: json["id"],
-        priority: json["priority"],
-        noAction: json["no_action"],
-        picUrl: json["pic_url"],
-        actionType: json["action_type"],
+      id: json["id"],
+      priority: json["priority"],
+      noAction: json["no_action"],
+      picUrl: json["pic_url"] ?? '',
+      actionType: json["action_type"],
     );
   }
 }

@@ -29,17 +29,17 @@ class FeautureProduct {
 
   factory FeautureProduct.fromJson(Map<String, dynamic> json) {
     return FeautureProduct(
-      id: json["id"] ?? 0,
-      code: json["code"],
-      price: double.tryParse('${json["price"]}') ?? 0.0,
-      priceText: json["price_text"],
-      struckPrice: doubleParser(json["struck_price"]),
-      struckPriceText: json["struck_price_text"],
-      shortName: json["short_name"],
-      shortDescription: json["short_description"],
-      saleLimitQuantity: json["sale_limit_quantity"] ?? 0,
-      isBundle: json["is_bundle"],
-      thumbPic: json["thumb_pic"],
+      id: json['id'] ?? 0,
+      code: json['code'],
+      price: double.tryParse('${json['price']}') ?? 0.0,
+      priceText: json['price_text'],
+      struckPrice: doubleParser(json['struck_price']),
+      struckPriceText: json['struck_price_text'],
+      shortName: json['short_name'],
+      shortDescription: json['short_description'] ?? '',
+      saleLimitQuantity: json['sale_limit_quantity'] ?? 0,
+      isBundle: json['is_bundle'] ?? false,
+      thumbPic: json['thumb_pic'],
     );
   }
 }

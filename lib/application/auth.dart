@@ -88,8 +88,7 @@ class VerifiedState extends AuthState {
 }
 
 class NotVerifiedState extends AuthState {
-  final User user;
-  NotVerifiedState({required this.user});
+  NotVerifiedState();
 }
 
 class EmptyState extends AuthState {}
@@ -127,10 +126,8 @@ class Auth extends ChangeNotifier {
       if (user != null && token != null) {
         AuthRepository.accessToken = token;
         emit(VerifiedState(accessToken: token, user: user));
-      } else if (user != null) {
-        emit(LoginFormState());
       } else {
-        emit(LogoutState());
+        emit(NotVerifiedState());
       }
     } else if (event is RegisterEvent) {
       try {

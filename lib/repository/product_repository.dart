@@ -23,13 +23,13 @@ class ProductRepository {
     }
   }
 
-  Future<List<ProductDetail>> loadProductDetail() async {
-    http.Response response =
-        await http.get(Uri.parse('${AppConstants.currentHost}customers/product/detail?id=3033'));
+  Future<ProductDetail> loadProductDetail(int id) async {
+    http.Response response = await http.get(Uri.parse(
+        '${AppConstants.currentHost}customers/product/detail?id=$id'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
-      List data = result['data'];
-      return data.map((e) => ProductDetail.fromJson(e)).toList();
+      dynamic data = result['data'];
+      return ProductDetail.fromJson(data);
     } else {
       throw Exception();
     }
