@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+const Color primaryColor = Color(0xFFF67952);
+const Color bgColor = Color(0xFFFBFBFD);
 
+const double defaultPadding = 16.0;
+const double defaultBorderRadius = 12.0;
 class ColorConstants {
   static Color gray50 = hexToColor('#e9e9e9');
   static Color gray100 = hexToColor('#bdbebe');
@@ -11,6 +15,7 @@ class ColorConstants {
   static Color gray700 = hexToColor('#191a1b');
   static Color gray800 = hexToColor('#121313');
   static Color gray900 = hexToColor('#0e0f0f');
+  
 }
 
 Color hexToColor(String hex) {
