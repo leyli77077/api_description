@@ -6,6 +6,7 @@ import 'package:flutter_shop/application/settings.dart';
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/screens/home_screens.dart';
+import 'package:flutter_shop/widgets/home_product_datail.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
           ...GlobalMaterialLocalizations.delegates,
           GlobalWidgetsLocalizations.delegate,
         ],
-        home: const HomeScreen(),
+        home:  DetailAppBar(),
       );
     });
   }
