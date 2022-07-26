@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/models/feauture_product.dart';
+import 'package:flutter_shop/widgets/home_product_datail.dart';
 
 class HomeFeautureProduct extends StatelessWidget {
   final FeautureProduct product;
@@ -15,70 +16,80 @@ class HomeFeautureProduct extends StatelessWidget {
     // print(feautureProductShortName);
     return Stack(
       children: [
-        Container(
-          padding: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                offset: Offset.zero,
-                blurRadius: 20.0,
-              )
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 30),
-                width: 190,
-                height: 130,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    alignment: Alignment.bottomCenter,
-                    image: CachedNetworkImageProvider(
-                      product.thumbPic,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DetailAppBar(),
+              ),
+            );
+          },
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  offset: Offset.zero,
+                  blurRadius: 20.0,
+                )
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 30),
+                  width: 190,
+                  height: 130,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      alignment: Alignment.bottomCenter,
+                      image: CachedNetworkImageProvider(
+                        product.thumbPic,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                height: 30,
-                child: Text(
-                  product.shortName.toString(),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 12, color: Colors.black26),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  height: 30,
+                  child: Text(
+                    product.shortName.toString(),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 12, color: Colors.black26),
+                  ),
                 ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  product.shortDescription.toString(),
-                  style: const TextStyle(fontSize: 15, color: Colors.black26),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    product.shortDescription.toString(),
+                    style: const TextStyle(fontSize: 15, color: Colors.black26),
+                  ),
                 ),
-              ),
-              // const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(product.price.toString()),
-                  if (product.struckPrice != null)
-                    Text(
-                      product.struckPrice.toString(),
-                      style: const TextStyle(
-                        fontSize: 15,
-                        height: 1.5,
-                        decoration: TextDecoration.lineThrough,
-                        color: Colors.black,
+                // const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(product.price.toString()),
+                    if (product.struckPrice != null)
+                      Text(
+                        product.struckPrice.toString(),
+                        style: const TextStyle(
+                          fontSize: 15,
+                          height: 1.5,
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         if (product.struckPrice != null)

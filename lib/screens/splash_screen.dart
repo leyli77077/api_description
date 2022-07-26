@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
-import '../pages/login_page.dart';
+import 'package:flutter_shop/pages/auth/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key, required this.title}) : super(key: key);
@@ -16,13 +15,21 @@ class SplashScreenState extends State<SplashScreen> {
   bool _isVisible = false;
 
   SplashScreenState() {
-    Timer(const Duration(milliseconds: 2000), () {
-      setState(() {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const LoginPage()),
-            (route) => false);
-      });
-    });
+    Timer(
+      const Duration(milliseconds: 2000),
+      () {
+        setState(
+          () {
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => const LoginPage(),
+              ),
+              (route) => false,
+            );
+          },
+        );
+      },
+    );
 
     Timer(const Duration(milliseconds: 10), () {
       setState(() {

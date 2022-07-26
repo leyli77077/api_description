@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 
 class DetailAppBar extends StatefulWidget {
   const DetailAppBar({Key? key}) : super(key: key);
