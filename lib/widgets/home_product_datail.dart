@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/constants/extentions.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 class DetailAppBar extends StatefulWidget {
@@ -171,7 +173,17 @@ class _DetailAppBarState extends State<DetailAppBar> {
     //   ]),
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Detail'),
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+          ),
+          child: Image.asset(
+            "assets/images/logo.png",
+            height: 100,
+            width: 100,
+          ),
+        ),
       ),
       body: SafeArea(
         top: false,
@@ -220,34 +232,6 @@ class _DetailAppBarState extends State<DetailAppBar> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10.0),
-                                child: Text(
-                                  '\$90',
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const Text('\$190',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      decoration: TextDecoration.lineThrough)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
                     Column(
                       children: <Widget>[
                         Container(
@@ -263,15 +247,57 @@ class _DetailAppBarState extends State<DetailAppBar> {
                               ),
                             )),
                         Container(
-                            alignment: const Alignment(-1.0, -1.0),
-                            child: const Padding(
-                              padding: EdgeInsets.only(bottom: 10.0),
-                              child: Text(
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
+                          alignment: const Alignment(-1.0, -1.0),
+                          child: const Padding(
+                            padding: EdgeInsets.only(bottom: 10.0),
+                            child: Text(
+                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10.0),
+                                    child: Text(
+                                      '\$90',
+                                      style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text('\$190',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          decoration:
+                                              TextDecoration.lineThrough)),
+                                ],
                               ),
-                            ))
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        _availableSize(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        _availableColor(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        _description(),
                       ],
                     ),
                   ],
@@ -281,6 +307,112 @@ class _DetailAppBarState extends State<DetailAppBar> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _availableSize() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          "Available Size",
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _sizeWidget("US 6"),
+            _sizeWidget("US 7", isSelected: true),
+            _sizeWidget("US 8"),
+            _sizeWidget("US 9"),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _sizeWidget(String text, {bool isSelected = false}) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        border: Border.all(
+            color: LightColor.iconColor,
+            style: !isSelected ? BorderStyle.solid : BorderStyle.none),
+        borderRadius: BorderRadius.all(Radius.circular(13)),
+        color:
+            isSelected ? LightColor.orange : Theme.of(context).backgroundColor,
+      ),
+      child: Text(
+        'size: xl',
+        style: TextStyle(
+          fontSize: 16,
+          color: isSelected ? LightColor.background : LightColor.titleTextColor,
+        ),
+      ),
+    ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
+  }
+
+  Widget _availableColor() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const Text("Available Size",
+            style: TextStyle(
+              fontSize: 14,
+            )),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            _colorWidget(LightColor.yellowColor, isSelected: true),
+            const SizedBox(
+              width: 30,
+            ),
+            _colorWidget(LightColor.lightBlue),
+            const SizedBox(
+              width: 30,
+            ),
+            _colorWidget(LightColor.black),
+            const SizedBox(
+              width: 30,
+            ),
+            _colorWidget(LightColor.red),
+            const SizedBox(
+              width: 30,
+            ),
+            _colorWidget(LightColor.skyBlue),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _colorWidget(Color color, {bool isSelected = false}) {
+    return CircleAvatar(
+      radius: 12,
+      backgroundColor: color.withAlpha(150),
+      child: isSelected
+          ? Icon(
+              Icons.check_circle,
+              color: color,
+              size: 18,
+            )
+          : CircleAvatar(radius: 7, backgroundColor: color),
+    );
+  }
+
+  Widget _description() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const <Widget>[
+        Text("Available Color",
+            style: TextStyle(
+              fontSize: 14,
+            )),
+      ],
     );
   }
 }
