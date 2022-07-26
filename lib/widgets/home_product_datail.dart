@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/constants/extentions.dart';
@@ -188,122 +189,166 @@ class _DetailAppBarState extends State<DetailAppBar> {
         top: false,
         left: false,
         right: false,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              CarouselSlider(
-                carouselController: _controller,
-                options: CarouselOptions(
-                    height: 500,
-                    viewportFraction: 1,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentPage = index;
-                      });
-                    }),
-                items: [1, 2, 3, 4, 5]
-                    .map((e) => Builder(
-                          builder: (context) => Container(
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                image: const DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/p-20-1.png')),
-                                borderRadius: BorderRadius.circular(25)),
+        child: ListView(
+          children: [
+            Container(
+              height: 500,
+              padding: const EdgeInsets.all(10.0),
+              child: Stack(
+                children: [
+                  CarouselSlider(
+                    carouselController: _controller,
+                    options: CarouselOptions(
+                      height: 500,
+                      viewportFraction: 1,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _currentPage = index;
+                        });
+                      },
+                    ),
+                    items: [1, 2, 3, 4, 5]
+                        .map(
+                          (e) => Container(
+                            // margin: const EdgeInsets.all(10),
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/images/p-20-1.png'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        ))
-                    .toList(),
+                        )
+                        .toList(),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [1, 2, 3, 4, 5].map((entry) {
+                          return GestureDetector(
+                            onTap: () => _controller.animateToPage(entry - 1),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              width: _currentPage == entry - 1 ? 24.0 : 12.0,
+                              height: 12.0,
+                              margin: const EdgeInsets.symmetric(
+                                // vertical: 8.0,
+                                horizontal: 4.0,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 6,
+                                    spreadRadius: 3,
+                                  )
+                                ],
+                                color: _currentPage == entry - 1
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: const Alignment(-1.0, -1.0),
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 15),
-                        child: Text(
-                          'Product Title Name',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    alignment: const Alignment(-1.0, -1.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 15, bottom: 15),
+                      child: Text(
+                        'Product Title Name',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                            alignment: const Alignment(-1.0, -1.0),
-                            child: const Padding(
-                              padding: EdgeInsets.only(bottom: 10.0),
-                              child: Text(
-                                'Description',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            )),
-                        Container(
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Container(
                           alignment: const Alignment(-1.0, -1.0),
                           child: const Padding(
                             padding: EdgeInsets.only(bottom: 10.0),
                             child: Text(
-                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
+                              'Description',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
                             ),
+                          )),
+                      Container(
+                        alignment: const Alignment(-1.0, -1.0),
+                        child: const Padding(
+                          padding: EdgeInsets.only(bottom: 10.0),
+                          child: Text(
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                            style: TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10.0),
-                                    child: Text(
-                                      '\$90',
-                                      style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Text(
+                                    '\$90',
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  const Text('\$190',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          decoration:
-                                              TextDecoration.lineThrough)),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                                const Text('\$190',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        decoration:
+                                            TextDecoration.lineThrough)),
+                              ],
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        _availableSize(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        _availableColor(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        _description(),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _availableSize(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _availableColor(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _description(),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -351,14 +396,17 @@ class _DetailAppBarState extends State<DetailAppBar> {
           color: isSelected ? LightColor.background : LightColor.titleTextColor,
         ),
       ),
-    ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
+    ).ripple(
+      () {},
+      borderRadius: BorderRadius.all(Radius.circular(13)),
+    );
   }
 
   Widget _availableColor() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text("Available Size",
+        const Text("Available colors",
             style: TextStyle(
               fontSize: 14,
             )),
@@ -407,10 +455,12 @@ class _DetailAppBarState extends State<DetailAppBar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const <Widget>[
-        Text("Available Color",
-            style: TextStyle(
-              fontSize: 14,
-            )),
+        Text(
+          "Available Color",
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
       ],
     );
   }
