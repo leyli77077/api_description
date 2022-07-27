@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/constants/extentions.dart';
@@ -33,10 +34,12 @@ class _DetailAppBarState extends State<DetailAppBar> {
         top: false,
         left: false,
         right: false,
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Stack(
+        child: ListView(
+          children: [
+            Container(
+              height: 500,
+              padding: const EdgeInsets.all(10.0),
+              child: Stack(
                 children: [
                   CarouselSlider(
                     carouselController: _controller,
@@ -95,98 +98,96 @@ class _DetailAppBarState extends State<DetailAppBar> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: const Alignment(-1.0, -1.0),
-                      child: const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 15),
-                        child: Text(
-                          'Product Title Name',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    alignment: const Alignment(-1.0, -1.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 15, bottom: 15),
+                      child: Text(
+                        'Product Title Name',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                            alignment: const Alignment(-1.0, -1.0),
-                            child: const Padding(
-                              padding: EdgeInsets.only(bottom: 10.0),
-                              child: Text(
-                                'Description',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            )),
-                        Container(
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Container(
                           alignment: const Alignment(-1.0, -1.0),
                           child: const Padding(
                             padding: EdgeInsets.only(bottom: 10.0),
                             child: Text(
-                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
+                              'Description',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
                             ),
+                          )),
+                      Container(
+                        alignment: const Alignment(-1.0, -1.0),
+                        child: const Padding(
+                          padding: EdgeInsets.only(bottom: 10.0),
+                          child: Text(
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                            style: TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10.0),
-                                    child: Text(
-                                      '\$90',
-                                      style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                  const Text(
-                                    '\$190',
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Text(
+                                    '\$90',
                                     style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      decoration: TextDecoration.lineThrough,
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                                const Text('\$190',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        decoration:
+                                            TextDecoration.lineThrough)),
+                              ],
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        _availableSize(),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        _availableColor(),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        _description(),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _availableSize(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _availableColor(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _description(),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -196,7 +197,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
+        const Text(
           "Available Size",
           style: TextStyle(
             fontSize: 14,
@@ -234,7 +235,10 @@ class _DetailAppBarState extends State<DetailAppBar> {
           color: isSelected ? LightColor.background : LightColor.titleTextColor,
         ),
       ),
-    ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
+    ).ripple(
+      () {},
+      borderRadius: BorderRadius.all(Radius.circular(13)),
+    );
   }
 
   Widget _availableColor() {
@@ -290,10 +294,12 @@ class _DetailAppBarState extends State<DetailAppBar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const <Widget>[
-        Text("Available Color",
-            style: TextStyle(
-              fontSize: 14,
-            )),
+        Text(
+          "Available Color",
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
       ],
     );
   }
