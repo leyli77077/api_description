@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/pages/auth/initial_page.dart';
+import 'package:flutter_shop/pages/auth/login_page.dart';
+import 'package:flutter_shop/pages/auth/otp_page.dart';
+import 'package:flutter_shop/pages/auth/profile_page.dart';
 import 'package:flutter_shop/pages/auth/registration_page.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +20,22 @@ class PersonalPageState extends State<PersonalPage> {
     return Selector<Auth, AuthState>(
       selector: (_, auth) => auth.state,
       builder: (_, state, __) {
-        return const RegistrationPage();
+        if (state is NotVerifiedState) {
+          return const InitialPage();
+        } else if (state is LoginFormState) {
+          return const LoginPage();
+        } else if (state is RegisterFormState) {
+          return const RegistrationPage();
+        } else if (state is VerifiedState) {
+          return const ProfilePage();
+        } else if (state is OtpFormState) {
+          return const OtpPage();
+        } else if (state is LoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return const InitialPage();
       },
     );
   }

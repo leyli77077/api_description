@@ -2,37 +2,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
-import 'package:flutter_shop/models/form/login_form.dart';
-import 'package:flutter_shop/pages/auth/profile_page.dart';
 import 'package:flutter_shop/widgets/header_widget.dart';
-import 'registration_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class OtpPage extends StatefulWidget {
+  const OtpPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<OtpPage> createState() => _OtpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _OtpPageState extends State<OtpPage> {
   double headerHeight = 150;
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController phoneController = TextEditingController();
-
-  bool validate() {
-    final formKey = _formKey.currentState;
-    return formKey!.validate();
-  }
-
-  void submit() {
-    if (validate()) {
-      Auth().add(LoginEvent(
-        form: LoginForm(
-          phone: int.parse(phoneController.text),
-        ),
-      ));
-    }
-  }
+  final Key _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   const Text(
-                    'Signin into your account',
+                    'We send you one time password enter it to signin',
                     style: TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 30.0),
@@ -70,19 +51,15 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: phoneController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Mobile Number", "Enter your mobile number"),
-                            keyboardType: TextInputType.phone,
+                                "OTP", "Enter one time password"),
+                            keyboardType: TextInputType.number,
                             validator: (val) {
                               if (val!.isNotEmpty &&
-                                  !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                                return "Enter a valid phone number";
+                                  val.contains(RegExp(r'[0-9]'))) {
+                                return "Enter a valid otp";
                               }
                               return null;
-                            },
-                            onFieldSubmitted: (text) {
-                              submit();
                             },
                           ),
                         ),
@@ -96,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                'Get otp'.toUpperCase(),
+                                'Sign In'.toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -105,7 +82,6 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             onPressed: () {
-                              submit();
                               //After successful login we will redirect to profile page. Let's create profile page now
                             },
                           ),

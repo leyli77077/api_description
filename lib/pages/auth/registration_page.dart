@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/header_widget.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
 import 'profile_page.dart';
@@ -12,8 +14,6 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
-  bool checkedValue = false;
-  bool checkboxValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,43 +34,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      GestureDetector(
-                        child: Stack(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                border:
-                                    Border.all(width: 5, color: Colors.white),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 20,
-                                    offset: Offset(5, 5),
-                                  ),
-                                ],
-                              ),
-                              child: Icon(
-                                Icons.person,
-                                color: Colors.grey.shade300,
-                                size: 80.0,
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.fromLTRB(80, 80, 0, 0),
-                              child: Icon(
-                                Icons.add_circle,
-                                color: Colors.grey.shade700,
-                                size: 25.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       const SizedBox(
-                        height: 30,
+                        height: 120,
                       ),
                       Container(
                         decoration: ThemeHelper().inputBoxDecorationShaddow(),
@@ -126,59 +91,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Container(
                         decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         child: TextFormField(
-                          obscureText: true,
                           decoration: ThemeHelper().textInputDecoration(
-                              "Password*", "Enter your password"),
+                              "Address", "Enter your address"),
                           validator: (val) {
                             if (val!.isEmpty) {
-                              return "Please enter your password";
+                              return "Please enter your address";
                             }
                             return null;
                           },
                         ),
-                      ),
-                      const SizedBox(height: 15.0),
-                      FormField<bool>(
-                        builder: (state) {
-                          return Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Checkbox(
-                                      value: checkboxValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          checkboxValue = value!;
-                                          state.didChange(value);
-                                        });
-                                      }),
-                                  const Text(
-                                    "I accept all terms and conditions.",
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  state.errorText ?? '',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Theme.of(context).errorColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              )
-                            ],
-                          );
-                        },
-                        validator: (value) {
-                          if (!checkboxValue) {
-                            return 'You need to accept terms and conditions';
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
                       const SizedBox(height: 20.0),
                       Container(
@@ -198,13 +119,36 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProfilePage()),
-                                  (Route<dynamic> route) => false);
+                              // Navigator.of(context).pushAndRemoveUntil(
+                              //   MaterialPageRoute(
+                              //       builder: (context) => const ProfilePage()),
+                              //   (Route<dynamic> route) => false,
+                              // );
                             }
                           },
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                        //child: Text('Don\'t have an account? Create'),
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              const TextSpan(text: 'Do you have an account? '),
+                              TextSpan(
+                                text: 'Login',
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Auth.instance.add(OpenLoginEvent());
+                                  },
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 30.0),
