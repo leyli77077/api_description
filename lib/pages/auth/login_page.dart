@@ -1,14 +1,25 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
+import 'package:flutter_shop/core/l10n.dart';
+import 'package:flutter_shop/dialogs/error_snackbar.dart';
 import 'package:flutter_shop/models/form/login_form.dart';
-import 'package:flutter_shop/pages/auth/profile_page.dart';
 import 'package:flutter_shop/widgets/header_widget.dart';
-import 'registration_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final LoginForm? form;
+  final String? error;
+  final String? time;
+  const LoginPage({
+    Key? key,
+    this.form,
+    this.error,
+    this.time,
+  }) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -18,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   double headerHeight = 150;
   final _formKey = GlobalKey<FormState>();
   TextEditingController phoneController = TextEditingController();
+  String? error;
 
   bool validate() {
     final formKey = _formKey.currentState;
@@ -32,6 +44,34 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ));
     }
+  }
+
+  @override
+  void initState() {
+    phoneController.text = widget.form?.phone.toString() ?? '';
+    if (widget.error != null) {
+      try {
+        error =
+            '${widget.time} s. ${jsonDecode(widget.error!)['error'].toString().trs}';
+      } catch (e) {
+        error = widget.error.toString().trs;
+      }
+    } else {
+      error = null;
+    }
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    Future(() {
+      if (error != null) {
+        Future(() {
+          errorSnackBar(context, [error!.trs]);
+        });
+      }
+    });
+    super.didChangeDependencies();
   }
 
   @override
@@ -71,9 +111,18 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
                             controller: phoneController,
+                            autofocus: true,
+                            textInputAction: TextInputAction.done,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Mobile Number", "Enter your mobile number"),
+                              lableText: "Mobile Number",
+                              hintText: "Enter your mobile number",
+                              errorText: error?.trs,
+                            ),
                             keyboardType: TextInputType.phone,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r"[0-9]"))
+                            ],
                             validator: (val) {
                               if (val!.isNotEmpty &&
                                   !RegExp(r"^(\d+)*$").hasMatch(val)) {

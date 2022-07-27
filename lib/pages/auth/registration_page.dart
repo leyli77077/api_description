@@ -1,12 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/header_widget.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
-import 'profile_page.dart';
+import 'package:flutter_shop/core/l10n.dart';
+import 'package:flutter_shop/dialogs/error_snackbar.dart';
+import 'package:flutter_shop/models/form/register_form.dart';
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  final RegisterForm? form;
+  final Map<String, List<String>>? errors;
+  const RegistrationPage({Key? key, this.form, this.errors}) : super(key: key);
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -14,6 +19,65 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+
+  List<String> errors = [];
+
+  bool validate() {
+    final formKey = _formKey.currentState;
+    return formKey!.validate();
+  }
+
+  void submit() {
+    if (validate()) {
+      Auth().add(RegisterEvent(
+        form: RegisterForm(
+          firstName: nameController.text,
+          lastName: surnameController.text,
+          phone: int.parse(phoneController.text),
+          email: emailController.text,
+          address: addressController.text,
+        ),
+      ));
+    }
+  }
+
+  @override
+  void initState() {
+    nameController.text = widget.form?.firstName ?? '';
+    surnameController.text = widget.form?.lastName ?? '';
+    phoneController.text = widget.form?.phone.toString() ?? '';
+    emailController.text = widget.form?.email ?? '';
+    addressController.text = widget.form?.address ?? '';
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (widget.errors != null) {
+      for (var key in widget.errors!.keys) {
+        if ([
+          'firstname',
+          'lastname',
+          'phone',
+          'email',
+          'address',
+        ].contains(key)) {
+          errors.addAll(widget.errors![key]!.toList());
+        }
+      }
+    }
+    if (errors.isNotEmpty) {
+      Future(() {
+        errorSnackBar(context, errors);
+      });
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +104,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Container(
                         decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         child: TextFormField(
+                          controller: nameController,
+                          autofocus: true,
+                          textInputAction: TextInputAction.next,
                           decoration: ThemeHelper().textInputDecoration(
-                              'First Name', 'Enter your first name'),
+                            lableText: 'First Name',
+                            hintText: 'Enter your first name',
+                            errorText: widget.errors?['firstname']
+                                ?.map((e) => e.trs)
+                                .toList()
+                                .join(', '),
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -50,16 +123,32 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Container(
                         decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         child: TextFormField(
+                          controller: surnameController,
+                          textInputAction: TextInputAction.next,
                           decoration: ThemeHelper().textInputDecoration(
-                              'Last Name', 'Enter your last name'),
+                            lableText: 'Last Name',
+                            hintText: 'Enter your last name',
+                            errorText: widget.errors?['lastname']
+                                ?.map((e) => e.trs)
+                                .toList()
+                                .join(', '),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20.0),
                       Container(
                         decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         child: TextFormField(
+                          controller: emailController,
+                          textInputAction: TextInputAction.next,
                           decoration: ThemeHelper().textInputDecoration(
-                              "E-mail address", "Enter your email"),
+                            lableText: "E-mail address",
+                            hintText: "Enter your email",
+                            errorText: widget.errors?['email']
+                                ?.map((e) => e.trs)
+                                .toList()
+                                .join(', '),
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           validator: (val) {
                             if (val!.isNotEmpty &&
@@ -75,9 +164,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Container(
                         decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         child: TextFormField(
+                          controller: phoneController,
+                          textInputAction: TextInputAction.next,
                           decoration: ThemeHelper().textInputDecoration(
-                              "Mobile Number", "Enter your mobile number"),
+                            lableText: "Mobile Number",
+                            hintText: "Enter your mobile number",
+                            errorText: widget.errors?['phone']
+                                ?.map((e) => e.trs)
+                                .toList()
+                                .join(', '),
+                          ),
                           keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))
+                          ],
                           validator: (val) {
                             if (val!.isNotEmpty &&
                                 !RegExp(r"^(\d+)*$").hasMatch(val)) {
@@ -91,13 +191,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Container(
                         decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         child: TextFormField(
+                          controller: addressController,
+                          textInputAction: TextInputAction.done,
                           decoration: ThemeHelper().textInputDecoration(
-                              "Address", "Enter your address"),
+                            lableText: "Address",
+                            hintText: "Enter your address",
+                            errorText: widget.errors?['address']
+                                ?.map((e) => e.trs)
+                                .toList()
+                                .join(', '),
+                          ),
                           validator: (val) {
                             if (val!.isEmpty) {
                               return "Please enter your address";
                             }
                             return null;
+                          },
+                          onFieldSubmitted: (String text) {
+                            submit();
                           },
                         ),
                       ),
@@ -118,13 +229,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                           ),
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              // Navigator.of(context).pushAndRemoveUntil(
-                              //   MaterialPageRoute(
-                              //       builder: (context) => const ProfilePage()),
-                              //   (Route<dynamic> route) => false,
-                              // );
-                            }
+                            submit();
                           },
                         ),
                       ),

@@ -1,11 +1,21 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
+import 'package:flutter_shop/core/l10n.dart';
+import 'package:flutter_shop/dialogs/error_snackbar.dart';
+import 'package:flutter_shop/models/form/otp_form.dart';
 import 'package:flutter_shop/widgets/header_widget.dart';
 
 class OtpPage extends StatefulWidget {
-  const OtpPage({Key? key}) : super(key: key);
+  final OtpForm form;
+  final String? error;
+  const OtpPage({
+    Key? key,
+    required this.form,
+    this.error,
+  }) : super(key: key);
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -13,7 +23,40 @@ class OtpPage extends StatefulWidget {
 
 class _OtpPageState extends State<OtpPage> {
   double headerHeight = 150;
-  final Key _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController textController = TextEditingController();
+
+  bool validate() {
+    final formKey = _formKey.currentState;
+    return formKey!.validate();
+  }
+
+  void submit() {
+    if (validate()) {
+      Auth().add(WithOtpEvent(
+        phone: widget.form.phone,
+        otp: int.parse(textController.text),
+        rememberMe: true,
+      ));
+    }
+  }
+
+  @override
+  void initState() {
+    textController.text =
+        widget.form.otp != null ? widget.form.otp.toString() : '';
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (widget.error != null) {
+      Future(() {
+        errorSnackBar(context, [widget.error!.trs]);
+      });
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +94,30 @@ class _OtpPageState extends State<OtpPage> {
                         Container(
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
+                            controller: textController,
+                            autofocus: true,
+                            textInputAction: TextInputAction.done,
                             decoration: ThemeHelper().textInputDecoration(
-                                "OTP", "Enter one time password"),
+                              lableText: "OTP",
+                              hintText: "Enter one time password",
+                              errorText: widget.error?.trs,
+                            ),
                             keyboardType: TextInputType.number,
-                            validator: (val) {
-                              if (val!.isNotEmpty &&
-                                  val.contains(RegExp(r'[0-9]'))) {
-                                return "Enter a valid otp";
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r"[0-9]"))
+                            ],
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'otp_is_required'.trs;
+                              } else if (value.length != 5) {
+                                return 'otp_number_length'.trs;
+                              } else {
+                                return null;
                               }
-                              return null;
+                            },
+                            onFieldSubmitted: (text) {
+                              submit();
                             },
                           ),
                         ),
@@ -82,6 +140,7 @@ class _OtpPageState extends State<OtpPage> {
                               ),
                             ),
                             onPressed: () {
+                              submit();
                               //After successful login we will redirect to profile page. Let's create profile page now
                             },
                           ),

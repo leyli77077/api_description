@@ -20,6 +20,28 @@ class LoginResponse {
     );
   }
 
+// {
+//  "success":true,
+// "data":{
+//  "access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vc2hvcC5hc21hbnRpei5jb20vYXBpL2N1c3RvbWVycy9hdXRoL2xvZ2luIiwiaWF0IjoxNjU4OTE2MDczLCJleHAiOjE2NjQxMDAwNzMsIm5iZiI6MTY1ODkxNjA3MywianRpIjoiMWVUS2dzRTgzVVFUMlg0eCIsInN1YiI6IjEwIn0.BKVzHyfpHsFu0qLqaJcC3OlbUkKLZydS8Pbd5hWVzOo",
+//  "user":
+//    {
+//      "id":10,
+//      "phone":"99365713638",
+//      "email":"gdhsh@tets.co",
+//      "firstname":"trhsjs",
+//      "lastname":"dhshshsgshs",
+//      "address_id":null,
+//      "meta":null,
+//      "is_blocked":false,
+//      "verification_code":null,
+//      "verification_token":null,
+//      "deleted_at":null,
+//      "created_at":"2022-07-27T10:00:59.000000Z",
+//      "updated_at":"2022-07-27T10:01:13.000000Z"
+//     }
+//    }
+//  }
   Map<String, dynamic> toMap() {
     return {
       'access_token': accessToken,
@@ -30,7 +52,7 @@ class LoginResponse {
   factory LoginResponse.fromMap(Map<String, dynamic> map) {
     return LoginResponse(
       accessToken: map['access_token'] ?? '',
-      user: User.fromMap(map['customer']),
+      user: User.fromMap(map['user']),
     );
   }
 

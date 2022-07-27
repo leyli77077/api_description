@@ -23,13 +23,25 @@ class PersonalPageState extends State<PersonalPage> {
         if (state is NotVerifiedState) {
           return const InitialPage();
         } else if (state is LoginFormState) {
-          return const LoginPage();
+          return LoginPage(
+            error: state.error,
+            form: state.form,
+            time: state.time,
+          );
         } else if (state is RegisterFormState) {
-          return const RegistrationPage();
+          return RegistrationPage(
+            errors: state.errors,
+            form: state.form,
+          );
         } else if (state is VerifiedState) {
-          return const ProfilePage();
+          return ProfilePage(
+            state: state,
+          );
         } else if (state is OtpFormState) {
-          return const OtpPage();
+          return OtpPage(
+            form: state.form,
+            error: state.error,
+          );
         } else if (state is LoadingState) {
           return const Center(
             child: CircularProgressIndicator(),
