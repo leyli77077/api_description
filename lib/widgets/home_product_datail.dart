@@ -1,8 +1,7 @@
+import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
-import 'package:flutter_shop/constants/extentions.dart';
 
 class DetailAppBar extends StatefulWidget {
   const DetailAppBar({Key? key}) : super(key: key);
@@ -14,21 +13,78 @@ class DetailAppBar extends StatefulWidget {
 class _DetailAppBarState extends State<DetailAppBar> {
   final CarouselController _controller = CarouselController();
   int _currentPage = 0;
+  Widget buildSizeButton({title, isSeleted}) {
+    return MaterialButton(
+      height: 40,
+      minWidth: 40,
+      elevation: 0,
+      color: isSeleted ? const Color(0xff8f7fc4) : const Color(0xffe8e8e8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(7),
+      ),
+      child: Center(
+        child: Text(
+          title,
+          style: TextStyle(
+            color: isSeleted ? Colors.white : const Color(0xff727274),
+          ),
+        ),
+      ),
+      onPressed: () {},
+    );
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Padding(
-          padding: const EdgeInsets.only(
-            left: 10,
-          ),
-          child: Image.asset(
-            "assets/images/logo.png",
-            height: 100,
-            width: 100,
+        elevation: 0.0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+            size: 22,
           ),
         ),
+        backgroundColor: Colors.white,
+        title: Text(
+          'product title!',
+          style: AppFont.semiBold,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.favorite_border,
+              color: Colors.black,
+              size: 22,
+            ),
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Badge(
+                badgeColor: AppColors.primaryColorRed,
+                badgeContent: Text(
+                  '1',
+                  style: AppFont.regular
+                      .copyWith(fontSize: 12, color: Colors.white),
+                ),
+                position: BadgePosition.topEnd(top: -8, end: -5),
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Colors.black,
+                ),
+              )),
+        ],
+        
       ),
       body: SafeArea(
         top: false,
@@ -53,47 +109,51 @@ class _DetailAppBarState extends State<DetailAppBar> {
                       },
                     ),
                     items: [1, 2, 3, 4, 5]
-                        .map((e) => Builder(
-                              builder: (context) => Container(
-                                margin: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage('assets/images/p-20-1.png'),
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
+                        .map(
+                          (e) => Container(
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/images/p-20-1.png'),
+                                fit: BoxFit.cover,
                               ),
-                            ))
+                            ),
+                          ),
+                        )
                         .toList(),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [1, 2, 3, 4, 5].map((item) {
-                        return GestureDetector(
-                          onTap: () => _controller.animateToPage(item - 1),
-                          child: Container(
-                            width: _currentPage == item - 1 ? 24: 12.0,
-                            height: 12.0,
-                            margin: const EdgeInsets.symmetric(
-                              vertical: 8.0,
-                              horizontal: 4.0,
-                            ),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: (Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.white
-                                      : Colors.black)
-                                  .withOpacity(
-                                _currentPage == item - 1 ? 0.9 : 0.4,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [1, 2, 3, 4, 5].map((entry) {
+                          return GestureDetector(
+                            onTap: () => _controller.animateToPage(entry - 1),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              width: _currentPage == entry - 1 ? 24.0 : 12.0,
+                              height: 12.0,
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 4.0,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 6,
+                                    spreadRadius: 3,
+                                  )
+                                ],
+                                color: _currentPage == entry - 1
+                                    ? Colors.black
+                                    : Colors.white,
                               ),
                             ),
-                          ),
-                        );
-                      }).toList(),
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
                 ],
@@ -110,34 +170,26 @@ class _DetailAppBarState extends State<DetailAppBar> {
                       child: Text(
                         'Product Title Name',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'TrajanPro'),
                       ),
                     ),
                   ),
                   Column(
                     children: <Widget>[
                       Container(
-                          alignment: const Alignment(-1.0, -1.0),
-                          child: const Padding(
-                            padding: EdgeInsets.only(bottom: 10.0),
-                            child: Text(
-                              'Description',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          )),
-                      Container(
                         alignment: const Alignment(-1.0, -1.0),
                         child: const Padding(
                           padding: EdgeInsets.only(bottom: 10.0),
                           child: Text(
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-                            style: TextStyle(color: Colors.black, fontSize: 16),
+                            style: TextStyle(
+                              color: Color.fromARGB(90, 90, 90, 90),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
                       ),
@@ -147,21 +199,21 @@ class _DetailAppBarState extends State<DetailAppBar> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Row(
-                              children: <Widget>[
+                              children: const <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 10.0),
+                                  padding: EdgeInsets.only(right: 10.0),
                                   child: Text(
                                     '\$90',
                                     style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
+                                      color: Colors.black,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
-                                const Text('\$190',
+                                Text('\$190',
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: Color.fromARGB(255, 94, 93, 93),
                                         fontSize: 16,
                                         decoration:
                                             TextDecoration.lineThrough)),
@@ -170,18 +222,17 @@ class _DetailAppBarState extends State<DetailAppBar> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       _availableSize(),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       _availableColor(),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      _description(),
                     ],
                   ),
                 ],
@@ -198,46 +249,38 @@ class _DetailAppBarState extends State<DetailAppBar> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const Text(
-          "Available Size",
+          " Size",
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 20,
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 5),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _sizeWidget("US 6"),
-            _sizeWidget("US 7", isSelected: true),
-            _sizeWidget("US 8"),
-            _sizeWidget("US 9"),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                buildSizeButton(
+                  title: "S",
+                  isSeleted: false,
+                ),
+                buildSizeButton(
+                  title: "M",
+                  isSeleted: false,
+                ),
+                buildSizeButton(
+                  title: "L",
+                  isSeleted: true,
+                ),
+                buildSizeButton(
+                  title: "XL",
+                  isSeleted: false,
+                ),
+              ],
+            ),
           ],
-        )
-      ],
-    );
-  }
-
-  Widget _sizeWidget(String text, {bool isSelected = false}) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(
-            color: LightColor.iconColor,
-            style: !isSelected ? BorderStyle.solid : BorderStyle.none),
-        borderRadius: BorderRadius.all(Radius.circular(13)),
-        color:
-            isSelected ? LightColor.orange : Theme.of(context).backgroundColor,
-      ),
-      child: Text(
-        'size: xl',
-        style: TextStyle(
-          fontSize: 16,
-          color: isSelected ? LightColor.background : LightColor.titleTextColor,
         ),
-      ),
-    ).ripple(
-      () {},
-      borderRadius: BorderRadius.all(Radius.circular(13)),
+      ],
     );
   }
 
@@ -247,7 +290,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
       children: <Widget>[
         const Text("Available colors",
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 10,
             )),
         const SizedBox(height: 20),
         Row(
@@ -255,19 +298,19 @@ class _DetailAppBarState extends State<DetailAppBar> {
           children: <Widget>[
             _colorWidget(LightColor.yellowColor, isSelected: true),
             const SizedBox(
-              width: 30,
+              width: 20,
             ),
             _colorWidget(LightColor.lightBlue),
             const SizedBox(
-              width: 30,
+              width: 20,
             ),
             _colorWidget(LightColor.black),
             const SizedBox(
-              width: 30,
+              width: 20,
             ),
             _colorWidget(LightColor.red),
             const SizedBox(
-              width: 30,
+              width: 20,
             ),
             _colorWidget(LightColor.skyBlue),
           ],
@@ -278,7 +321,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
 
   Widget _colorWidget(Color color, {bool isSelected = false}) {
     return CircleAvatar(
-      radius: 12,
+      radius: 13,
       backgroundColor: color.withAlpha(150),
       child: isSelected
           ? Icon(
@@ -286,21 +329,26 @@ class _DetailAppBarState extends State<DetailAppBar> {
               color: color,
               size: 18,
             )
-          : CircleAvatar(radius: 7, backgroundColor: color),
+          : CircleAvatar(radius: 15, backgroundColor: color), 
     );
   }
 
-  Widget _description() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const <Widget>[
-        Text(
-          "Available Color",
-          style: TextStyle(
-            fontSize: 14,
-          ),
+  Widget _buildPlayerModelList(items) {
+    return Card(
+      child: ExpansionTile(
+        title: Text(
+          items.playerName,
+          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
         ),
-      ],
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              items.description,
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

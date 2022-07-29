@@ -43,11 +43,14 @@ dependencies:
   provider: ^6.0.3
   shared_preferences: ^2.0.15
   another_flushbar: ^1.10.29
-  # flutter_icons: ^1.1.0
   eva_icons_flutter: ^3.1.0
   custom_navigation_bar: ^0.8.2
   hexcolor: ^2.0.4
   font_awesome_flutter: ^9.1.0
+  google_fonts: ^3.0.1
+  badges: ^2.0.3
+  flutter_rating_bar: ^4.0.1
+  flutter_expanded_tile: ^0.3.6
  
   get_storage: ^2.0.3
   get: ^4.6.5
@@ -102,6 +105,29 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  #   - family: Open Sans
+  #     fonts:      
+  #       - asset: assets/fonts/OpenSans-Bold.ttf
+  #       - asset: assets/fonts/OpenSans-BoldItalic.ttf
+  #       - asset: assets/fonts/OpenSans-ExtraBold.ttf
+  #       - asset: assets/fonts/OpenSans-ExtraBoldItalic.ttf
+  #       - asset: assets/fonts/OpenSans-Italic.ttf
+  #       - asset: assets/fonts/OpenSans-Light.ttf
+  #       - asset: assets/fonts/OpenSans-LightItalic.ttf
+  #       - asset: assets/fonts/OpenSans-Regular.ttf
+  #       - asset: assets/fonts/OpenSans-Semibold.ttf
+  #       - asset: assets/fonts/OpenSans-SemiboldItalic.ttf  
+  #   - family: Metro
+  #     fonts:
+  #       - asset: assets/fonts/metropolis.bold.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/metropolis.medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/metropolis.regular.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/metropolis.semi-bold.ttf
+  #         weight: 700
+            
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
