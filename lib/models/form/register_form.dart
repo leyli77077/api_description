@@ -4,29 +4,39 @@ class RegisterForm {
   final String firstName;
   final String lastName;
   final int phone;
+  final String email;
+  final String address;
   RegisterForm({
     required this.firstName,
     required this.lastName,
     required this.phone,
+    required this.email,
+    required this.address,
   });
 
   RegisterForm copyWith({
     String? firstName,
     String? lastName,
     int? phone,
+    String? email,
+    String? address,
   }) {
     return RegisterForm(
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       phone: phone ?? this.phone,
+      email: email ?? this.email,
+      address: address ?? this.address,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'first_name': firstName,
-      'last_name': lastName,
+      'firstname': firstName,
+      'lastname': lastName,
       'phone': phone,
+      'email': email,
+      'address': address,
     };
   }
 
@@ -35,6 +45,8 @@ class RegisterForm {
       firstName: map['first_name'] ?? '',
       lastName: map['last_name'] ?? '',
       phone: map['phone']?.toInt() ?? 0,
+      email: map['email'] ?? '',
+      address: map['address'] ?? '',
     );
   }
 
@@ -45,7 +57,7 @@ class RegisterForm {
 
   @override
   String toString() =>
-      'RegisterForm(firstName: $firstName, lasstName: $lastName, phone: $phone)';
+      'RegisterForm(firstName: $firstName, lasstName: $lastName, phone: $phone, email: $email, address: $address)';
 
   @override
   bool operator ==(Object other) {
@@ -54,9 +66,16 @@ class RegisterForm {
     return other is RegisterForm &&
         other.firstName == firstName &&
         other.lastName == lastName &&
-        other.phone == phone;
+        other.phone == phone &&
+        other.email == email &&
+        other.address == address;
   }
 
   @override
-  int get hashCode => firstName.hashCode ^ lastName.hashCode ^ phone.hashCode;
+  int get hashCode =>
+      firstName.hashCode ^
+      lastName.hashCode ^
+      phone.hashCode ^
+      email.hashCode ^
+      address.hashCode;
 }

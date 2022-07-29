@@ -47,13 +47,29 @@ class User {
     };
   }
 
+//    {
+//      "id":10,
+//      "phone":"99365713638",
+//      "email":"gdhsh@tets.co",
+//      "firstname":"trhsjs",
+//      "lastname":"dhshshsgshs",
+//      "address_id":null,
+//      "meta":null,
+//      "is_blocked":false,
+//      "verification_code":null,
+//      "verification_token":null,
+//      "deleted_at":null,
+//      "created_at":"2022-07-27T10:00:59.000000Z",
+//      "updated_at":"2022-07-27T10:01:13.000000Z"
+//     }
+
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id']?.toInt() ?? 0,
+      id: intParser(map['id']) ?? 0,
       email: map['email'] ?? '',
       phone: intParser(map['phone']) ?? 0,
-      firstName: map['first_name'] ?? '',
-      lastName: map['last_name'] ?? '',
+      firstName: map['firstname'] ?? '',
+      lastName: map['lastname'] ?? '',
       status: map['status'] ?? '',
     );
   }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/header_widget.dart';
+import 'package:flutter_shop/core/l10n.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  final VerifiedState state;
+  const ProfilePage({Key? key, required this.state}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -50,16 +53,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  'Mr. Donald Trump',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                Text(
+                  widget.state.user.firstName,
+                  style: const TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  'Former President',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                Text(
+                  widget.state.user.lastName,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 10,
@@ -92,28 +97,34 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ...ListTile.divideTiles(
                                     color: Colors.grey,
                                     tiles: [
-                                      const ListTile(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 4),
-                                        leading: Icon(Icons.my_location),
-                                        title: Text("Location"),
-                                        subtitle: Text("USA"),
+                                      ListTile(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 4,
+                                        ),
+                                        leading: const Icon(Icons.my_location),
+                                        title: const Text("Location"),
+                                        subtitle:
+                                            Text(widget.state.user.status),
                                       ),
-                                      const ListTile(
-                                        leading: Icon(Icons.email),
-                                        title: Text("Email"),
-                                        subtitle: Text("donaldtrump@gmail.com"),
+                                      ListTile(
+                                        leading: const Icon(Icons.email),
+                                        title: const Text("Email"),
+                                        subtitle: Text(widget.state.user.email),
                                       ),
-                                      const ListTile(
-                                        leading: Icon(Icons.phone),
-                                        title: Text("Phone"),
-                                        subtitle: Text("99--99876-56"),
-                                      ),
-                                      const ListTile(
-                                        leading: Icon(Icons.person),
-                                        title: Text("About Me"),
+                                      ListTile(
+                                        leading: const Icon(Icons.phone),
+                                        title: const Text("Phone"),
                                         subtitle: Text(
-                                            "This is a about me link and you can khow about me in this section."),
+                                            widget.state.user.phone.toString()),
+                                      ),
+                                      ListTile(
+                                        onTap: () {
+                                          Auth.instance.add(LogoutEvent());
+                                        },
+                                        leading: const Icon(Icons.logout),
+                                        title: Text("logout".trs),
                                       ),
                                     ],
                                   ),
