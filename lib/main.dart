@@ -9,6 +9,8 @@ import 'package:flutter_shop/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'application/add_to_cart_page.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Eger main-da şeýdip prefs-y Settings(prefs)-e geçirsek
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
           ...GlobalMaterialLocalizations.delegates,
           GlobalWidgetsLocalizations.delegate,
         ],
-        home: const HomeScreen(),
+        home: const CartPage(),
       );
     });
   }

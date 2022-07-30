@@ -32,7 +32,6 @@ class _DetailAppBarState extends State<DetailAppBar> {
       ),
       onPressed: () {},
     );
-    
   }
 
   @override
@@ -84,7 +83,6 @@ class _DetailAppBarState extends State<DetailAppBar> {
                 ),
               )),
         ],
-        
       ),
       body: SafeArea(
         top: false,
@@ -296,59 +294,44 @@ class _DetailAppBarState extends State<DetailAppBar> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            _colorWidget(LightColor.yellowColor, isSelected: true),
+            _colorWidget2(LightColor.yellowColor, isSelected: true),
             const SizedBox(
               width: 20,
             ),
-            _colorWidget(LightColor.lightBlue),
+            _colorWidget2(LightColor.lightBlue),
             const SizedBox(
               width: 20,
             ),
-            _colorWidget(LightColor.black),
+            _colorWidget2(LightColor.black),
             const SizedBox(
               width: 20,
             ),
-            _colorWidget(LightColor.red),
+            _colorWidget2(LightColor.red),
             const SizedBox(
               width: 20,
             ),
-            _colorWidget(LightColor.skyBlue),
+            _colorWidget2(LightColor.skyBlue),
           ],
         )
       ],
     );
   }
 
-  Widget _colorWidget(Color color, {bool isSelected = false}) {
-    return CircleAvatar(
-      radius: 13,
-      backgroundColor: color.withAlpha(150),
+  Widget _colorWidget2(Color color, {bool isSelected = false}) {
+    return Container(
+      padding: const EdgeInsets.all(5),
+      color: color.withAlpha(150),
       child: isSelected
           ? Icon(
-              Icons.check_circle,
+              Icons.check,
               color: color,
               size: 18,
             )
-          : CircleAvatar(radius: 15, backgroundColor: color), 
-    );
-  }
-
-  Widget _buildPlayerModelList(items) {
-    return Card(
-      child: ExpansionTile(
-        title: Text(
-          items.playerName,
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
-        ),
-        children: <Widget>[
-          ListTile(
-            title: Text(
-              items.description,
-              style: TextStyle(fontWeight: FontWeight.w700),
+          : const Icon(
+              Icons.check,
+              color: Colors.transparent,
+              size: 18,
             ),
-          )
-        ],
-      ),
     );
   }
 }
