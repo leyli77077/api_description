@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       'Shop By Category',
                       style: TextStyle(
+                        fontSize: 20.0,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
@@ -52,13 +53,16 @@ class _HomePageState extends State<HomePage> {
                     categoryList: state.categoryList,
                   ),
                 ),
-                SliverToBoxAdapter(
-                    child: HomePromoBanners(
-                        promoBannerList: state.promoBannerList)),
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.all(20.0),
-                    child: Text('Feautures Product'),
+                    child: Text(
+                      'Feautures Product',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 SliverPadding(
@@ -74,6 +78,9 @@ class _HomePageState extends State<HomePage> {
                 HomeFeautureProducts(
                   feautureProductList: state.feautureProductList..skip(0),
                 ),
+                SliverToBoxAdapter(
+                    child: HomePromoBanners(
+                        promoBannerList: state.promoBannerList)),
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.all(20.0),

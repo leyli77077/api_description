@@ -15,7 +15,6 @@ class HomeProductCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //print(categoryThumbImage);
     return Stack(
       children: <Widget>[
         SizedBox(
@@ -46,17 +45,6 @@ class HomeProductCategory extends StatelessWidget {
                   );
                 },
               ),
-
-              // CircleAvatar(
-              //   radius: 80,
-              //   child: Image.network(
-              //     categoryThumbImage,
-              //     errorBuilder: (context, error, trace) {
-              //       print(error);
-              //       return Text('😢');
-              //     },
-              //   ),
-              // ),
               Container(),
               Text(categoryName),
             ],

@@ -21,7 +21,7 @@ class HomeFeautureProduct extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const DetailAppBar(),
+                builder: (context) =>  const HomeProductDetail(),
               ),
             );
           },

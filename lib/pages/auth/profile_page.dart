@@ -12,8 +12,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final double _drawerIconSize = 24;
-  final double _drawerFontSize = 17;
 
   @override
   Widget build(BuildContext context) {

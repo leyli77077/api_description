@@ -43,27 +43,27 @@ class LightColor {
 }
 
 class AppFont {
-  static final regular = const TextStyle(
+  static const regular = TextStyle(
     fontFamily: 'Open Sans',
     fontWeight: FontWeight.w400,
     color: Colors.black,
     fontSize: 18,
   );
 
-  static final medium = TextStyle(
+  static const medium = TextStyle(
     fontFamily: 'Open Sans',
     fontWeight: FontWeight.w500,
     color: Colors.black,
     fontSize: 18,
   );
 
-  static final bold = TextStyle(
+  static const bold = TextStyle(
     fontFamily: 'Open Sans',
     fontWeight: FontWeight.w600,
     color: Colors.black,
     fontSize: 18,
   );
-  static final semiBold = TextStyle(
+  static const semiBold = TextStyle(
     fontFamily: 'Open Sans',
     fontWeight: FontWeight.w600,
     color: Colors.black,

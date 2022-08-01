@@ -2,15 +2,35 @@ import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/screens/home_screen.dart';
+import 'package:get_storage/get_storage.dart';
 
-class DetailAppBar extends StatefulWidget {
-  const DetailAppBar({Key? key}) : super(key: key);
+class HomeProductDetail extends StatefulWidget {
+   final int productDetailId;
+  final String productDetailPics;
+  final double productDetailPrice;
+   final String productDetailpriceText;
+  final dynamic productDetailStruckPrice;
+  final dynamic productDetailStruckPriceText;
+  final String productDetailName;
+
+  
+  const HomeProductDetail({
+    Key? key,
+     required this.productDetailId,
+   required  this.productDetailPics,
+    required this.productDetailPrice,
+    required this.productDetailpriceText,
+    required this.productDetailStruckPrice,
+    required this.productDetailStruckPriceText,
+    required this.productDetailName,
+    
+  }) : super(key: key);
 
   @override
-  State<DetailAppBar> createState() => _DetailAppBarState();
+  State<HomeProductDetail> createState() => _HomeProductDetailState();
 }
-
-class _DetailAppBarState extends State<DetailAppBar> {
+class _HomeProductDetailState extends State<HomeProductDetail> {
   final CarouselController _controller = CarouselController();
   int _currentPage = 0;
   Widget buildSizeButton({title, isSeleted}) {
@@ -41,7 +61,12 @@ class _DetailAppBarState extends State<DetailAppBar> {
         elevation: 0.0,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomeScreen(),
+              ),
+            );
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -50,8 +75,8 @@ class _DetailAppBarState extends State<DetailAppBar> {
           ),
         ),
         backgroundColor: Colors.white,
-        title: Text(
-          'product title!',
+        title: const Text(
+         this.productDetailName,
           style: AppFont.semiBold,
         ),
         actions: [
@@ -109,9 +134,9 @@ class _DetailAppBarState extends State<DetailAppBar> {
                     items: [1, 2, 3, 4, 5]
                         .map(
                           (e) => Container(
-                            decoration: const BoxDecoration(
+                            decoration:  const BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('assets/images/p-20-1.png'),
+                                image: NetworkImage(this.productDetailPics),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -241,7 +266,7 @@ class _DetailAppBarState extends State<DetailAppBar> {
       ),
     );
   }
-
+  
   Widget _availableSize() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -312,7 +337,25 @@ class _DetailAppBarState extends State<DetailAppBar> {
             ),
             _colorWidget2(LightColor.skyBlue),
           ],
-        )
+        ),
+        const SizedBox(
+          height: 30.0,
+        ),
+        MaterialButton(
+          onPressed: () {},
+          color: Colors.cyan,
+          height: 50.0,
+          minWidth: double.infinity,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          child: const Text(
+            'Add to Cart',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
       ],
     );
   }
