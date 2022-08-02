@@ -6,24 +6,24 @@ import 'package:flutter_shop/screens/home_screen.dart';
 import 'package:get_storage/get_storage.dart';
 
 class HomeProductDetail extends StatefulWidget {
-   final int productDetailId;
-  final String productDetailPics;
-  final double productDetailPrice;
-   final String productDetailpriceText;
-  final dynamic productDetailStruckPrice;
-  final dynamic productDetailStruckPriceText;
-  final String productDetailName;
+  //  final int productDetailId;
+  // final String productDetailPics;
+  // final double productDetailPrice;
+  //  final String productDetailpriceText;
+  // final dynamic productDetailStruckPrice;
+  // final dynamic productDetailStruckPriceText;
+  // final String productDetailName;
 
   
   const HomeProductDetail({
     Key? key,
-     required this.productDetailId,
-   required  this.productDetailPics,
-    required this.productDetailPrice,
-    required this.productDetailpriceText,
-    required this.productDetailStruckPrice,
-    required this.productDetailStruckPriceText,
-    required this.productDetailName,
+  //    required this.productDetailId,
+  //  required  this.productDetailPics,
+  //   required this.productDetailPrice,
+  //   required this.productDetailpriceText,
+  //   required this.productDetailStruckPrice,
+  //   required this.productDetailStruckPriceText,
+  //   required this.productDetailName,
     
   }) : super(key: key);
 
@@ -76,7 +76,7 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
         ),
         backgroundColor: Colors.white,
         title: const Text(
-         this.productDetailName,
+          'product title!',
           style: AppFont.semiBold,
         ),
         actions: [
@@ -136,7 +136,7 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
                           (e) => Container(
                             decoration:  const BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(this.productDetailPics),
+                                image: NetworkImage('https://chawkbazar.vercel.app/assets/images/products/p-20-1.png' ),
                                 fit: BoxFit.cover,
                               ),
                             ),
