@@ -26,7 +26,7 @@ class _CartPageState extends State<CartPage> {
           ),
         ),
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'product title!',
           style: AppFont.semiBold,
         ),
@@ -50,7 +50,7 @@ class _CartPageState extends State<CartPage> {
             const SizedBox(
               height: 21.0,
             ),
-            Divider(),
+            const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const <Widget>[
@@ -161,9 +161,9 @@ class CartItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
+                const SizedBox(
                   width: 100.0,
-                  child: const Text(
+                  child: Text(
                     'Oversized W Sweater',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),

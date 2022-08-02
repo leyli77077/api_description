@@ -12,14 +12,13 @@ class FeautureProduct {
   final int saleLimitQuantity;
   final bool isBundle;
   final String thumbPic;
-
-  const FeautureProduct({
+  FeautureProduct({
     required this.id,
     required this.price,
     required this.code,
     required this.priceText,
-    required this.struckPrice,
-    required this.struckPriceText,
+    this.struckPrice,
+    this.struckPriceText,
     required this.shortName,
     required this.shortDescription,
     required this.saleLimitQuantity,
@@ -27,19 +26,63 @@ class FeautureProduct {
     required this.thumbPic,
   });
 
-  factory FeautureProduct.fromJson(Map<String, dynamic> json) {
+  FeautureProduct copyWith({
+    int? id,
+    double? price,
+    String? code,
+    String? priceText,
+    double? struckPrice,
+    String? struckPriceText,
+    String? shortName,
+    String? shortDescription,
+    int? saleLimitQuantity,
+    bool? isBundle,
+    String? thumbPic,
+  }) {
     return FeautureProduct(
-      id: json['id'] ?? 0,
-      code: json['code'],
-      price: double.tryParse('${json['price']}') ?? 0.0,
-      priceText: json['price_text'],
-      struckPrice: doubleParser(json['struck_price']),
-      struckPriceText: json['struck_price_text'],
-      shortName: json['short_name'],
-      shortDescription: json['short_description'] ?? '',
-      saleLimitQuantity: json['sale_limit_quantity'] ?? 0,
-      isBundle: json['is_bundle'] ?? false,
-      thumbPic: json['thumb_pic'],
+      id: id ?? this.id,
+      price: price ?? this.price,
+      code: code ?? this.code,
+      priceText: priceText ?? this.priceText,
+      struckPrice: struckPrice ?? this.struckPrice,
+      struckPriceText: struckPriceText ?? this.struckPriceText,
+      shortName: shortName ?? this.shortName,
+      shortDescription: shortDescription ?? this.shortDescription,
+      saleLimitQuantity: saleLimitQuantity ?? this.saleLimitQuantity,
+      isBundle: isBundle ?? this.isBundle,
+      thumbPic: thumbPic ?? this.thumbPic,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'price': price,
+      'code': code,
+      'priceText': priceText,
+      'struckPrice': struckPrice,
+      'struckPriceText': struckPriceText,
+      'shortName': shortName,
+      'shortDescription': shortDescription,
+      'saleLimitQuantity': saleLimitQuantity,
+      'isBundle': isBundle,
+      'thumbPic': thumbPic,
+    };
+  }
+
+  factory FeautureProduct.fromMap(Map<String, dynamic> map) {
+    return FeautureProduct(
+      id: intParser(map['id']) ?? 0,
+      price: doubleParser(map['price']) ?? 0.0,
+      code: map['code'] ?? '',
+      priceText: map['priceText'] ?? '',
+      struckPrice: doubleParser(map['struckPrice']),
+      struckPriceText: map['struckPriceText'],
+      shortName: map['shortName'] ?? '',
+      shortDescription: map['shortDescription'] ?? '',
+      saleLimitQuantity: intParser(map['saleLimitQuantity']) ?? 0,
+      isBundle: map['isBundle'] ?? false,
+      thumbPic: map['thumbPic'] ?? '',
     );
   }
 }

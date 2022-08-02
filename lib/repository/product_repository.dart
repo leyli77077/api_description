@@ -17,7 +17,7 @@ class ProductRepository {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data'];
-      return data.map((e) => FeautureProduct.fromJson(e)).toList();
+      return data.map((e) => FeautureProduct.fromMap(e)).toList();
     } else {
       throw Exception();
     }
