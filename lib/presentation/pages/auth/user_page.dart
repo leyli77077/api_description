@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/presentation/pages/auth/initial_page.dart';
 import 'package:flutter_shop/presentation/pages/auth/login_page.dart';
 import 'package:flutter_shop/presentation/pages/auth/otp_page.dart';
@@ -22,7 +22,7 @@ class PersonalPageState extends State<PersonalPage> {
     return SizedBox(
       width: width,
       height: height,
-      child: Selector<Auth, AuthState>(
+      child: Selector<AuthService, AuthState>(
         selector: (_, auth) => auth.state,
         builder: (_, state, __) {
           if (state is NotVerifiedState) {

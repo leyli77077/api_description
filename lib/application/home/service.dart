@@ -1,48 +1,22 @@
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:flutter_shop/domain/brand_list.dart';
 import 'package:flutter_shop/domain/category.dart';
-import 'package:flutter_shop/domain/feauture_product.dart';
+import 'package:flutter_shop/domain/product.dart';
 import 'package:flutter_shop/domain/promo_banner.dart';
 import 'package:flutter_shop/infrastructure/repository/brand_repository.dart';
 import 'package:flutter_shop/infrastructure/repository/product_repository.dart';
 import 'package:flutter_shop/infrastructure/repository/banner_repository.dart';
 import 'package:flutter_shop/infrastructure/repository/category_repository.dart';
 
-abstract class HomePageEvent {}
+part 'event.dart';
+part 'state.dart';
 
-class LoadEvent extends HomePageEvent {}
+class HomePageService extends ChangeNotifier {
+  static HomePageService instance = HomePageService._internal();
 
-abstract class HomePageState {}
+  factory HomePageService() => instance;
 
-class LoadedState extends HomePageState {
-  final List<Category> categoryList;
-  final List<PromoBanner> promoBannerList;
-  final List<FeautureProduct> feautureProductList;
-  final List<BrandList> brandList;
-
-  LoadedState({
-    required this.categoryList,
-    required this.feautureProductList,
-    required this.promoBannerList,
-    required this.brandList,
-  });
-}
-
-class EmptyState extends HomePageState {}
-
-class LoadingState extends HomePageState {}
-
-class ErrorState extends HomePageState {
-  final String? message;
-  ErrorState({this.message});
-}
-
-class HomePageNotifier extends ChangeNotifier {
-  static HomePageNotifier instance = HomePageNotifier._internal();
-
-  factory HomePageNotifier() => instance;
-
-  HomePageNotifier._internal();
+  HomePageService._internal();
 
   HomePageState _state = EmptyState();
 

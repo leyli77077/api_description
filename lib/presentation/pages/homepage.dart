@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/homepage.dart';
+import 'package:flutter_shop/application/home/service.dart';
 import 'package:flutter_shop/presentation/widgets/home_feauture_product.dart';
 import 'package:flutter_shop/presentation/widgets/home_feauture_products.dart';
 import 'package:flutter_shop/presentation/widgets/home_product_categories.dart';
@@ -25,13 +25,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<HomePageNotifier, HomePageState>(
+    return Selector<HomePageService, HomePageState>(
       selector: (_, homePage) => homePage.state,
       builder: (_, state, __) {
         if (state is LoadedState) {
           return RefreshIndicator(
             onRefresh: () async {
-              HomePageNotifier.instance.add(LoadEvent());
+              HomePageService.instance.add(LoadEvent());
             },
             child: CustomScrollView(
               slivers: [
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
           return Center(
             child: IconButton(
               onPressed: () {
-                HomePageNotifier.instance.add(LoadEvent());
+                HomePageService.instance.add(LoadEvent());
               },
               icon: const Icon(Icons.refresh),
             ),

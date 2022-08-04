@@ -1,6 +1,6 @@
 import 'package:flutter_shop/core/parsers.dart';
 
-class FeautureProduct {
+class Product {
   final int id;
   final double price;
   final String code;
@@ -12,7 +12,7 @@ class FeautureProduct {
   final int saleLimitQuantity;
   final bool isBundle;
   final String thumbPic;
-  FeautureProduct({
+  Product({
     required this.id,
     required this.price,
     required this.code,
@@ -26,7 +26,7 @@ class FeautureProduct {
     required this.thumbPic,
   });
 
-  FeautureProduct copyWith({
+  Product copyWith({
     int? id,
     double? price,
     String? code,
@@ -39,7 +39,7 @@ class FeautureProduct {
     bool? isBundle,
     String? thumbPic,
   }) {
-    return FeautureProduct(
+    return Product(
       id: id ?? this.id,
       price: price ?? this.price,
       code: code ?? this.code,
@@ -70,8 +70,8 @@ class FeautureProduct {
     };
   }
 
-  factory FeautureProduct.fromMap(Map<String, dynamic> map) {
-    return FeautureProduct(
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
       id: intParser(map['id']) ?? 0,
       price: doubleParser(map['price']) ?? 0.0,
       code: map['code'] ?? '',
@@ -84,5 +84,17 @@ class FeautureProduct {
       isBundle: map['isBundle'] ?? false,
       thumbPic: map['thumbPic'] ?? '',
     );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Product && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode;
   }
 }

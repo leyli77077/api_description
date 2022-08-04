@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/core/constants/theme_helper.dart';
 import 'package:flutter_shop/presentation/widgets/header_widget.dart';
 
@@ -55,7 +55,7 @@ class _InitialPageState extends State<InitialPage> {
                         ),
                       ),
                       onPressed: () {
-                        Auth.instance.add(OpenRegisterEvent());
+                        AuthService.instance.add(OpenRegisterEvent());
                       },
                     ),
                   ),
@@ -75,7 +75,7 @@ class _InitialPageState extends State<InitialPage> {
                         ),
                       ),
                       onPressed: () {
-                        Auth.instance.add(OpenLoginEvent());
+                        AuthService.instance.add(OpenLoginEvent());
                         //After successful login we will redirect to profile page. Let's create profile page now
                       },
                     ),

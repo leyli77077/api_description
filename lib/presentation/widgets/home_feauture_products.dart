@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/domain/feauture_product.dart';
+import 'package:flutter_shop/domain/product.dart';
 import 'home_feauture_product.dart';
 
 class HomeFeautureProducts extends StatelessWidget {
-  final List<FeautureProduct> feautureProductList;
+  final List<Product> feautureProductList;
   const HomeFeautureProducts({Key? key, required this.feautureProductList})
       : super(key: key);
   @override

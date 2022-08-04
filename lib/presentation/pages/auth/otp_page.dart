@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/core/constants/theme_helper.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/presentation/dialogs/error_snackbar.dart';
@@ -33,7 +33,7 @@ class _OtpPageState extends State<OtpPage> {
 
   void submit() {
     if (validate()) {
-      Auth().add(WithOtpEvent(
+      AuthService().add(WithOtpEvent(
         phone: widget.form.phone,
         otp: int.parse(textController.text),
         rememberMe: true,
@@ -157,7 +157,8 @@ class _OtpPageState extends State<OtpPage> {
                                   text: 'Create',
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Auth.instance.add(OpenRegisterEvent());
+                                      AuthService.instance
+                                          .add(OpenRegisterEvent());
                                       // Navigator.push(
                                       //   context,
                                       //   MaterialPageRoute(

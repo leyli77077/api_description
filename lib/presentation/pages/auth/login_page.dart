@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/core/constants/theme_helper.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/presentation/dialogs/error_snackbar.dart';
@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void submit() {
     if (validate()) {
-      Auth().add(LoginEvent(
+      AuthService().add(LoginEvent(
         form: LoginForm(
           phone: int.parse(phoneController.text),
         ),
@@ -171,7 +171,8 @@ class _LoginPageState extends State<LoginPage> {
                                   text: 'Create',
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Auth.instance.add(OpenRegisterEvent());
+                                      AuthService.instance
+                                          .add(OpenRegisterEvent());
                                       // Navigator.push(
                                       //   context,
                                       //   MaterialPageRoute(

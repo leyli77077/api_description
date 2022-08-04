@@ -8,105 +8,19 @@ import 'package:flutter_shop/domain/response/login_response.dart';
 import 'package:flutter_shop/domain/user.dart';
 import 'package:flutter_shop/infrastructure/repository/auth_repository.dart';
 
-// === === === === === EVENTS === === === === ===
+part 'event.dart';
+part 'state.dart';
 
-abstract class AuthEvent {}
-
-class InitEvent extends AuthEvent {}
-
-class LoginEvent extends AuthEvent {
-  final LoginForm form;
-  LoginEvent({
-    required this.form,
-  });
-}
-
-class WithOtpEvent extends AuthEvent {
-  final int phone;
-  final int otp;
-  final bool rememberMe;
-  WithOtpEvent({
-    required this.phone,
-    required this.otp,
-    required this.rememberMe,
-  });
-}
-
-class RegisterEvent extends AuthEvent {
-  final RegisterForm form;
-  // final String? email;
-  RegisterEvent({required this.form});
-}
-
-class OpenRegisterEvent extends AuthEvent {}
-
-class OpenLoginEvent extends AuthEvent {}
-
-class LogoutEvent extends AuthEvent {
-  LogoutEvent();
-}
-
-// === === === === === STATES === === === === ===
-
-abstract class AuthState {}
-
-class LoadingState extends AuthState {}
-
-class RegisterFormState extends AuthState {
-  final RegisterForm? form;
-  final Map<String, List<String>>? errors;
-  RegisterFormState({this.form, this.errors});
-}
-
-class LoginFormState extends AuthState {
-  final LoginForm? form;
-  final String? error;
-  final String? time;
-  LoginFormState({
-    this.form,
-    this.error,
-    this.time,
-  });
-}
-
-class OtpFormState extends AuthState {
-  final OtpForm form;
-  final String? error;
-  OtpFormState({
-    required this.form,
-    this.error,
-  });
-}
-
-class VerifiedState extends AuthState {
-  final User user;
-  final String accessToken;
-  VerifiedState({
-    required this.accessToken,
-    required this.user,
-  });
-}
-
-class NotVerifiedState extends AuthState {
-  NotVerifiedState();
-}
-
-class EmptyState extends AuthState {}
-
-class LogoutState extends AuthState {}
-
-// === === === === === NOTIFIER === === === === ===
-
-class Auth extends ChangeNotifier {
+class AuthService extends ChangeNotifier {
   // Singleton layer
-  static Auth instance = Auth._internal();
+  static AuthService instance = AuthService._internal();
 
-  Auth._internal() {
+  AuthService._internal() {
     // _state = EmptyState();
     // add(InitEvent());
   }
 
-  factory Auth() => instance;
+  factory AuthService() => instance;
   // Singleton layer end
   AuthState _state = EmptyState();
 

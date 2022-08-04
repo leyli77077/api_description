@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/core/constants/header_widget.dart';
 import 'package:flutter_shop/core/constants/theme_helper.dart';
 import 'package:flutter_shop/core/l10n.dart';
@@ -34,7 +34,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   void submit() {
     if (validate()) {
-      Auth().add(RegisterEvent(
+      AuthService().add(RegisterEvent(
         form: RegisterForm(
           firstName: nameController.text,
           lastName: surnameController.text,
@@ -244,7 +244,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 text: 'Login',
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    Auth.instance.add(OpenLoginEvent());
+                                    AuthService.instance.add(OpenLoginEvent());
                                   },
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,

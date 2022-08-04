@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/core/constants/header_widget.dart';
 import 'package:flutter_shop/core/l10n.dart';
 
@@ -118,7 +118,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                       ListTile(
                                         onTap: () {
-                                          Auth.instance.add(LogoutEvent());
+                                          AuthService.instance
+                                              .add(LogoutEvent());
                                         },
                                         leading: const Icon(Icons.logout),
                                         title: Text("logout".trs),

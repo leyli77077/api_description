@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/application/auth.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/core/exceptions.dart';
 import 'package:flutter_shop/domain/form/register_form.dart';
@@ -104,7 +104,7 @@ class AuthRepository {
     if (response.statusCode == 200 && decoded['success'] == true) {
       return true;
     } else if (decoded['message'] == 'Unauthenticated.') {
-      Auth.instance.add(LogoutEvent());
+      AuthService.instance.add(LogoutEvent());
       return false;
     } else {
       return false;
