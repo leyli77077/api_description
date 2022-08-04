@@ -1,5 +1,6 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/pages/add_to_cart_page.dart';
 import 'package:flutter_shop/pages/auth/user_page.dart';
 import 'package:flutter_shop/pages/homepage.dart';
 
@@ -48,9 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             color: Colors.red,
           ),
-          Container(
-            color: Colors.blue,
-          ),
+          // Container(
+          //   color: Colors.blue,
+          // ),
+          const CartPage(),
+          // Container(
+          //   color: Colors.green,
+          // ),
           const PersonalPage(),
         ],
       ),

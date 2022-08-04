@@ -15,11 +15,11 @@ class BrandList {
 
   factory BrandList.fromJson(Map<String, dynamic> json) {
     return BrandList(
-      id: json['id'],
-      code: json['code'],
-      name: json['name'],
-      media: json['media'],
-      productsCount: json['products_count'],
+      id: json['id'] ?? 0,
+      code: json['code'] ?? '',
+      name: json['name'] ?? json['attribute'],
+      media: json['media'] ?? '',
+      productsCount: json['products_count'] ?? 0,
     );
   }
 }
