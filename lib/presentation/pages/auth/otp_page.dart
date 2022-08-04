@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/core/constants/theme_helper.dart';
 import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/dialogs/error_snackbar.dart';
+import 'package:flutter_shop/presentation/dialogs/error_snackbar.dart';
 import 'package:flutter_shop/domain/form/otp_form.dart';
 import 'package:flutter_shop/presentation/widgets/header_widget.dart';
 
