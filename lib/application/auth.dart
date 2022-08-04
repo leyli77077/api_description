@@ -6,7 +6,7 @@ import 'package:flutter_shop/domain/form/otp_form.dart';
 import 'package:flutter_shop/domain/form/register_form.dart';
 import 'package:flutter_shop/domain/response/login_response.dart';
 import 'package:flutter_shop/domain/user.dart';
-import 'package:flutter_shop/repository/auth_repository.dart';
+import 'package:flutter_shop/infrastructure/repository/auth_repository.dart';
 
 // === === === === === EVENTS === === === === ===
 
