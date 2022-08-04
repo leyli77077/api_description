@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/auth.dart';
-import 'package:flutter_shop/constants/theme_helper.dart';
+import 'package:flutter_shop/core/constants/theme_helper.dart';
 import 'package:flutter_shop/presentation/widgets/header_widget.dart';
 
 class InitialPage extends StatefulWidget {

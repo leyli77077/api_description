@@ -5,7 +5,7 @@
 // import 'package:ECommerceApp/widget/searchby_header.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
-// import 'package:flutter_shop/constants/colors.dart';
+// import 'package:flutter_shop/core/constants/colors.dart';
 // import 'package:provider/provider.dart';
 
 // class Search extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/constants/app_constants.dart';
+import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/promo_banner.dart';
 import 'package:http/http.dart' as http;
 

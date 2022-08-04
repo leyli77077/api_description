@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/auth.dart';
-import 'package:flutter_shop/constants/header_widget.dart';
+import 'package:flutter_shop/core/constants/header_widget.dart';
 import 'package:flutter_shop/core/l10n.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -12,7 +12,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
