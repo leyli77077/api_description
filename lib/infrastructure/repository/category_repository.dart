@@ -7,12 +7,12 @@ import 'package:http/http.dart' as http;
 class CategoryRepository {
   httpGet() async {
     return await http
-        .get(Uri.parse('${AppConstants.currentHost}customers/category'));
+        .get(Uri.parse('${AppConstants.currentHost}/api/customers/category'));
   }
 
   Future<List<Category>> loadCategories() async {
     http.Response response = await http
-        .get(Uri.parse('${AppConstants.currentHost}customers/category'));
+        .get(Uri.parse('${AppConstants.currentHost}/api/customers/category'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data'];

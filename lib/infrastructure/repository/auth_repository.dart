@@ -21,7 +21,7 @@ class AuthRepository {
 
   static Future<bool> register({required RegisterForm form}) async {
     var response = await http.post(
-      Uri.parse('${AppConstants.currentHost}customers/auth/register'),
+      Uri.parse('${AppConstants.currentHost}/api/customers/auth/register'),
       headers: headers(),
       body: form.toJson(),
     );
@@ -40,7 +40,7 @@ class AuthRepository {
 
   static Future<bool> otp({required int phone}) async {
     var response = await http.post(
-      Uri.parse('${AppConstants.currentHost}customers/auth/otp'),
+      Uri.parse('${AppConstants.currentHost}/api/customers/auth/otp'),
       headers: headers(),
       body: jsonEncode({
         'phone': phone,
@@ -63,7 +63,7 @@ class AuthRepository {
     bool rememberMe,
   ) async {
     var response = await http.post(
-      Uri.parse('${AppConstants.currentHost}customers/auth/login'),
+      Uri.parse('${AppConstants.currentHost}/api/customers/auth/login'),
       headers: headers(),
       body: jsonEncode({
         'phone': phone,
@@ -81,7 +81,7 @@ class AuthRepository {
 
   static Future<bool> logout() async {
     var response = await http.post(
-      Uri.parse('${AppConstants.currentHost}customers/auth/logout'),
+      Uri.parse('${AppConstants.currentHost}/api/customers/auth/logout'),
       headers: headers(),
     );
     var decoded = jsonDecode(response.body);
@@ -96,7 +96,7 @@ class AuthRepository {
     required User user,
   }) async {
     var response = await http.post(
-      Uri.parse('${AppConstants.currentHost}customers/settings/info'),
+      Uri.parse('${AppConstants.currentHost}/api/customers/settings/info'),
       headers: headers(),
       body: user.toJson(),
     );

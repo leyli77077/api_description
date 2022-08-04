@@ -6,13 +6,13 @@ import 'package:http/http.dart' as http;
 
 class BannerRepository {
   httpGet() async {
-    return await http
-        .get(Uri.parse('${AppConstants.currentHost}customers/promo/banners'));
+    return await http.get(
+        Uri.parse('${AppConstants.currentHost}/api/customers/promo/banners'));
   }
 
   Future<List<PromoBanner>> loadBanners() async {
-    http.Response response = await http
-        .get(Uri.parse('${AppConstants.currentHost}customers/promo/banners'));
+    http.Response response = await http.get(
+        Uri.parse('${AppConstants.currentHost}/api/customers/promo/banners'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data'];

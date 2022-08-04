@@ -5,14 +5,9 @@ import 'package:flutter_shop/domain/brand_list.dart';
 import 'package:http/http.dart' as http;
 
 class BrandRepository {
-  httpGet() async {
-    return await http
-        .get(Uri.parse('${AppConstants.currentHost}customers/brand'));
-  }
-
   Future<List<BrandList>> loadBrandLists() async {
-    http.Response response =
-        await http.get(Uri.parse('${AppConstants.currentHost}customers/brand'));
+    http.Response response = await http
+        .get(Uri.parse('${AppConstants.currentHost}/api/customers/brand'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data']['brands'];
