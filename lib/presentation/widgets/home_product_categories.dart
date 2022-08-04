@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/models/category.dart';
-import 'package:flutter_shop/widgets/home_product_category.dart';
+import 'package:flutter_shop/presentation/widgets/home_product_category.dart';
 
 class HomeProductCategories extends StatelessWidget {
   final List<Category> categoryList;

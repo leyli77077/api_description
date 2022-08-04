@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
 import 'package:flutter_shop/models/product_detail.dart';
-import 'package:flutter_shop/screens/home_screen.dart';
+import 'package:flutter_shop/presentation/screens/home_screen.dart';
 
 class HomeProductDetail extends StatefulWidget {
   final ProductDetail detail;
@@ -326,9 +326,7 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
           height: 30.0,
         ),
         MaterialButton(
-          onPressed: () {
-            
-          },
+          onPressed: () {},
           color: Colors.cyan,
           height: 50.0,
           minWidth: double.infinity,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
-import 'package:flutter_shop/widgets/header_widget.dart';
+import 'package:flutter_shop/presentation/widgets/header_widget.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({Key? key}) : super(key: key);

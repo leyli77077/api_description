@@ -1,8 +1,8 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/pages/add_to_cart_page.dart';
-import 'package:flutter_shop/pages/auth/user_page.dart';
-import 'package:flutter_shop/pages/homepage.dart';
+import 'package:flutter_shop/presentation/pages/add_to_cart_page.dart';
+import 'package:flutter_shop/presentation/pages/auth/user_page.dart';
+import 'package:flutter_shop/presentation/pages/homepage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

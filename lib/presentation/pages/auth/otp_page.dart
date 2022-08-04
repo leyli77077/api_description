@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,29 +5,26 @@ import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/dialogs/error_snackbar.dart';
-import 'package:flutter_shop/models/form/login_form.dart';
-import 'package:flutter_shop/widgets/header_widget.dart';
+import 'package:flutter_shop/models/form/otp_form.dart';
+import 'package:flutter_shop/presentation/widgets/header_widget.dart';
 
-class LoginPage extends StatefulWidget {
-  final LoginForm? form;
+class OtpPage extends StatefulWidget {
+  final OtpForm form;
   final String? error;
-  final String? time;
-  const LoginPage({
+  const OtpPage({
     Key? key,
-    this.form,
+    required this.form,
     this.error,
-    this.time,
   }) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<OtpPage> createState() => _OtpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _OtpPageState extends State<OtpPage> {
   double headerHeight = 150;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController phoneController = TextEditingController();
-  String? error;
+  final TextEditingController textController = TextEditingController();
 
   bool validate() {
     final formKey = _formKey.currentState;
@@ -38,39 +33,28 @@ class _LoginPageState extends State<LoginPage> {
 
   void submit() {
     if (validate()) {
-      Auth().add(LoginEvent(
-        form: LoginForm(
-          phone: int.parse(phoneController.text),
-        ),
+      Auth().add(WithOtpEvent(
+        phone: widget.form.phone,
+        otp: int.parse(textController.text),
+        rememberMe: true,
       ));
     }
   }
 
   @override
   void initState() {
-    phoneController.text = widget.form?.phone.toString() ?? '';
-    if (widget.error != null) {
-      try {
-        error =
-            '${widget.time} s. ${jsonDecode(widget.error!)['error'].toString().trs}';
-      } catch (e) {
-        error = widget.error.toString().trs;
-      }
-    } else {
-      error = null;
-    }
+    textController.text =
+        widget.form.otp != null ? widget.form.otp.toString() : '';
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    Future(() {
-      if (error != null) {
-        Future(() {
-          errorSnackBar(context, [error!.trs]);
-        });
-      }
-    });
+    if (widget.error != null) {
+      Future(() {
+        errorSnackBar(context, [widget.error!.trs]);
+      });
+    }
     super.didChangeDependencies();
   }
 
@@ -99,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   const Text(
-                    'Signin into your account',
+                    'We send you one time password enter it to signin',
                     style: TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 30.0),
@@ -110,25 +94,27 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: phoneController,
+                            controller: textController,
                             autofocus: true,
                             textInputAction: TextInputAction.done,
                             decoration: ThemeHelper().textInputDecoration(
-                              lableText: "Mobile Number",
-                              hintText: "Enter your mobile number",
-                              errorText: error?.trs,
+                              lableText: "OTP",
+                              hintText: "Enter one time password",
+                              errorText: widget.error?.trs,
                             ),
-                            keyboardType: TextInputType.phone,
+                            keyboardType: TextInputType.number,
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
                                   RegExp(r"[0-9]"))
                             ],
-                            validator: (val) {
-                              if (val!.isNotEmpty &&
-                                  !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                                return "Enter a valid phone number";
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'otp_is_required'.trs;
+                              } else if (value.length != 5) {
+                                return 'otp_number_length'.trs;
+                              } else {
+                                return null;
                               }
-                              return null;
                             },
                             onFieldSubmitted: (text) {
                               submit();
@@ -145,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                'Get otp'.toUpperCase(),
+                                'Sign In'.toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

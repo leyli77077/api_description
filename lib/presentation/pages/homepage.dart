@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/homepage.dart';
-import 'package:flutter_shop/widgets/home_feauture_product.dart';
-import 'package:flutter_shop/widgets/home_feauture_products.dart';
-import 'package:flutter_shop/widgets/home_product_categories.dart';
-import 'package:flutter_shop/widgets/home_promo_banners.dart';
+import 'package:flutter_shop/presentation/widgets/home_feauture_product.dart';
+import 'package:flutter_shop/presentation/widgets/home_feauture_products.dart';
+import 'package:flutter_shop/presentation/widgets/home_product_categories.dart';
+import 'package:flutter_shop/presentation/widgets/home_promo_banners.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/home_brand_lists.dart';
