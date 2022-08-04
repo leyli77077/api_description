@@ -38,28 +38,33 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Consumer<Settings>(builder: (_, settings, __) {
-      return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Colors.white,
-        ),
-        locale: settings.language,
-        supportedLocales: const [
-          Locale('en', 'US'),
-          Locale('tk', 'TM'),
-          Locale('ru', 'RU'),
-        ],
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          TmCupertinoLocalizations.delegate,
-          TmMaterialLocalizations.delegate,
-          ...GlobalMaterialLocalizations.delegates,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        home: const HomeScreen(),
-      );
-    });
+    return Consumer<Settings>(
+      builder: (_, settings, __) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: Colors.white,
+          ),
+          locale: settings.language,
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('tk', 'TM'),
+            Locale('ru', 'RU'),
+          ],
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            TmCupertinoLocalizations.delegate,
+            TmMaterialLocalizations.delegate,
+            ...GlobalMaterialLocalizations.delegates,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          initialRoute: HomeScreen.routeName,
+          routes: {
+            HomeScreen.routeName: (context) => const HomeScreen(),
+          },
+        );
+      },
+    );
   }
 }

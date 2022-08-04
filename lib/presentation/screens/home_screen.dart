@@ -5,6 +5,7 @@ import 'package:flutter_shop/presentation/pages/auth/user_page.dart';
 import 'package:flutter_shop/presentation/pages/homepage.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String routeName = 'home';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
