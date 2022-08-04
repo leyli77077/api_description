@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_shop/constants/app_constants.dart';
-import 'package:flutter_shop/models/brand_list.dart';
+import 'package:flutter_shop/domain/brand_list.dart';
 import 'package:http/http.dart' as http;
 
 class BrandRepository {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/models/promo_banner.dart';
+import 'package:flutter_shop/domain/promo_banner.dart';
 import 'package:flutter_shop/presentation/widgets/home_promo_banner.dart';
 
 class HomePromoBanners extends StatelessWidget {

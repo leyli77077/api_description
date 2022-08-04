@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/exceptions.dart';
-import 'package:flutter_shop/models/form/login_form.dart';
-import 'package:flutter_shop/models/form/otp_form.dart';
-import 'package:flutter_shop/models/form/register_form.dart';
-import 'package:flutter_shop/models/response/login_response.dart';
-import 'package:flutter_shop/models/user.dart';
+import 'package:flutter_shop/domain/form/login_form.dart';
+import 'package:flutter_shop/domain/form/otp_form.dart';
+import 'package:flutter_shop/domain/form/register_form.dart';
+import 'package:flutter_shop/domain/response/login_response.dart';
+import 'package:flutter_shop/domain/user.dart';
 import 'package:flutter_shop/repository/auth_repository.dart';
 
 // === === === === === EVENTS === === === === ===

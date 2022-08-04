@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_shop/constants/app_constants.dart';
-import 'package:flutter_shop/models/category.dart';
+import 'package:flutter_shop/domain/category.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryRepository {

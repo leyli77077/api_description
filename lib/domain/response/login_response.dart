@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/models/user.dart';
+import 'package:flutter_shop/domain/user.dart';
 
 class LoginResponse {
   final String accessToken;

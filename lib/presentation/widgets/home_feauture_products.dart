@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/models/feauture_product.dart';
+import 'package:flutter_shop/domain/feauture_product.dart';
 import 'home_feauture_product.dart';
 
 class HomeFeautureProducts extends StatelessWidget {

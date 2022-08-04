@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_shop/models/brand_list.dart';
+import 'package:flutter_shop/domain/brand_list.dart';
 import 'package:flutter_shop/presentation/widgets/home_brand_list.dart';
 
 class HomeBrandLists extends StatelessWidget {

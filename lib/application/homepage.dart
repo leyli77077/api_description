@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' hide Category;
-import 'package:flutter_shop/models/brand_list.dart';
-import 'package:flutter_shop/models/category.dart';
-import 'package:flutter_shop/models/feauture_product.dart';
-import 'package:flutter_shop/models/promo_banner.dart';
+import 'package:flutter_shop/domain/brand_list.dart';
+import 'package:flutter_shop/domain/category.dart';
+import 'package:flutter_shop/domain/feauture_product.dart';
+import 'package:flutter_shop/domain/promo_banner.dart';
 import 'package:flutter_shop/repository/brand_repository.dart';
 import 'package:flutter_shop/repository/product_repository.dart';
 import 'package:flutter_shop/repository/banner_repository.dart';

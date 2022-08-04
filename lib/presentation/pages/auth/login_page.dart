@@ -7,7 +7,7 @@ import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/dialogs/error_snackbar.dart';
-import 'package:flutter_shop/models/form/login_form.dart';
+import 'package:flutter_shop/domain/form/login_form.dart';
 import 'package:flutter_shop/presentation/widgets/header_widget.dart';
 
 class LoginPage extends StatefulWidget {

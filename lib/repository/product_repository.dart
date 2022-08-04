@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_shop/constants/app_constants.dart';
-import 'package:flutter_shop/models/feauture_product.dart';
-import 'package:flutter_shop/models/product_detail.dart';
+import 'package:flutter_shop/domain/feauture_product.dart';
+import 'package:flutter_shop/domain/product_detail.dart';
 import 'package:http/http.dart' as http;
 
 class ProductRepository {

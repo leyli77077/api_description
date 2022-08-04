@@ -6,7 +6,7 @@ import 'package:flutter_shop/constants/header_widget.dart';
 import 'package:flutter_shop/constants/theme_helper.dart';
 import 'package:flutter_shop/core/l10n.dart';
 import 'package:flutter_shop/dialogs/error_snackbar.dart';
-import 'package:flutter_shop/models/form/register_form.dart';
+import 'package:flutter_shop/domain/form/register_form.dart';
 
 class RegistrationPage extends StatefulWidget {
   final RegisterForm? form;
