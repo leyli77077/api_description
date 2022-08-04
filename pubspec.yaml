@@ -49,8 +49,9 @@ dependencies:
   font_awesome_flutter: ^9.1.0
   google_fonts: ^3.0.1
   badges: ^2.0.3
-  flutter_rating_bar: ^4.0.1
-  flutter_expanded_tile: ^0.3.6
+  sqflite: ^2.0.3
+  path_provider: ^2.0.11
+ 
   
  
   get_storage: ^2.0.3

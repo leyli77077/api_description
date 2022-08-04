@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_shop/application/add_to_cart_page.dart';
 import 'package:flutter_shop/application/auth.dart';
 import 'package:flutter_shop/application/homepage.dart';
 import 'package:flutter_shop/application/settings.dart';

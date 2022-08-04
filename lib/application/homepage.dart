@@ -19,9 +19,8 @@ class LoadedState extends HomePageState {
   final List<PromoBanner> promoBannerList;
   final List<FeautureProduct> feautureProductList;
   final List<BrandList> brandList;
-  
 
-  LoadedState({
+  LoadedState({ 
     required this.categoryList,
     required this.feautureProductList,
     required this.promoBannerList,
