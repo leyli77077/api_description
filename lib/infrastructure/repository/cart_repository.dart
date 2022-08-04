@@ -2,14 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/cart/cart.dart';
-import 'package:flutter_shop/infrastructure/repository/auth_repository.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class CartRepository {
   static Future<Cart> initRequest() async {
-    http.Response response = await http.get(
+    var response = await ApiData.get(
       Uri.parse('${AppConstants.currentHost}/api/customers/cart/'),
-      headers: AuthRepository.headers(),
     );
     if (response.statusCode == 200) {
       dynamic decoded = jsonDecode(response.body);
@@ -23,9 +21,8 @@ class CartRepository {
     required int productId,
     required int quantity,
   }) async {
-    var response = await http.post(
+    var response = await ApiData.post(
       Uri.parse('${AppConstants.currentHost}/api/customers/cart/update'),
-      headers: AuthRepository.headers(),
       body: jsonEncode({
         'product_id': productId,
         'quantity': quantity,
@@ -40,9 +37,8 @@ class CartRepository {
   }
 
   static Future<Cart> flush() async {
-    var response = await http.post(
+    var response = await ApiData.post(
       Uri.parse('${AppConstants.currentHost}/api/customers/cart/flush'),
-      headers: AuthRepository.headers(),
     );
     if (response.statusCode == 200) {
       dynamic decoded = jsonDecode(response.body);

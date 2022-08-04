@@ -6,23 +6,12 @@ import 'package:flutter_shop/core/exceptions.dart';
 import 'package:flutter_shop/domain/form/register_form.dart';
 import 'package:flutter_shop/domain/response/login_response.dart';
 import 'package:flutter_shop/domain/user.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class AuthRepository {
-  static Map<String, String> headers() {
-    return {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $accessToken',
-    };
-  }
-
-  static String? accessToken;
-
   static Future<bool> register({required RegisterForm form}) async {
-    var response = await http.post(
+    var response = await ApiData.post(
       Uri.parse('${AppConstants.currentHost}/api/customers/auth/register'),
-      headers: headers(),
       body: form.toJson(),
     );
     var decoded = jsonDecode(response.body);
@@ -39,9 +28,8 @@ class AuthRepository {
   }
 
   static Future<bool> otp({required int phone}) async {
-    var response = await http.post(
+    var response = await ApiData.post(
       Uri.parse('${AppConstants.currentHost}/api/customers/auth/otp'),
-      headers: headers(),
       body: jsonEncode({
         'phone': phone,
       }),
@@ -62,9 +50,8 @@ class AuthRepository {
     int otp,
     bool rememberMe,
   ) async {
-    var response = await http.post(
+    var response = await ApiData.post(
       Uri.parse('${AppConstants.currentHost}/api/customers/auth/login'),
-      headers: headers(),
       body: jsonEncode({
         'phone': phone,
         'otp': otp.toString(),
@@ -80,9 +67,8 @@ class AuthRepository {
   }
 
   static Future<bool> logout() async {
-    var response = await http.post(
+    var response = await ApiData.post(
       Uri.parse('${AppConstants.currentHost}/api/customers/auth/logout'),
-      headers: headers(),
     );
     var decoded = jsonDecode(response.body);
     if (response.statusCode == 200 && decoded['success'] == true) {
@@ -95,9 +81,8 @@ class AuthRepository {
   static Future<bool> userUpdate({
     required User user,
   }) async {
-    var response = await http.post(
+    var response = await ApiData.post(
       Uri.parse('${AppConstants.currentHost}/api/customers/settings/info'),
-      headers: headers(),
       body: user.toJson(),
     );
     var decoded = jsonDecode(response.body);

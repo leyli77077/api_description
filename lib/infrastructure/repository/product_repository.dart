@@ -3,16 +3,11 @@ import 'dart:convert';
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/product.dart';
 import 'package:flutter_shop/domain/product_detail.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class ProductRepository {
-  httpGet() async {
-    return await http.get(Uri.parse(
-        '${AppConstants.currentHost}/api/customers/product/feature-product?slug=baby-care'));
-  }
-
   Future<List<Product>> loadFeatureProduct() async {
-    http.Response response = await http.get(Uri.parse(
+    var response = await ApiData.get(Uri.parse(
         '${AppConstants.currentHost}/api/customers/product/feature-product?slug=baby-care'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
@@ -24,7 +19,7 @@ class ProductRepository {
   }
 
   Future<ProductDetail> loadProductDetail(int id) async {
-    http.Response response = await http.get(Uri.parse(
+    var response = await ApiData.get(Uri.parse(
         '${AppConstants.currentHost}/api/customers/product/detail?id=$id'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);

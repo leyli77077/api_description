@@ -6,6 +6,7 @@ import 'package:flutter_shop/domain/form/otp_form.dart';
 import 'package:flutter_shop/domain/form/register_form.dart';
 import 'package:flutter_shop/domain/response/login_response.dart';
 import 'package:flutter_shop/domain/user.dart';
+import 'package:flutter_shop/infrastructure/data/api_data.dart';
 import 'package:flutter_shop/infrastructure/repository/auth_repository.dart';
 
 part 'event.dart';
@@ -38,7 +39,7 @@ class AuthService extends ChangeNotifier {
       User? user = ConfigPreference.getUser();
       String? token = ConfigPreference.getToken();
       if (user != null && token != null) {
-        AuthRepository.accessToken = token;
+        ApiData.accessToken = token;
         emit(VerifiedState(accessToken: token, user: user));
       } else {
         emit(NotVerifiedState());
@@ -72,7 +73,7 @@ class AuthService extends ChangeNotifier {
         );
         await ConfigPreference.setToken(response.accessToken);
         await ConfigPreference.setUser(response.user);
-        AuthRepository.accessToken = response.accessToken;
+        ApiData.accessToken = response.accessToken;
         emit(VerifiedState(
           accessToken: response.accessToken,
           user: response.user,
@@ -126,7 +127,7 @@ class AuthService extends ChangeNotifier {
         AuthRepository.logout();
         await ConfigPreference.removeUser();
         await ConfigPreference.removeToken();
-        AuthRepository.accessToken = null;
+        ApiData.accessToken = null;
         emit(LogoutState());
       } catch (e) {
         emit(state);

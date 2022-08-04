@@ -2,17 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/category.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class CategoryRepository {
-  httpGet() async {
-    return await http
-        .get(Uri.parse('${AppConstants.currentHost}/api/customers/category'));
-  }
-
   Future<List<Category>> loadCategories() async {
-    http.Response response = await http
-        .get(Uri.parse('${AppConstants.currentHost}/api/customers/category'));
+    var response = await ApiData.get(
+      Uri.parse('${AppConstants.currentHost}/api/customers/category'),
+    );
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data'];
