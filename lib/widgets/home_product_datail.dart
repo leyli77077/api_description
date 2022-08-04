@@ -2,34 +2,18 @@ import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/constants/colors.dart';
+import 'package:flutter_shop/models/product_detail.dart';
 import 'package:flutter_shop/screens/home_screen.dart';
-import 'package:get_storage/get_storage.dart';
 
 class HomeProductDetail extends StatefulWidget {
-  //  final int productDetailId;
-  // final String productDetailPics;
-  // final double productDetailPrice;
-  //  final String productDetailpriceText;
-  // final dynamic productDetailStruckPrice;
-  // final dynamic productDetailStruckPriceText;
-  // final String productDetailName;
+  final ProductDetail detail;
 
-  
-  const HomeProductDetail({
-    Key? key,
-  //    required this.productDetailId,
-  //  required  this.productDetailPics,
-  //   required this.productDetailPrice,
-  //   required this.productDetailpriceText,
-  //   required this.productDetailStruckPrice,
-  //   required this.productDetailStruckPriceText,
-  //   required this.productDetailName,
-    
-  }) : super(key: key);
+  const HomeProductDetail({Key? key, required this.detail}) : super(key: key);
 
   @override
   State<HomeProductDetail> createState() => _HomeProductDetailState();
 }
+
 class _HomeProductDetailState extends State<HomeProductDetail> {
   final CarouselController _controller = CarouselController();
   int _currentPage = 0;
@@ -75,8 +59,8 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
           ),
         ),
         backgroundColor: Colors.white,
-        title: const Text(
-          'product title!',
+        title: Text(
+          widget.detail.name,
           style: AppFont.semiBold,
         ),
         actions: [
@@ -134,9 +118,9 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
                     items: [1, 2, 3, 4, 5]
                         .map(
                           (e) => Container(
-                            decoration:  const BoxDecoration(
+                            decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage('https://chawkbazar.vercel.app/assets/images/products/p-20-1.png' ),
+                                image: NetworkImage(widget.detail.pics),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -266,7 +250,7 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
       ),
     );
   }
-  
+
   Widget _availableSize() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,7 +326,9 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
           height: 30.0,
         ),
         MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            
+          },
           color: Colors.cyan,
           height: 50.0,
           minWidth: double.infinity,

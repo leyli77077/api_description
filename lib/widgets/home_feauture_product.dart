@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/models/feauture_product.dart';
+import 'package:flutter_shop/models/product_detail.dart';
 import 'package:flutter_shop/widgets/home_product_datail.dart';
 
 class HomeFeautureProduct extends StatelessWidget {
@@ -21,7 +22,9 @@ class HomeFeautureProduct extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>  const HomeProductDetail(),
+                builder: (context) => HomeProductDetail(
+                  detail: ProductDetail.fromJson(product.toMap()),
+                ),
               ),
             );
           },

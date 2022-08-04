@@ -153,13 +153,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.3.0"
-  flutter_expanded_tile:
-    dependency: "direct main"
-    description:
-      name: flutter_expanded_tile
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.6"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -172,13 +165,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_rating_bar:
-    dependency: "direct main"
-    description:
-      name: flutter_rating_bar
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "4.0.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -323,7 +309,7 @@ packages:
     source: hosted
     version: "0.1.4"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       url: "https://pub.flutter-io.cn"
@@ -489,7 +475,7 @@ packages:
     source: hosted
     version: "1.8.2"
   sqflite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite
       url: "https://pub.flutter-io.cn"
