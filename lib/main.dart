@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/application/home/service.dart';
+import 'package:flutter_shop/application/product/detail.dart';
 import 'package:flutter_shop/application/settings.dart';
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/domain/product/product_detail.dart';
 import 'package:flutter_shop/presentation/screens/home_screen.dart';
 import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
 import 'package:provider/provider.dart';
@@ -65,7 +65,10 @@ class MyApp extends StatelessWidget {
           routes: {
             HomeScreen.routeName: (context) => const HomeScreen(),
             ProductDetailScreen.routeName: (context) =>
-                const ProductDetailScreen(),
+                ChangeNotifierProvider.value(
+                  value: ProductDetailService(),
+                  child: const ProductDetailScreen(),
+                ),
           },
         );
       },

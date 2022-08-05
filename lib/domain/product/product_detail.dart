@@ -1,3 +1,5 @@
+import 'package:flutter_shop/core/parsers.dart';
+
 class ProductDetail {
   final int id;
   final String code;
@@ -7,8 +9,8 @@ class ProductDetail {
   final String? struckPriceText;
   final String name;
   final String shortDescription;
-  final dynamic details;
-  final dynamic saleLimitQuantity;
+  final String details;
+  final int? saleLimitQuantity;
   final bool isBundle;
   final bool isFavorite;
   final String pics;
@@ -28,21 +30,21 @@ class ProductDetail {
     required this.isFavorite,
     required this.pics,
   });
-  factory ProductDetail.fromMap(Map<String, dynamic> json) {
+  factory ProductDetail.fromMap(Map<String, dynamic> map) {
     return ProductDetail(
-      id: json["id"],
-      code: json["code"],
-      price: double.tryParse('${json["price"]}') ?? 0,
-      priceText: json["price_text"],
-      struckPrice: json["struck_price"],
-      struckPriceText: json["struck_price_text"],
-      name: json["name"],
-      shortDescription: json["short_description"],
-      details: json["details"],
-      saleLimitQuantity: json["sale_limit_quantity"],
-      isBundle: json["is_bundle"],
-      isFavorite: json["is_favorite"],
-      pics: json["pics"],
+      id: intParser(map['id']) ?? 0,
+      code: map['code'] ?? '',
+      price: doubleParser('${map['price']}') ?? 0,
+      priceText: map['price_text'] ?? '',
+      struckPrice: map['struck_price'],
+      struckPriceText: map['struck_price_text'],
+      name: map['name'] ?? '',
+      shortDescription: map['short_description'] ?? '',
+      details: map['details'] ?? '',
+      saleLimitQuantity: map['sale_limit_quantity'],
+      isBundle: map['is_bundle'] ?? false,
+      isFavorite: map['is_favorite'] ?? false,
+      pics: map['pics'] ?? '',
     );
   }
 }

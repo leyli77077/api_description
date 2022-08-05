@@ -9,8 +9,8 @@ class ProductRepository {
   static Future<List<Product>> loadFeatureProduct() async {
     var response = await ApiData.get(Uri.parse(
         '${AppConstants.currentHost}/api/customers/product/feature-product?slug=baby-care'));
+    var result = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      var result = jsonDecode(response.body);
       List data = result['data'];
       return data.map((e) => Product.fromMap(e)).toList();
     } else {
