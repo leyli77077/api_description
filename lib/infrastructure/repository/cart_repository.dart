@@ -50,7 +50,7 @@ class CartRepository {
   }
 
   static Future<Summary> summary() async {
-    var response = await ApiData.post(
+    var response = await ApiData.get(
       Uri.parse('${AppConstants.currentHost}/api/customers/cart/summary'),
     );
     if (response.statusCode == 200) {
@@ -58,6 +58,21 @@ class CartRepository {
       return Summary.fromMap(decoded['data']['summary']);
     } else {
       throw Exception();
+    }
+  }
+
+  static Future<bool> complete({
+    required String address,
+    required String title,
+    required String description,
+  }) async {
+    var response = await ApiData.get(
+      Uri.parse('${AppConstants.currentHost}/api/customers/cart/complete'),
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
