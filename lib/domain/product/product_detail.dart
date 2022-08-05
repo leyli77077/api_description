@@ -3,8 +3,8 @@ class ProductDetail {
   final String code;
   final double price;
   final String priceText;
-  final dynamic struckPrice;
-  final dynamic struckPriceText;
+  final double? struckPrice;
+  final String? struckPriceText;
   final String name;
   final String shortDescription;
   final dynamic details;

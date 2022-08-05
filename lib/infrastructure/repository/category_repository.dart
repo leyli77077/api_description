@@ -5,7 +5,7 @@ import 'package:flutter_shop/domain/category.dart';
 import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class CategoryRepository {
-  Future<List<Category>> loadCategories() async {
+  static Future<List<Category>> loadCategories() async {
     var response = await ApiData.get(
       Uri.parse('${AppConstants.currentHost}/api/customers/category'),
     );

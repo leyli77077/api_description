@@ -7,7 +7,7 @@ import 'package:flutter_shop/domain/promo/promo_banner.dart';
 import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class PromoRepository {
-  Future<List<PromoBanner>> loadBanners() async {
+  static Future<List<PromoBanner>> loadBanners() async {
     var response = await ApiData.get(
       Uri.parse('${AppConstants.currentHost}/api/customers/promo/banners'),
     );
@@ -20,7 +20,7 @@ class PromoRepository {
     }
   }
 
-  Future<List<PromoBannerDetail>> loadList() async {
+  static Future<List<PromoBannerDetail>> loadList() async {
     var response = await ApiData.get(
       Uri.parse('${AppConstants.currentHost}/api/customers/promo/banners'),
     );
@@ -33,7 +33,7 @@ class PromoRepository {
     }
   }
 
-  Future<PromoBannerDetail> fetch() async {
+  static Future<PromoBannerDetail> fetch() async {
     var response = await ApiData.get(
       Uri.parse('${AppConstants.currentHost}/api/customers/promo/banners'),
     );
@@ -45,7 +45,7 @@ class PromoRepository {
     }
   }
 
-  Future<List<Product>> productItems({required int id}) async {
+  static Future<List<Product>> productItems({required int id}) async {
     var response = await ApiData.get(Uri.parse(
         '${AppConstants.currentHost}/api/customers/promo/items?id=$id'));
     if (response.statusCode == 200) {

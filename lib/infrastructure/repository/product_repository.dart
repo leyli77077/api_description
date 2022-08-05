@@ -6,7 +6,7 @@ import 'package:flutter_shop/domain/product/product_detail.dart';
 import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class ProductRepository {
-  Future<List<Product>> loadFeatureProduct() async {
+  static Future<List<Product>> loadFeatureProduct() async {
     var response = await ApiData.get(Uri.parse(
         '${AppConstants.currentHost}/api/customers/product/feature-product?slug=baby-care'));
     if (response.statusCode == 200) {
@@ -18,7 +18,8 @@ class ProductRepository {
     }
   }
 
-  Future<List<Product>> loadRelatedProduct({required String slug}) async {
+  static Future<List<Product>> loadRelatedProduct(
+      {required String slug}) async {
     var response = await ApiData.get(Uri.parse(
         '${AppConstants.currentHost}/api/customers/product/related?slug=$slug'));
     if (response.statusCode == 200) {
@@ -30,7 +31,7 @@ class ProductRepository {
     }
   }
 
-  Future<List<Product>> productList({
+  static Future<List<Product>> productList({
     required String slug,
     int page = 0,
     int perPage = 10,
@@ -48,7 +49,7 @@ class ProductRepository {
     }
   }
 
-  Future<List<Product>> productListByBrand({
+  static Future<List<Product>> productListByBrand({
     required int brandId,
     int page = 0,
     int perPage = 10,
@@ -66,7 +67,7 @@ class ProductRepository {
     }
   }
 
-  Future<List<Product>> productSearch({
+  static Future<List<Product>> productSearch({
     required String searched,
     int page = 0,
     int perPage = 10,
@@ -84,7 +85,7 @@ class ProductRepository {
     }
   }
 
-  Future<ProductDetail> loadProductDetail(int id) async {
+  static Future<ProductDetail> loadProductDetail(int id) async {
     var response = await ApiData.get(Uri.parse(
         '${AppConstants.currentHost}/api/customers/product/detail?id=$id'));
     if (response.statusCode == 200) {

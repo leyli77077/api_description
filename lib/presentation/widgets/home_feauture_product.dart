@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/domain/product/product.dart';
 import 'package:flutter_shop/domain/product/product_detail.dart';
-import 'package:flutter_shop/presentation/widgets/home_product_datail.dart';
+import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
 
 class HomeFeautureProduct extends StatelessWidget {
   final Product product;
@@ -19,14 +19,14 @@ class HomeFeautureProduct extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeProductDetail(
-                  detail: ProductDetail.fromMap(product.toMap()),
-                ),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => HomeProductDetail(
+            //       detail: ProductDetail.fromMap(product.toMap()),
+            //     ),
+            //   ),
+            // );
           },
           child: Container(
             padding: const EdgeInsets.all(8.0),

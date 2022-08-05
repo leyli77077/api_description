@@ -2,19 +2,18 @@ import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/core/constants/colors.dart';
-import 'package:flutter_shop/domain/product/product_detail.dart';
 import 'package:flutter_shop/presentation/screens/home_screen.dart';
 
-class HomeProductDetail extends StatefulWidget {
-  final ProductDetail detail;
+class ProductDetailScreen extends StatefulWidget {
+  static const String routeName = 'product-detail';
 
-  const HomeProductDetail({Key? key, required this.detail}) : super(key: key);
+  const ProductDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeProductDetail> createState() => _HomeProductDetailState();
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
-class _HomeProductDetailState extends State<HomeProductDetail> {
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
   final CarouselController _controller = CarouselController();
   int _currentPage = 0;
   Widget buildSizeButton({title, isSeleted}) {
@@ -60,7 +59,7 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
         ),
         backgroundColor: Colors.white,
         title: Text(
-          widget.detail.name,
+          'widget.detail.name',
           style: AppFont.semiBold,
         ),
         actions: [
@@ -120,7 +119,7 @@ class _HomeProductDetailState extends State<HomeProductDetail> {
                           (e) => Container(
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(widget.detail.pics),
+                                image: NetworkImage('widget.detail.pics'),
                                 fit: BoxFit.cover,
                               ),
                             ),

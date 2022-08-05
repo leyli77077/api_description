@@ -5,7 +5,9 @@ import 'package:flutter_shop/application/home/service.dart';
 import 'package:flutter_shop/application/settings.dart';
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/l10n.dart';
+import 'package:flutter_shop/domain/product/product_detail.dart';
 import 'package:flutter_shop/presentation/screens/home_screen.dart';
+import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -62,6 +64,8 @@ class MyApp extends StatelessWidget {
           initialRoute: HomeScreen.routeName,
           routes: {
             HomeScreen.routeName: (context) => const HomeScreen(),
+            ProductDetailScreen.routeName: (context) =>
+                const ProductDetailScreen(),
           },
         );
       },
