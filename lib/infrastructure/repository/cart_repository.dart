@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/cart/cart.dart';
+import 'package:flutter_shop/domain/cart/summary.dart';
 import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class CartRepository {
@@ -43,6 +44,18 @@ class CartRepository {
     if (response.statusCode == 200) {
       dynamic decoded = jsonDecode(response.body);
       return Cart.fromMap(decoded['data']);
+    } else {
+      throw Exception();
+    }
+  }
+
+  static Future<Summary> summary() async {
+    var response = await ApiData.post(
+      Uri.parse('${AppConstants.currentHost}/api/customers/cart/summary'),
+    );
+    if (response.statusCode == 200) {
+      dynamic decoded = jsonDecode(response.body);
+      return Summary.fromMap(decoded['data']['summary']);
     } else {
       throw Exception();
     }
