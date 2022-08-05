@@ -5,7 +5,7 @@ import 'package:flutter_shop/domain/product.dart';
 import 'package:flutter_shop/domain/promo_banner.dart';
 import 'package:flutter_shop/infrastructure/repository/brand_repository.dart';
 import 'package:flutter_shop/infrastructure/repository/product_repository.dart';
-import 'package:flutter_shop/infrastructure/repository/banner_repository.dart';
+import 'package:flutter_shop/infrastructure/repository/promo_repository.dart';
 import 'package:flutter_shop/infrastructure/repository/category_repository.dart';
 
 part 'event.dart';
@@ -31,7 +31,7 @@ class HomePageService extends ChangeNotifier {
     emit(LoadingState());
     try {
       if (event is LoadEvent) {
-        var banners = await BannerRepository().loadBanners();
+        var banners = await PromoRepository().loadBanners();
         var categories = await CategoryRepository().loadCategories();
         var featuredProducts = await ProductRepository().loadFeatureProduct();
         var brandLists = await BrandRepository().loadBrandLists();

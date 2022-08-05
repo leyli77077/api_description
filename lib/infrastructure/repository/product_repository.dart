@@ -18,6 +18,18 @@ class ProductRepository {
     }
   }
 
+  Future<List<Product>> loadRelatedProduct({required String slug}) async {
+    var response = await ApiData.get(Uri.parse(
+        '${AppConstants.currentHost}/api/customers/product/related?slug=$slug'));
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      List data = result['data'];
+      return data.map((e) => Product.fromMap(e)).toList();
+    } else {
+      throw Exception();
+    }
+  }
+
   Future<List<Product>> productList({
     required String slug,
     int page = 0,
@@ -44,6 +56,24 @@ class ProductRepository {
     var response = await ApiData.get(
       Uri.parse(
           '${AppConstants.currentHost}/api/customers/product/list?brand_id=$brandId&page=$page&per_page=$perPage'),
+    );
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      List data = result['data'];
+      return data.map((e) => Product.fromMap(e)).toList();
+    } else {
+      throw Exception();
+    }
+  }
+
+  Future<List<Product>> productSearch({
+    required String searched,
+    int page = 0,
+    int perPage = 10,
+  }) async {
+    var response = await ApiData.get(
+      Uri.parse(
+          '${AppConstants.currentHost}/api/customers/search?q=$searched&page=$page&per_page=$perPage'),
     );
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);

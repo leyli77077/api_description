@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Summary {
   final double total;
   final double subTotal;
