@@ -13,7 +13,7 @@ class BrandList {
     required this.productsCount,
   });
 
-  factory BrandList.fromJson(Map<String, dynamic> json) {
+  factory BrandList.fromMap(Map<String, dynamic> json) {
     return BrandList(
       id: json['id'] ?? 0,
       code: json['code'] ?? '',

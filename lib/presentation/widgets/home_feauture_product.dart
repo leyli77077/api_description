@@ -23,7 +23,7 @@ class HomeFeautureProduct extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => HomeProductDetail(
-                  detail: ProductDetail.fromJson(product.toMap()),
+                  detail: ProductDetail.fromMap(product.toMap()),
                 ),
               ),
             );

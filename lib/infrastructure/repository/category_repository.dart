@@ -12,7 +12,7 @@ class CategoryRepository {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data'];
-      return data.map((e) => Category.fromJson(e)).toList();
+      return data.map((e) => Category.fromMap(e)).toList();
     } else {
       throw Exception();
     }

@@ -11,4 +11,7 @@ class AppConstants {
   static const languageCode = 'languageCode';
   static const String user = 'user';
   static const String accessToken = 'accessToken';
+  static const String productsOpen = 'PRODUCTS_OPEN';
+  static const String categoryOpen = 'CATEGORY_OPEN';
+  static const String brandOpen = 'BRAND_OPEN';
 }

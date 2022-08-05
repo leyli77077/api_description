@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/product/product.dart';
-import 'package:flutter_shop/domain/promo_banner.dart';
+import 'package:flutter_shop/domain/promo/promo_banner_detail.dart';
+import 'package:flutter_shop/domain/promo/promo_banner.dart';
 import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class PromoRepository {
@@ -13,7 +14,32 @@ class PromoRepository {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data'];
-      return data.map((e) => PromoBanner.fromJson(e)).toList();
+      return data.map((e) => PromoBanner.fromMap(e)).toList();
+    } else {
+      throw Exception();
+    }
+  }
+
+  Future<List<PromoBannerDetail>> loadList() async {
+    var response = await ApiData.get(
+      Uri.parse('${AppConstants.currentHost}/api/customers/promo/banners'),
+    );
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      List data = result['data'];
+      return data.map((e) => PromoBannerDetail.fromMap(e)).toList();
+    } else {
+      throw Exception();
+    }
+  }
+
+  Future<PromoBannerDetail> fetch() async {
+    var response = await ApiData.get(
+      Uri.parse('${AppConstants.currentHost}/api/customers/promo/banners'),
+    );
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      return PromoBannerDetail.fromMap(result['data']);
     } else {
       throw Exception();
     }

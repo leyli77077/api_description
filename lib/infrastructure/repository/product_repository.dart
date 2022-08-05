@@ -90,7 +90,7 @@ class ProductRepository {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       dynamic data = result['data'];
-      return ProductDetail.fromJson(data);
+      return ProductDetail.fromMap(data);
     } else {
       throw Exception();
     }

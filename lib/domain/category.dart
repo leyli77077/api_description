@@ -17,7 +17,7 @@ class Category {
     required this.thumbImage,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) {
+  factory Category.fromMap(Map<String, dynamic> json) {
     return Category(
       parentId: json['parent_id'],
       id: json['id'],

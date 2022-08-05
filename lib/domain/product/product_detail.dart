@@ -28,7 +28,7 @@ class ProductDetail {
     required this.isFavorite,
     required this.pics,
   });
-  factory ProductDetail.fromJson(Map<String, dynamic> json) {
+  factory ProductDetail.fromMap(Map<String, dynamic> json) {
     return ProductDetail(
       id: json["id"],
       code: json["code"],

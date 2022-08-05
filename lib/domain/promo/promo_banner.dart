@@ -13,7 +13,7 @@ class PromoBanner {
     required this.actionType,
   });
 
-  factory PromoBanner.fromJson(Map<String, dynamic> json) {
+  factory PromoBanner.fromMap(Map<String, dynamic> json) {
     return PromoBanner(
       id: json["id"],
       priority: json["priority"],

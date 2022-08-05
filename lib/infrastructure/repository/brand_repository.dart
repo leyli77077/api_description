@@ -12,7 +12,7 @@ class BrandRepository {
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List data = result['data']['brands'];
-      return data.map((e) => BrandList.fromJson(e)).toList();
+      return data.map((e) => BrandList.fromMap(e)).toList();
     } else {
       throw Exception();
     }
