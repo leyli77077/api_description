@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:flutter_shop/domain/brand_list.dart';
 import 'package:flutter_shop/domain/category.dart';
-import 'package:flutter_shop/domain/product.dart';
+import 'package:flutter_shop/domain/product/product.dart';
 import 'package:flutter_shop/domain/promo_banner.dart';
 import 'package:flutter_shop/infrastructure/repository/brand_repository.dart';
 import 'package:flutter_shop/infrastructure/repository/product_repository.dart';
