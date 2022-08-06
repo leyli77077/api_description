@@ -62,7 +62,7 @@ class PromoBannerDetail {
 
   Object get getItem {
     if (actionType == AppConstants.brandOpen) {
-      return BrandList.fromMap(item ?? {});
+      return Brand.fromMap(item ?? {});
     } else if (actionType == AppConstants.categoryOpen) {
       return Category.fromMap(item ?? {});
     } else {
