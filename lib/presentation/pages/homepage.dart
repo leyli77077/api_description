@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/application/home/service.dart';
-import 'package:flutter_shop/presentation/widgets/home_feauture_product.dart';
-import 'package:flutter_shop/presentation/widgets/home_feauture_products.dart';
-import 'package:flutter_shop/presentation/widgets/home_product_categories.dart';
-import 'package:flutter_shop/presentation/widgets/home_promo_banners.dart';
+import 'package:flutter_shop/presentation/widgets/brand/brand_list_widget.dart';
+import 'package:flutter_shop/presentation/widgets/product/feautured_products_widget.dart';
+import 'package:flutter_shop/presentation/widgets/category/categories.dart';
+import 'package:flutter_shop/presentation/widgets/banner/promo_banners.dart';
+import 'package:flutter_shop/presentation/widgets/product/first_featured_product.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/home_brand_lists.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: HomeProductCategories(
+                  child: CategoriesWidget(
                     categoryList: state.categoryList,
                   ),
                 ),
@@ -59,35 +58,38 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       'Feautures Product',
                       style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 20.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(16.0),
                   sliver: SliverToBoxAdapter(
-                    child: state.feautureProductList.isNotEmpty
-                        ? HomeFeautureProduct(
-                            product: state.feautureProductList.first,
-                          )
-                        : const SizedBox.shrink(),
+                    child: FirstFeaturedWidget(
+                      product: state.feautureProductList?.first,
+                      isEmpty: state.feautureProductList != null &&
+                          state.feautureProductList!.isEmpty,
+                    ),
                   ),
                 ),
-                HomeFeautureProducts(
-                  feautureProductList: state.feautureProductList..skip(0),
+                FeauturedProductsWidget(
+                  feautureProductList: state.feautureProductList?..skip(0),
                 ),
                 SliverToBoxAdapter(
-                    child: HomePromoBanners(
-                        promoBannerList: state.promoBannerList)),
+                  child: PromoBannersWidget(
+                    promoBannerList: state.promoBannerList,
+                  ),
+                ),
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Text('Top Brands'),
                   ),
                 ),
-                HomeBrandLists(brandList: state.brandList),
+                BrandListWidget(brandList: state.brandList),
               ],
             ),
           );

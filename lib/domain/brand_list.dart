@@ -1,11 +1,11 @@
-class BrandList {
+class Brand {
   final int id;
   final String code;
   final String name;
   final String media;
   final dynamic productsCount;
 
-  const BrandList({
+  const Brand({
     required this.id,
     required this.code,
     required this.name,
@@ -13,8 +13,8 @@ class BrandList {
     required this.productsCount,
   });
 
-  factory BrandList.fromMap(Map<String, dynamic> json) {
-    return BrandList(
+  factory Brand.fromMap(Map<String, dynamic> json) {
+    return Brand(
       id: json['id'] ?? 0,
       code: json['code'] ?? '',
       name: json['name'] ?? json['attribute'],

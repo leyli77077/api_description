@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/domain/product/product.dart';
 import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
 
-class HomeFeautureProduct extends StatelessWidget {
+class ProductWidget extends StatelessWidget {
   final Product product;
 
-  const HomeFeautureProduct({
+  const ProductWidget({
     Key? key,
     required this.product,
   }) : super(key: key);
