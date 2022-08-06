@@ -4,7 +4,7 @@ class ApiData {
   static Map<String, String> get headers => {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer $accessToken',
+        'Authorization': 'Bearer $accessToken', 
       };
 
   static String? accessToken;
