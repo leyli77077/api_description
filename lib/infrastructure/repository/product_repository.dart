@@ -96,4 +96,37 @@ class ProductRepository {
       throw Exception();
     }
   }
+
+  static Future<List<Product>> loadFavorites({
+    int page = 0,
+    int perPage = 10,
+  }) async {
+    var response = await ApiData.get(
+      Uri.parse(
+          '${AppConstants.currentHost}/api/customers/favorite/list?page=$page&per_page=$perPage'),
+    );
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      List data = result['data'];
+      return data.map((e) => Product.fromMap(e)).toList();
+    } else {
+      throw Exception();
+    }
+  }
+
+  static Future<bool> addFavorite(int id) async {
+    var response = await ApiData.post(
+      Uri.parse('${AppConstants.currentHost}/api/customers/favorite'),
+      body: jsonEncode(
+        {
+          'product_id': id,
+        },
+      ),
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw false;
+    }
+  }
 }

@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/cart/cart.dart';
 import 'package:flutter_shop/domain/cart/summary.dart';
+import 'package:flutter_shop/domain/order.dart';
 import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
-class CartRepository {
-  static Future<Cart> initRequest() async {
+class OrderRepository {
+  static Future<Cart> loadCart() async {
     var response = await ApiData.get(
       Uri.parse('${AppConstants.currentHost}/api/customers/cart/'),
     );
@@ -73,6 +74,34 @@ class CartRepository {
       return true;
     } else {
       return false;
+    }
+  }
+
+  static Future<List<Order>> orderList({
+    int page = 0,
+    int perPage = 10,
+  }) async {
+    var response = await ApiData.get(
+      Uri.parse('${AppConstants.currentHost}/api/customers/cart/complete'),
+    );
+    if (response.statusCode == 200) {
+      var result = jsonDecode(response.body);
+      List data = result['data'];
+      return data.map((e) => Order.fromMap(e)).toList();
+    } else {
+      throw Exception();
+    }
+  }
+
+  static Future<Cart> orderDetail(int id) async {
+    var response = await ApiData.get(
+      Uri.parse('${AppConstants.currentHost}/api/customers/order/detail/$id'),
+    );
+    if (response.statusCode == 200) {
+      dynamic decoded = jsonDecode(response.body);
+      return Cart.fromMap(decoded['data']);
+    } else {
+      throw Exception();
     }
   }
 }

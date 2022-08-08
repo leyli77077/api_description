@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/domain/category.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CategoryWidget extends StatelessWidget {
   final Category category;
@@ -27,22 +28,16 @@ class CategoryWidget extends StatelessWidget {
                   height: 100.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.grey,
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
+                progressIndicatorBuilder: (context, url, progress) =>
+                    const ImageLoadingWidget(),
                 errorWidget: (context, url, object) {
-                  return Container(
-                    width: 100.0,
-                    height: 100.0,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey,
-                    ),
-                  );
+                  return const ImageLoadingWidget();
                 },
               ),
               const SizedBox(height: 6),
@@ -51,6 +46,28 @@ class CategoryWidget extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ImageLoadingWidget extends StatelessWidget {
+  const ImageLoadingWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey.shade200,
+      highlightColor: Colors.grey.shade400,
+      child: Container(
+        width: 100.0,
+        height: 100.0,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.grey,
+        ),
+      ),
     );
   }
 }
