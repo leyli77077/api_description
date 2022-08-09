@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/core/constants/colors.dart';
+import 'package:flutter_shop/core/l10n.dart';
+import 'package:provider/provider.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -11,114 +14,107 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0.0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-            size: 22,
-          ),
-        ),
-        backgroundColor: Colors.white,
-        title: const Text(
-          'product title!',
-          style: AppFont.semiBold,
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Text(
-              'Shopping cart',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 21.0,
-              ),
-            ),
-            const SizedBox(height: 18.0),
-            const CartItem(),
-            const CartItem(),
-            const CartItem(),
-            const SizedBox(
-              height: 21.0,
-            ),
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const <Widget>[
-                Text(
-                  'Total',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                ),
-                Text(
-                  '480.000',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 4.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const <Widget>[
-                Text(
-                  'Delivery change',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-                Text(
-                  '480.000',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const <Widget>[
-                Text(
-                  'Sub total',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                ),
-                Text(
-                  '480.000',
+    return Selector<AuthService, AuthState>(
+      selector: (_, auth) => auth.state,
+      builder: (_, state, __) {
+        if (state is VerifiedState) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'Shopping cart',
                   style: TextStyle(
-                    fontSize: 14.0,
                     fontWeight: FontWeight.bold,
+                    fontSize: 21.0,
                   ),
                 ),
+                const SizedBox(height: 18.0),
+                const CartItem(),
+                const CartItem(),
+                const CartItem(),
+                const SizedBox(
+                  height: 21.0,
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget>[
+                    Text(
+                      'Total',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16.0),
+                    ),
+                    Text(
+                      '480.000',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16.0),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 4.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget>[
+                    Text(
+                      'Delivery change',
+                      style: TextStyle(fontSize: 14.0),
+                    ),
+                    Text(
+                      '480.000',
+                      style: TextStyle(fontSize: 14.0),
+                    ),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget>[
+                    Text(
+                      'Sub total',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16.0),
+                    ),
+                    Text(
+                      '480.000',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                MaterialButton(
+                  onPressed: () {},
+                  color: Colors.cyan,
+                  height: 50.0,
+                  minWidth: double.infinity,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: const Text(
+                    'Add to Cart',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(
+                  height: 18.0,
+                )
               ],
             ),
-            const Spacer(),
-            MaterialButton(
-              onPressed: () {},
-              color: Colors.cyan,
-              height: 50.0,
-              minWidth: double.infinity,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: const Text(
-                'Add to Cart',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            const SizedBox(
-              height: 18.0,
-            )
-          ],
-        ),
-      ),
+          );
+        } else {
+          return Center(
+            child: Text('not_verified_user'.trs),
+          );
+        }
+      },
     );
   }
 }
