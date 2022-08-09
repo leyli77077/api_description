@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_shop/domain/cart/cart.dart';
 import 'package:flutter_shop/domain/cart/cart_line.dart';
-import 'package:flutter_shop/infrastructure/repository/cart_repository.dart';
+import 'package:flutter_shop/infrastructure/repository/order_repository.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -26,7 +26,7 @@ class CartService extends ChangeNotifier {
     var current = state;
     try {
       if (event is InitEvent) {
-        var cart = await CartRepository.initRequest();
+        var cart = await OrderRepository.loadCart();
         emit(LoadedState(cart));
       } else if (event is AddEvent && current is LoadedState) {
         bool result = current.cart.lines
@@ -34,11 +34,11 @@ class CartService extends ChangeNotifier {
         if (result) {
           CartLine line = current.cart.lines
               .firstWhere((element) => element.product.id == event.productId);
-          var cart = await CartRepository.update(
+          var cart = await OrderRepository.update(
               productId: event.productId, quantity: line.quantity + 1);
           emit(LoadedState(cart));
         } else {
-          var cart = await CartRepository.update(
+          var cart = await OrderRepository.update(
               productId: event.productId, quantity: 1);
           emit(LoadedState(cart));
         }
@@ -48,7 +48,7 @@ class CartService extends ChangeNotifier {
         if (result) {
           CartLine line = current.cart.lines
               .firstWhere((element) => element.product.id == event.productId);
-          var cart = await CartRepository.update(
+          var cart = await OrderRepository.update(
               productId: event.productId, quantity: line.quantity - 1);
           emit(LoadedState(cart));
         } else {
