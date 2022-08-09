@@ -1,8 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/application/auth/service.dart' as auth;
+import 'package:flutter_shop/application/cart/service.dart' as cart;
 import 'package:flutter_shop/application/product/detail.dart';
 import 'package:flutter_shop/core/constants/colors.dart';
+import 'package:flutter_shop/presentation/dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -105,9 +108,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   }
                 }),
                 IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: () {},
                   icon: Badge(
                     badgeColor: AppColors.primaryColorRed,
                     badgeContent: Text(
@@ -389,7 +390,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           height: 30.0,
         ),
         MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            if (auth.AuthService.instance.state is auth.VerifiedState) {
+              cart.CartService.instnance.add(
+                cart.AddEvent(
+                  productId: productId,
+                ),
+              );
+            } else {
+              registerDialog(context);
+            }
+          },
           color: Colors.cyan,
           height: 50.0,
           minWidth: double.infinity,
