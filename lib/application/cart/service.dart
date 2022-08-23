@@ -22,8 +22,8 @@ class CartService extends ChangeNotifier {
   }
 
   void add(CartEvent event) async {
-    emit(LoadingState());
     var current = state;
+    emit(LoadingState());
     try {
       if (event is InitEvent) {
         var cart = await OrderRepository.loadCart();

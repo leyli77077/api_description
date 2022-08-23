@@ -58,7 +58,9 @@ class Cart {
       total: map['total']?.toDouble() ?? 0.0,
       totalText: map['total_text'] ?? '',
       updatedAt: map['updated_at'] ?? '',
-      lines: List<CartLine>.from(map['lines']?.map((x) => CartLine.fromMap(x))),
+      lines: map['lines'] != null
+          ? List<CartLine>.from(map['lines']?.map((x) => CartLine.fromMap(x)))
+          : [],
     );
   }
 }

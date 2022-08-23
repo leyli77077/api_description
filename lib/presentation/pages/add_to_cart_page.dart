@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/core/constants/colors.dart';
+import 'package:flutter_shop/application/cart/service.dart';
 import 'package:flutter_shop/core/l10n.dart';
+import 'package:flutter_shop/domain/cart/cart_line.dart';
+import 'package:flutter_shop/presentation/dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_shop/application/auth/service.dart' as auth;
+import 'package:flutter_shop/application/cart/service.dart' as cart;
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -12,116 +15,159 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  late int productId;
   @override
   Widget build(BuildContext context) {
-    return Selector<AuthService, AuthState>(
-      selector: (_, auth) => auth.state,
-      builder: (_, state, __) {
-        if (state is VerifiedState) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const Text(
-                  'Shopping cart',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 21.0,
-                  ),
-                ),
-                const SizedBox(height: 18.0),
-                const CartItem(),
-                const CartItem(),
-                const CartItem(),
-                const SizedBox(
-                  height: 21.0,
-                ),
-                const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget>[
-                    Text(
-                      'Total',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16.0),
-                    ),
-                    Text(
-                      '480.000',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16.0),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 4.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget>[
-                    Text(
-                      'Delivery change',
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                    Text(
-                      '480.000',
-                      style: TextStyle(fontSize: 14.0),
-                    ),
-                  ],
-                ),
-                const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget>[
-                    Text(
-                      'Sub total',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16.0),
-                    ),
-                    Text(
-                      '480.000',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                MaterialButton(
-                  onPressed: () {},
-                  color: Colors.cyan,
-                  height: 50.0,
-                  minWidth: double.infinity,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: const Text(
-                    'Add to Cart',
+    return Selector<CartService, CartState>(
+        selector: (_, cart) => cart.state,
+        builder: (context, state, __) {
+          if (state is LoadedState) {
+            return CustomScrollView(
+              slivers: [
+                const SliverToBoxAdapter(
+                  child: Text(
+                    'Shopping cart',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 21.0,
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  height: 18.0,
-                )
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return CartItem(line: state.cart.lines[index]);
+                    },
+                    childCount: state.cart.lines.length,
+                  ),
+                ),
+                const SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 21.0,
+                  ),
+                ),
+                const SliverToBoxAdapter(child: Divider()),
+                SliverToBoxAdapter(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const <Widget>[
+                      Text(
+                        'Total',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                      ),
+                      Text(
+                        '480.000',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                ),
+                const SliverToBoxAdapter(child: SizedBox(height: 18.0)),
+                const SliverToBoxAdapter(child: Divider()),
+                SliverToBoxAdapter(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const <Widget>[
+                      Text(
+                        'Total',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                      ),
+                      Text(
+                        '480.000',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                ),
+                const SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 4.0,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'delivery_change'.trs,
+                        style: TextStyle(fontSize: 14.0),
+                      ),
+                      Text(
+                        state.cart.totalText,
+                        style: const TextStyle(fontSize: 14.0),
+                      ),
+                    ],
+                  ),
+                ),
+                const SliverToBoxAdapter(child: Divider()),
+                SliverToBoxAdapter(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const <Widget>[
+                      Text(
+                        'Sub total',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                      ),
+                      Text(
+                        '480.000',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: MaterialButton(
+                    onPressed: () {if (auth.AuthService.instance.state is auth.VerifiedState) {
+              cart.CartService.instnance.add(
+                cart.AddEvent(
+                  productId: productId,
+                ),
+              );
+            } else {
+              registerDialog(context);
+            }},
+                    color: Colors.cyan,
+                    height: 50.0,
+                    minWidth: double.infinity,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: const Text(
+                      'Add to Cart',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
               ],
-            ),
-          );
-        } else {
-          return Center(
-            child: Text('not_verified_user'.trs),
-          );
-        }
-      },
-    );
+            );
+          } else if (state is LoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return Center(
+              child: Text('not_verified_user'.trs),
+            );
+          }
+        });
   }
 }
 
 class CartItem extends StatelessWidget {
+  final CartLine line;
   const CartItem({
     Key? key,
+    required this.line,
   }) : super(key: key);
 
   @override
@@ -132,20 +178,19 @@ class CartItem extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 80.0,
-            height: 80.0,
+            width: 100.0,
+            height: 100.0,
             decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(20.0)),
             child: Center(
               child: Container(
-                width: 60.0,
-                height: 60.0,
+                width: 80.0,
+                height: 80.0,
                 decoration: BoxDecoration(
-                    image: const DecorationImage(
+                    image: DecorationImage(
                         fit: BoxFit.scaleDown,
-                        image: NetworkImage(
-                            'https://chawkbazar.vercel.app/assets/images/products/p-2-m.png')),
+                        image: NetworkImage(line.product.thumbPic)),
                     borderRadius: BorderRadius.circular(20.0)),
               ),
             ),
@@ -157,11 +202,11 @@ class CartItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(
+                SizedBox(
                   width: 100.0,
                   child: Text(
-                    'Oversized W Sweater',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    line.product.shortName,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 const SizedBox(height: 8.0),
@@ -180,11 +225,11 @@ class CartItem extends StatelessWidget {
                         size: 15.0,
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
-                        '1',
-                        style: TextStyle(
+                        '${line.quantity}',
+                        style: const TextStyle(
                             fontSize: 16.0, fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -202,9 +247,9 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    const Text(
-                      '12,0000',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    Text(
+                      line.totalText,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

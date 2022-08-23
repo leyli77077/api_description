@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../dialogs/banner_dialogs.dart';
+
 class PromoBannerWidget extends StatelessWidget {
   final int? promoBannerId;
   final String promoBannerpicUrl;
@@ -14,33 +16,40 @@ class PromoBannerWidget extends StatelessWidget {
     //print(promoBannerpicUrl);
     return Container(
       padding: const EdgeInsets.all(16.0),
-      child: CachedNetworkImage(
-        imageUrl: promoBannerpicUrl,
-        imageBuilder: (context, imageProvider) => Container(
-          width: 270,
-          height: 140,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 2,
-                spreadRadius: 1.5,
-                offset: Offset(0, 2.1),
-              ),
-            ],
-          ),
-        ),
-        errorWidget: (context, url, object) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          );
+      child: GestureDetector(
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (_) => BannerDialog(promoBannerpicUrl));
         },
+        child: CachedNetworkImage(
+          imageUrl: promoBannerpicUrl,
+          imageBuilder: (context, imageProvider) => Container(
+            width: 270,
+            height: 140,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 2,
+                  spreadRadius: 1.5,
+                  offset: Offset(0, 2.1),
+                ),
+              ],
+            ),
+          ),
+          errorWidget: (context, url, object) {
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

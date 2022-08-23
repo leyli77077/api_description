@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_shop/domain/order.dart';
+import 'package:flutter_shop/domain/order/order.dart';
 import 'package:flutter_shop/infrastructure/repository/order_repository.dart';
 
 part 'event.dart';

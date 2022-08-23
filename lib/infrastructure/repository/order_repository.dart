@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_shop/core/constants/app_constants.dart';
 import 'package:flutter_shop/domain/cart/cart.dart';
 import 'package:flutter_shop/domain/cart/summary.dart';
-import 'package:flutter_shop/domain/order.dart';
+import 'package:flutter_shop/domain/order/order.dart';
 import 'package:flutter_shop/infrastructure/data/api_data.dart';
 
 class OrderRepository {
@@ -13,7 +13,7 @@ class OrderRepository {
     );
     if (response.statusCode == 200) {
       dynamic decoded = jsonDecode(response.body);
-      return Cart.fromMap(decoded['data']);
+      return Cart.fromMap(decoded['data']['cart']);
     } else {
       throw Exception();
     }
@@ -32,7 +32,7 @@ class OrderRepository {
     );
     if (response.statusCode == 200) {
       dynamic decoded = jsonDecode(response.body);
-      return Cart.fromMap(decoded['data']);
+      return Cart.fromMap(decoded['data']['cart']);
     } else {
       throw Exception();
     }
@@ -44,7 +44,7 @@ class OrderRepository {
     );
     if (response.statusCode == 200) {
       dynamic decoded = jsonDecode(response.body);
-      return Cart.fromMap(decoded['data']);
+      return Cart.fromMap(decoded['data']['cart']);
     } else {
       throw Exception();
     }

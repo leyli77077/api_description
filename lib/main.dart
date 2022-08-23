@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_shop/application/auth/service.dart';
+import 'package:flutter_shop/application/cart/service.dart' as c;
 import 'package:flutter_shop/application/home/service.dart';
 import 'package:flutter_shop/application/product/detail.dart';
 import 'package:flutter_shop/application/settings.dart';
@@ -30,6 +31,7 @@ Future<void> main() async {
         ChangeNotifierProvider<AuthService>(
           create: (context) => AuthService()..add(InitEvent()),
         ),
+        ChangeNotifierProvider(create: (_) => c.CartService())
       ],
       child: const MyApp(),
     ),

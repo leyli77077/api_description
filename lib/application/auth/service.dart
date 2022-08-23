@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_shop/application/cart/service.dart' as cart;
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/exceptions.dart';
 import 'package:flutter_shop/domain/form/login_form.dart';
@@ -33,6 +34,11 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
+  void verify(VerifiedState state) {
+    emit(state);
+    cart.CartService.instnance.add(cart.InitEvent());
+  }
+
   void add(AuthEvent event) async {
     emit(LoadingState());
     if (event is InitEvent) {
@@ -40,7 +46,7 @@ class AuthService extends ChangeNotifier {
       String? token = ConfigPreference.getToken();
       if (user != null && token != null) {
         ApiData.accessToken = token;
-        emit(VerifiedState(accessToken: token, user: user));
+        verify(VerifiedState(accessToken: token, user: user));
       } else {
         emit(NotVerifiedState());
       }
@@ -74,7 +80,7 @@ class AuthService extends ChangeNotifier {
         await ConfigPreference.setToken(response.accessToken);
         await ConfigPreference.setUser(response.user);
         ApiData.accessToken = response.accessToken;
-        emit(VerifiedState(
+        verify(VerifiedState(
           accessToken: response.accessToken,
           user: response.user,
         ));
@@ -143,7 +149,7 @@ class AuthService extends ChangeNotifier {
     try {
       bool result = await AuthRepository.userUpdate(user: user);
       if (result) {
-        emit(VerifiedState(accessToken: token, user: user));
+        verify(VerifiedState(accessToken: token, user: user));
       }
       return result;
     } catch (e) {
