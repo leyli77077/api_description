@@ -1,11 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth/service.dart' as auth;
-import 'package:flutter_shop/application/cart/service.dart' as cart;
-import 'package:flutter_shop/application/product/detail.dart';
-import 'package:flutter_shop/core/constants/colors.dart';
-import 'package:flutter_shop/presentation/dialogs/register_dialog.dart';
+import '../../application/auth/service.dart' as auth;
+import '../../application/cart/service.dart' as cart;
+import '../../application/product/detail.dart';
+import '../../core/constants/colors.dart';
+import '../dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -98,7 +98,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     );
                   } else {
                     return IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                      },
                       icon: const Icon(
                         Icons.favorite_border,
                         color: Colors.black,

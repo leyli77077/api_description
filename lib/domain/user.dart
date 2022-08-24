@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/core/parsers.dart';
+import '../core/parsers.dart';
 
 class User {
   final int id;

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/core/constants/app_constants.dart';
-import 'package:flutter_shop/domain/product/product.dart';
-import 'package:flutter_shop/domain/product/product_detail.dart';
-import 'package:flutter_shop/infrastructure/data/api_data.dart';
+import '../../core/constants/app_constants.dart';
+import '../../domain/product/product.dart';
+import '../../domain/product/product_detail.dart';
+import '../data/api_data.dart';
 
 class ProductRepository {
   static Future<List<Product>> loadFeatureProduct() async {

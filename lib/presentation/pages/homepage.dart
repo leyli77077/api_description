@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/home/service.dart';
-import 'package:flutter_shop/presentation/widgets/brand/brand_list_widget.dart';
-import 'package:flutter_shop/presentation/widgets/product/feautured_products_widget.dart';
-import 'package:flutter_shop/presentation/widgets/category/categories.dart';
-import 'package:flutter_shop/presentation/widgets/banner/promo_banners.dart';
-import 'package:flutter_shop/presentation/widgets/product/first_featured_product.dart';
+import '../../application/home/service.dart';
+import '../widgets/brand/brand_list_widget.dart';
+import '../widgets/product/feautured_products_widget.dart';
+import '../widgets/category/categories.dart';
+import '../widgets/banner/promo_banners.dart';
+import '../widgets/product/first_featured_product.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

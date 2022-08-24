@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/domain/promo/promo_banner.dart';
-import 'package:flutter_shop/presentation/widgets/banner/banner_loading.dart';
-import 'package:flutter_shop/presentation/widgets/banner/promo_banner.dart';
+import '../../../domain/promo/promo_banner.dart';
+import 'banner_loading.dart';
+import 'promo_banner.dart';
 
 class PromoBannersWidget extends StatelessWidget {
   final List<PromoBanner>? promoBannerList;

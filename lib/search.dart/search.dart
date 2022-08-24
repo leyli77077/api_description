@@ -1,45 +1,42 @@
 import '../../core/parsers.dart';
 
-class Product {
+class SearchProduct {
   final int id;
-  final double price;
   final String code;
+  final double price;
   final String priceText;
   final double? struckPrice;
   final String? struckPriceText;
   final String shortName;
-  final String shortDescription;
   final int saleLimitQuantity;
   final bool isBundle;
   final String thumbPic;
-  Product({
+  SearchProduct({
     required this.id,
-    required this.price,
     required this.code,
+    required this.price,
     required this.priceText,
     this.struckPrice,
     this.struckPriceText,
     required this.shortName,
-    required this.shortDescription,
     required this.saleLimitQuantity,
     required this.isBundle,
     required this.thumbPic,
   });
 
-  Product copyWith({
+  SearchProduct copyWith({
     int? id,
-    double? price,
     String? code,
+    double? price,
     String? priceText,
     double? struckPrice,
     String? struckPriceText,
     String? shortName,
-    String? shortDescription,
     int? saleLimitQuantity,
     bool? isBundle,
     String? thumbPic,
   }) {
-    return Product(
+    return SearchProduct(
       id: id ?? this.id,
       price: price ?? this.price,
       code: code ?? this.code,
@@ -47,7 +44,6 @@ class Product {
       struckPrice: struckPrice ?? this.struckPrice,
       struckPriceText: struckPriceText ?? this.struckPriceText,
       shortName: shortName ?? this.shortName,
-      shortDescription: shortDescription ?? this.shortDescription,
       saleLimitQuantity: saleLimitQuantity ?? this.saleLimitQuantity,
       isBundle: isBundle ?? this.isBundle,
       thumbPic: thumbPic ?? this.thumbPic,
@@ -63,15 +59,14 @@ class Product {
       'struck_price': struckPrice,
       'struck_price_text': struckPriceText,
       'short_name': shortName,
-      'short_description': shortDescription,
       'sale_limit_quantity': saleLimitQuantity,
       'is_bundle': isBundle,
       'thumb_pic': thumbPic,
     };
   }
 
-  factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(
+  factory SearchProduct.fromMap(Map<String, dynamic> map) {
+    return SearchProduct(
       id: intParser(map['id']) ?? 0,
       price: doubleParser(map['price']) ?? 0.0,
       code: map['code'] ?? '',
@@ -79,22 +74,11 @@ class Product {
       struckPrice: doubleParser(map['struck_price']),
       struckPriceText: map['struck_price_text'],
       shortName: map['short_name'] ?? '',
-      shortDescription: map['short_description'] ?? '',
       saleLimitQuantity: intParser(map['sale_limit_quantity']) ?? 0,
       isBundle: map['is_bundle'] ?? false,
       thumbPic: map['thumb_pic'] ?? '',
     );
   }
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Product && other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode;
-  }
+  static fromJson(e) {}
 }

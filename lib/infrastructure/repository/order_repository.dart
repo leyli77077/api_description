@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/core/constants/app_constants.dart';
-import 'package:flutter_shop/domain/cart/cart.dart';
-import 'package:flutter_shop/domain/cart/summary.dart';
-import 'package:flutter_shop/domain/order/order.dart';
-import 'package:flutter_shop/infrastructure/data/api_data.dart';
+import '../../core/constants/app_constants.dart';
+import '../../domain/cart/cart.dart';
+import '../../domain/cart/summary.dart';
+import '../../domain/order/order.dart';
+import '../data/api_data.dart';
 
 class OrderRepository {
   static Future<Cart> loadCart() async {

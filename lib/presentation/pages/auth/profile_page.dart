@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/core/constants/header_widget.dart';
-import 'package:flutter_shop/core/l10n.dart';
+import '../../../application/auth/service.dart';
+import '../../../core/constants/header_widget.dart';
+import '../../../core/l10n.dart';
 
 class ProfilePage extends StatefulWidget {
   final VerifiedState state;

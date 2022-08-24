@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/domain/brand_list.dart';
-import 'package:flutter_shop/presentation/widgets/brand/brand_loading.dart';
-import 'package:flutter_shop/presentation/widgets/brand/brand_widget.dart';
+import '../../../domain/brand_list.dart';
+import 'brand_loading.dart';
+import 'brand_widget.dart';
 
 class BrandListWidget extends StatelessWidget {
   final List<Brand>? brandList;

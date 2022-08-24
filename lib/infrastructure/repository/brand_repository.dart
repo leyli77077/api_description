@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/core/constants/app_constants.dart';
-import 'package:flutter_shop/domain/brand_list.dart';
-import 'package:flutter_shop/infrastructure/data/api_data.dart';
+import '../../core/constants/app_constants.dart';
+import '../../domain/brand_list.dart';
+import '../data/api_data.dart';
 
 class BrandRepository {
   static Future<List<Brand>> loadBrandLists() async {

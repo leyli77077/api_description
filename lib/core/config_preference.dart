@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/core/constants/app_constants.dart';
-import 'package:flutter_shop/domain/user.dart';
+import 'constants/app_constants.dart';
+import '../domain/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfigPreference {

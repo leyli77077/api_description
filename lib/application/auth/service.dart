@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_shop/application/cart/service.dart' as cart;
-import 'package:flutter_shop/core/config_preference.dart';
-import 'package:flutter_shop/core/exceptions.dart';
-import 'package:flutter_shop/domain/form/login_form.dart';
-import 'package:flutter_shop/domain/form/otp_form.dart';
-import 'package:flutter_shop/domain/form/register_form.dart';
-import 'package:flutter_shop/domain/response/login_response.dart';
-import 'package:flutter_shop/domain/user.dart';
-import 'package:flutter_shop/infrastructure/data/api_data.dart';
-import 'package:flutter_shop/infrastructure/repository/auth_repository.dart';
+import '../cart/service.dart' as cart;
+import '../../core/config_preference.dart';
+import '../../core/exceptions.dart';
+import '../../domain/form/login_form.dart';
+import '../../domain/form/otp_form.dart';
+import '../../domain/form/register_form.dart';
+import '../../domain/response/login_response.dart';
+import '../../domain/user.dart';
+import '../../infrastructure/data/api_data.dart';
+import '../../infrastructure/repository/auth_repository.dart';
 
 part 'event.dart';
 part 'state.dart';

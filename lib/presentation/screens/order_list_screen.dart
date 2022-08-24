@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/order/service.dart';
-import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/domain/order/order.dart';
-import 'package:provider/provider.dart';
+import '../../domain/order/order.dart';
 
 class OrderItem extends StatelessWidget {
   final Order lineCount;

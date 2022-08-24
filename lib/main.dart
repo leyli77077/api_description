@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/application/cart/service.dart' as c;
-import 'package:flutter_shop/application/home/service.dart';
-import 'package:flutter_shop/application/product/detail.dart';
-import 'package:flutter_shop/application/settings.dart';
-import 'package:flutter_shop/core/config_preference.dart';
-import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/presentation/screens/home_screen.dart';
-import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'application/auth/service.dart';
+import 'application/cart/service.dart' as c;
+import 'application/home/service.dart';
+import 'application/product/detail.dart';
+import 'application/settings.dart';
+import 'core/config_preference.dart';
+import 'core/l10n.dart';
+import 'presentation/screens/home_screen.dart';
+import 'presentation/screens/product_datail_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

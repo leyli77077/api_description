@@ -1,6 +1,6 @@
-import 'package:flutter_shop/core/constants/app_constants.dart';
-import 'package:flutter_shop/domain/brand_list.dart';
-import 'package:flutter_shop/domain/category.dart';
+import '../../core/constants/app_constants.dart';
+import '../brand_list.dart';
+import '../category.dart';
 
 class PromoBannerDetail {
   final int id;

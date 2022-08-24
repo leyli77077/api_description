@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_shop/domain/product/product_detail.dart';
-import 'package:flutter_shop/infrastructure/repository/product_repository.dart';
+import '../../domain/product/product_detail.dart';
+import '../../infrastructure/repository/product_repository.dart';
 
 abstract class DetailState {}
 

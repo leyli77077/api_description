@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_shop/domain/cart/cart.dart';
-import 'package:flutter_shop/domain/cart/cart_line.dart';
-import 'package:flutter_shop/infrastructure/repository/order_repository.dart';
+import '../../domain/cart/cart.dart';
+import '../../domain/cart/cart_line.dart';
+import '../../infrastructure/repository/order_repository.dart';
 
 part 'event.dart';
 part 'state.dart';

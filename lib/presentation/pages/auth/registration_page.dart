@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/core/constants/header_widget.dart';
-import 'package:flutter_shop/core/constants/theme_helper.dart';
-import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/presentation/dialogs/error_snackbar.dart';
-import 'package:flutter_shop/domain/form/register_form.dart';
+import '../../../application/auth/service.dart';
+import '../../../core/constants/header_widget.dart';
+import '../../../core/constants/theme_helper.dart';
+import '../../../core/l10n.dart';
+import '../../dialogs/error_snackbar.dart';
+import '../../../domain/form/register_form.dart';
 
 class RegistrationPage extends StatefulWidget {
   final RegisterForm? form;

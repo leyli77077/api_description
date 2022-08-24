@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_shop/domain/product/product.dart';
-import 'package:flutter_shop/infrastructure/repository/product_repository.dart';
+import '../../domain/product/product.dart';
+import '../../infrastructure/repository/product_repository.dart';
 
 part 'event.dart';
 part 'state.dart';
