@@ -138,10 +138,10 @@ class FetchProductList {
               .toList();
         }
       } else {
-        print("fetch error");
+        ("fetch error");
       }
     } on Exception catch (e) {
-      print('error: $e');
+      ('error: $e');
     }
     return results;
   }

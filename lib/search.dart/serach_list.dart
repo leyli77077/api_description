@@ -98,7 +98,10 @@ import 'package:flutter_shop/search.dart/search_repository.dart';
 // }
 
 class ProductSearchPage extends StatefulWidget {
+  const ProductSearchPage({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _ProductSearchPageState createState() => _ProductSearchPageState();
 }
 
@@ -148,7 +151,7 @@ class _ProductSearchPageState extends State<ProductSearchPage> {
                                   child: Center(
                                     child: Text(
                                       '${data?[index].id}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white),

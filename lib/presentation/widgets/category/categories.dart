@@ -21,7 +21,6 @@ class CategoriesWidget extends StatelessWidget {
         ),
       );
     } else if (categoryList != null) {
-      // TODO empty widget or never mind
       return const CategoryLoadingWidget();
     } else {
       return const CategoryLoadingWidget();

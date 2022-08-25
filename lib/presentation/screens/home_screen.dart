@@ -51,17 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
             _currentIndex = index;
           });
         },
-        children: [
-          const HomePage(),
+        children: const [
+           HomePage(),
           ProductSearchPage(),
-          // Container(
-          //   color: Colors.blue,
-          // ),
-          const CartPage(),
-          // Container(
-          //   color: Colors.green,
-          // ),
-          const PersonalPage(),
+          CartPage(),
+          PersonalPage(),
         ],
       ),
       bottomNavigationBar: CustomNavigationBar(
