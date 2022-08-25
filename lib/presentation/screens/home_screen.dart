@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         children: const [
-           HomePage(),
+          HomePage(),
           ProductSearchPage(),
           CartPage(),
           PersonalPage(),
@@ -89,6 +89,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.account_circle),
             title: const Text("Me"),
           ),
+          // CustomNavigationBarItem(
+          //   icon: const Icon(Icons.settings),
+          //   title: const Text(""),
+          // ),
         ],
       ),
     );

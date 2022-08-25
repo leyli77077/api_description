@@ -132,9 +132,12 @@ class FetchProductList {
         results = data.map((e) => SearchProduct.fromMap(e)).toList();
         if (query != null) {
           results = results
-              .where((element) => element.shortName
-                  .toLowerCase()
-                  .contains((query.toLowerCase())))
+              .where((element) =>
+                  element.shortName
+                      .toLowerCase()
+                      .contains((query.toLowerCase())) ||
+                  element.price.toString().contains(query.toLowerCase()) ||
+                  element.code.toLowerCase().contains(query.toLowerCase()))
               .toList();
         }
       } else {
