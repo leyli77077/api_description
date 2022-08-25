@@ -34,7 +34,7 @@ class OrderItem extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 12.0,
+            width: 11.0,
           ),
           Expanded(
             child: Column(
