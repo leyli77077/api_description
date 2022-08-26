@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class EditProfilePAge extends StatefulWidget {
-  const EditProfilePAge({Key? key}) : super(key: key);
+class EditProfilePage extends StatefulWidget {
+  static const routeName = '/edit-profile';
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<EditProfilePAge> createState() => _EditProfilePAgeState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
-class _EditProfilePAgeState extends State<EditProfilePAge> {
+class _EditProfilePageState extends State<EditProfilePage> {
   bool showPassword = false;
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,7 @@ class _EditProfilePAgeState extends State<EditProfilePAge> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: (() {
-            
-          }),
+          onPressed: (() {}),
         ),
         actions: [
           IconButton(

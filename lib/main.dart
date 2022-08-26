@@ -7,6 +7,8 @@ import 'package:flutter_shop/application/product/detail.dart';
 import 'package:flutter_shop/application/settings.dart';
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/l10n.dart';
+import 'package:flutter_shop/presentation/pages/settings_pages/edit_profile_page.dart';
+import 'package:flutter_shop/presentation/pages/settings_pages/settings_page.dart';
 import 'package:flutter_shop/presentation/screens/home_screen.dart';
 import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +65,7 @@ class MyApp extends StatelessWidget {
             ...GlobalMaterialLocalizations.delegates,
             GlobalWidgetsLocalizations.delegate,
           ],
-          initialRoute: HomeScreen.routeName,
+          initialRoute: SettingsPage.routeName,
           routes: {
             HomeScreen.routeName: (context) => const HomeScreen(),
             ProductDetailScreen.routeName: (context) =>
@@ -71,6 +73,8 @@ class MyApp extends StatelessWidget {
                   value: ProductDetailService(),
                   child: const ProductDetailScreen(),
                 ),
+            EditProfilePage.routeName: (context) => const EditProfilePage(),
+            SettingsPage.routeName: (context) => const SettingsPage(),
           },
         );
       },
