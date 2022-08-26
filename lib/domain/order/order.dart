@@ -1,4 +1,4 @@
-import 'package:flutter_shop/core/parsers.dart';
+import '../../core/parsers.dart';
 
 class Order {
   final int id;

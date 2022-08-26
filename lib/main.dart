@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
             ...GlobalMaterialLocalizations.delegates,
             GlobalWidgetsLocalizations.delegate,
           ],
-          initialRoute: SettingsPage.routeName,
+          initialRoute: HomeScreen.routeName,
           routes: {
             HomeScreen.routeName: (context) => const HomeScreen(),
             ProductDetailScreen.routeName: (context) =>
@@ -73,8 +73,8 @@ class MyApp extends StatelessWidget {
                   value: ProductDetailService(),
                   child: const ProductDetailScreen(),
                 ),
-            EditProfilePage.routeName: (context) => const EditProfilePage(),
-            SettingsPage.routeName: (context) => const SettingsPage(),
+            // EditProfilePage.routeName: (context) => const EditProfilePage(),
+            // SettingsPage.routeName: (context) => const SettingsPage(),
           },
         );
       },

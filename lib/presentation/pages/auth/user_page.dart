@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/presentation/pages/auth/initial_page.dart';
-import 'package:flutter_shop/presentation/pages/auth/login_page.dart';
-import 'package:flutter_shop/presentation/pages/auth/otp_page.dart';
-import 'package:flutter_shop/presentation/pages/auth/profile_page.dart';
-import 'package:flutter_shop/presentation/pages/auth/registration_page.dart';
+import '../../../application/auth/service.dart';
+import 'initial_page.dart';
+import 'login_page.dart';
+import 'otp_page.dart';
+import 'profile_page.dart';
+import 'registration_page.dart';
 import 'package:provider/provider.dart';
 
 class PersonalPage extends StatefulWidget {

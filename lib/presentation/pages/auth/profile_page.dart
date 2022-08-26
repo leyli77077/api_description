@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/core/constants/header_widget.dart';
-import 'package:flutter_shop/core/l10n.dart';
+import 'package:flutter_shop/presentation/screens/order_list_screen.dart';
+import '../../../application/auth/service.dart';
+import '../../../core/constants/header_widget.dart';
+import '../../../core/l10n.dart';
 
 class ProfilePage extends StatefulWidget {
   final VerifiedState state;
@@ -123,6 +124,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                         },
                                         leading: const Icon(Icons.logout),
                                         title: Text("logout".trs),
+                                      ),
+                                      ListTile(
+                                        onTap: () {
+                                          OrderItem;
+                                        },
+                                        leading: const Icon(Icons.card_travel),
+                                        title: Text("Order".trs),
                                       ),
                                     ],
                                   ),

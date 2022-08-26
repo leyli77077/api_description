@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/cart/service.dart';
-import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/domain/cart/cart_line.dart';
-import 'package:flutter_shop/presentation/dialogs/register_dialog.dart';
+import '../../application/cart/service.dart';
+import '../../core/l10n.dart';
+import '../../domain/cart/cart_line.dart';
+import '../dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_shop/application/auth/service.dart' as auth;
-import 'package:flutter_shop/application/cart/service.dart' as cart;
+import '../../application/auth/service.dart' as auth;
+import '../../application/cart/service.dart' as cart;
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -94,7 +94,7 @@ class _CartPageState extends State<CartPage> {
                     children: <Widget>[
                       Text(
                         'delivery_change'.trs,
-                        style: TextStyle(fontSize: 14.0),
+                        style: const TextStyle(fontSize: 14.0),
                       ),
                       Text(
                         state.cart.totalText,
@@ -125,15 +125,18 @@ class _CartPageState extends State<CartPage> {
                 ),
                 SliverToBoxAdapter(
                   child: MaterialButton(
-                    onPressed: () {if (auth.AuthService.instance.state is auth.VerifiedState) {
-              cart.CartService.instnance.add(
-                cart.AddEvent(
-                  productId: productId,
-                ),
-              );
-            } else {
-              registerDialog(context);
-            }},
+                    onPressed: () {
+                      if (auth.AuthService.instance.state
+                          is auth.VerifiedState) {
+                        cart.CartService.instnance.add(
+                          cart.AddEvent(
+                            productId: productId,
+                          ),
+                        );
+                      } else {
+                        registerDialog(context);
+                      }
+                    },
                     color: Colors.cyan,
                     height: 50.0,
                     minWidth: double.infinity,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/domain/product/product.dart';
-import 'package:flutter_shop/presentation/widgets/product/product_loading.dart';
+import '../../../domain/product/product.dart';
+import 'product_loading.dart';
 import 'product.dart';
 
 class FeauturedProductsWidget extends StatelessWidget {

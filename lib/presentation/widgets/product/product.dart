@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/domain/product/product.dart';
-import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
+import '../../../domain/product/product.dart';
+import '../../screens/product_datail_screen.dart';
 
 class ProductWidget extends StatelessWidget {
   final Product product;

@@ -1,4 +1,4 @@
-import 'package:flutter_shop/domain/cart/cart_line.dart';
+import 'cart_line.dart';
 
 class Cart {
   final int id;

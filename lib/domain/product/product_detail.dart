@@ -1,4 +1,4 @@
-import 'package:flutter_shop/core/parsers.dart';
+import '../../core/parsers.dart';
 
 class ProductDetail {
   final int id;

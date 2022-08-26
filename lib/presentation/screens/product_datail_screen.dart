@@ -1,11 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/application/auth/service.dart' as auth;
-import 'package:flutter_shop/application/cart/service.dart' as cart;
-import 'package:flutter_shop/application/product/detail.dart';
-import 'package:flutter_shop/core/constants/colors.dart';
-import 'package:flutter_shop/presentation/dialogs/register_dialog.dart';
+import '../../application/auth/service.dart' as auth;
+import '../../application/cart/service.dart' as cart;
+import '../../application/product/detail.dart';
+import '../../core/constants/colors.dart';
+import '../dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -213,11 +213,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             children: <Widget>[
                               Container(
                                 alignment: const Alignment(-1.0, -1.0),
-                                child: const Padding(
-                                  padding: EdgeInsets.only(top: 15, bottom: 15),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 15, bottom: 15),
                                   child: Text(
-                                    'Product Title Name',
-                                    style: TextStyle(
+                                    state.detail.name,
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w700,
@@ -229,11 +230,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 children: <Widget>[
                                   Container(
                                     alignment: const Alignment(-1.0, -1.0),
-                                    child: const Padding(
-                                      padding: EdgeInsets.only(bottom: 10.0),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10.0),
                                       child: Text(
-                                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. but also the leap into electronic typesetting Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-                                        style: TextStyle(
+                                        state.detail.shortDescription,
+                                        style: const TextStyle(
                                           color: Color.fromARGB(90, 90, 90, 90),
                                           fontSize: 16,
                                           fontWeight: FontWeight.w700,
@@ -248,13 +250,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Row(
-                                          children: const <Widget>[
+                                          children: <Widget>[
                                             Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10.0),
+                                              padding: const EdgeInsets.only(
+                                                  right: 10.0),
                                               child: Text(
-                                                '\$90',
-                                                style: TextStyle(
+                                                state.detail.price.toString(),
+                                                style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w600,
@@ -262,8 +264,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                               ),
                                             ),
                                             Text(
-                                              '\$190',
-                                              style: TextStyle(
+                                              state.detail.struckPrice
+                                                  .toString(),
+                                              style: const TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 94, 93, 93),
                                                 fontSize: 16,

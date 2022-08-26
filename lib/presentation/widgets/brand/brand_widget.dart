@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/domain/brand_list.dart';
+import '../../../domain/brand_list.dart';
 
 class BrandWidget extends StatelessWidget {
   final Brand brand;

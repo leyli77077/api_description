@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/core/constants/app_constants.dart';
-import 'package:flutter_shop/domain/product/product.dart';
-import 'package:flutter_shop/domain/promo/promo_banner_detail.dart';
-import 'package:flutter_shop/domain/promo/promo_banner.dart';
-import 'package:flutter_shop/infrastructure/data/api_data.dart';
+import '../../core/constants/app_constants.dart';
+import '../../domain/product/product.dart';
+import '../../domain/promo/promo_banner.dart';
+import '../../domain/promo/promo_banner_detail.dart';
+import '../data/api_data.dart';
 
 class PromoRepository {
   static Future<List<PromoBanner>> loadBanners() async {

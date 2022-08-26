@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/core/constants/theme_helper.dart';
-import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/presentation/dialogs/error_snackbar.dart';
-import 'package:flutter_shop/domain/form/otp_form.dart';
-import 'package:flutter_shop/presentation/widgets/header_widget.dart';
+import '../../../application/auth/service.dart';
+import '../../../core/constants/theme_helper.dart';
+import '../../../core/l10n.dart';
+import '../../dialogs/error_snackbar.dart';
+import '../../../domain/form/otp_form.dart';
+import '../../widgets/header_widget.dart';
 
 class OtpPage extends StatefulWidget {
   final OtpForm form;

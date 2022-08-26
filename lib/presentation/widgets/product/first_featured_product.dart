@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/domain/product/product.dart';
-import 'package:flutter_shop/presentation/widgets/product/product.dart';
-import 'package:flutter_shop/presentation/widgets/product/product_loading.dart';
+import '../../../domain/product/product.dart';
+import 'product.dart';
+import 'product_loading.dart';
 
 class FirstFeaturedWidget extends StatelessWidget {
   final Product? product;

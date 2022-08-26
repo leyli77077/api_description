@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:flutter_shop/application/auth/service.dart';
-import 'package:flutter_shop/core/constants/app_constants.dart';
-import 'package:flutter_shop/core/exceptions.dart';
-import 'package:flutter_shop/domain/form/register_form.dart';
-import 'package:flutter_shop/domain/response/login_response.dart';
-import 'package:flutter_shop/domain/user.dart';
-import 'package:flutter_shop/infrastructure/data/api_data.dart';
+import '../../application/auth/service.dart';
+import '../../core/constants/app_constants.dart';
+import '../../core/exceptions.dart';
+import '../../domain/form/register_form.dart';
+import '../../domain/response/login_response.dart';
+import '../../domain/user.dart';
+import '../data/api_data.dart';
 
 class AuthRepository {
   static Future<bool> register({required RegisterForm form}) async {

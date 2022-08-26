@@ -34,7 +34,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ],
       ),
       body: Container(
-          padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+          padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
           child: GestureDetector(
             onTap: () {
               FocusScope.of(context).unfocus();
@@ -67,7 +67,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   spreadRadius: 2,
                                   blurRadius: 10,
                                   color: Colors.black.withOpacity(0.1),
-                                  offset: Offset(0, 10))
+                                  offset: const Offset(0, 10))
                             ],
                             shape: BoxShape.circle,
                             image: const DecorationImage(
@@ -100,7 +100,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 buildTextField('email', '@gmail.com', false),
                 buildTextField('Password', '*******', true),
                 buildTextField('Location', 'Ag', false),
-                SizedBox(
+                const SizedBox(
                   height: 35,
                 ),
                 Row(
@@ -108,7 +108,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   children: [
                     OutlinedButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'Cancel',
                         style: TextStyle(
                             fontSize: 14,
@@ -116,7 +116,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 35,
                     ),
                     ElevatedButton(
@@ -158,11 +158,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                   )
                 : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
+            contentPadding: const EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.black)),
