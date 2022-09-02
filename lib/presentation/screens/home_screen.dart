@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/';
-  const HomeScreen({Key? key}) : super(key: key);
+  const   HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -89,10 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.account_circle),
             title: const Text("Me"),
           ),
-          // CustomNavigationBarItem(
-          //   icon: const Icon(Icons.settings),
-          //   title: const Text(""),
-          // ),
         ],
       ),
     );

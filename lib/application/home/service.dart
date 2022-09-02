@@ -56,8 +56,14 @@ class HomePageService extends ChangeNotifier {
     try {
       if (event is LoadEvent) {
         Future(() async {
-          var categories = await CategoryRepository.loadCategories();
-          load(categoryList: categories);
+          try {
+            var categories = await CategoryRepository.loadCategories();
+            load(categoryList: categories);
+          } catch (e) {
+            if (kDebugMode) {
+              print(e);
+            }
+          }
         });
         Future(() async {
           var featuredProducts = await ProductRepository.loadFeatureProduct();

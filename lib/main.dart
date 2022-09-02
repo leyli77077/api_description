@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_shop/application/auth/service.dart';
 import 'package:flutter_shop/application/cart/service.dart' as c;
@@ -7,12 +8,13 @@ import 'package:flutter_shop/application/product/detail.dart';
 import 'package:flutter_shop/application/settings.dart';
 import 'package:flutter_shop/core/config_preference.dart';
 import 'package:flutter_shop/core/l10n.dart';
-import 'package:flutter_shop/presentation/pages/settings_pages/edit_profile_page.dart';
 import 'package:flutter_shop/presentation/pages/settings_pages/settings_page.dart';
 import 'package:flutter_shop/presentation/screens/home_screen.dart';
 import 'package:flutter_shop/presentation/screens/product_datail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'presentation/pages/settings_pages/edit_profile_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +22,9 @@ Future<void> main() async {
   // Future() hökmän däl Settings-da dili set etmek üçin
   var prefs = await SharedPreferences.getInstance();
   ConfigPreference(prefs);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
 
   runApp(
     MultiProvider(
@@ -73,8 +78,8 @@ class MyApp extends StatelessWidget {
                   value: ProductDetailService(),
                   child: const ProductDetailScreen(),
                 ),
-            // EditProfilePage.routeName: (context) => const EditProfilePage(),
-            // SettingsPage.routeName: (context) => const SettingsPage(),
+            EditProfilePage.routeName: (context) => const EditProfilePage(),
+            SettingsPage.routeName: (context) => const SettingsPage(),
           },
         );
       },

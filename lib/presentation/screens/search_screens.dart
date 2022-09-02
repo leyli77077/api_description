@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/search.dart/search.dart';
-import 'package:flutter_shop/search.dart/search_repository.dart';
+import 'package:flutter_shop/infrastructure/repository/search_repository.dart';
 
-class SearchProductList extends SearchDelegate {
+class SearchScreens extends SearchDelegate {
+  static const String routeName = 'search';
   final FetchProductList _fetchProductList = FetchProductList();
 
   @override

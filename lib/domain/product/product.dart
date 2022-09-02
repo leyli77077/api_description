@@ -97,4 +97,5 @@ class Product {
   int get hashCode {
     return id.hashCode;
   }
+  
 }

@@ -9,6 +9,7 @@ import '../../application/cart/service.dart' as cart;
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
+  static const routeName = "/cartPage";
 
   @override
   State<CartPage> createState() => _CartPageState();

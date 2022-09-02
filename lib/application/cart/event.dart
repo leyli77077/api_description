@@ -14,6 +14,11 @@ class RemoveEvent extends CartEvent {
   RemoveEvent({required this.productId});
 }
 
+class DeleteLineEvent extends CartEvent {
+  final int productId;
+  DeleteLineEvent({required this.productId});
+}
+
 class CleanEvent extends CartEvent {}
 
 class ShowSumaryEvent extends CartEvent {}

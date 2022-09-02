@@ -1,12 +1,15 @@
-import 'package:badges/badges.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../../application/auth/service.dart' as auth;
 import '../../application/cart/service.dart' as cart;
 import '../../application/product/detail.dart';
 import '../../core/constants/colors.dart';
+import '../../domain/cart/cart.dart';
 import '../dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
+
+import '../pages/add_to_cart_page.dart';
+import '../pages/badge.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static const String routeName = 'product-detail';
@@ -107,22 +110,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     );
                   }
                 }),
-                IconButton(
-                  onPressed: () {},
-                  icon: Badge(
-                    badgeColor: AppColors.primaryColorRed,
-                    badgeContent: Text(
-                      '1',
-                      style: AppFont.regular
-                          .copyWith(fontSize: 12, color: Colors.white),
-                    ),
-                    position: BadgePosition.topEnd(top: -8, end: -5),
-                    child: const Icon(
-                      Icons.shopping_cart_outlined,
-                      color: Colors.black,
+                Consumer<Cart>(
+                  builder: (BuildContext context, value, Widget? child) =>
+                      Badge(
+                    value: value.total.toString(),
+                    color: Colors.amber,
+                    child: IconButton(
+                      icon: const Icon(Icons.shopping_bag),
+                      onPressed: () {
+                        Navigator.pushNamed(context, CartPage.routeName);
+                      },
                     ),
                   ),
-                ),
+                )
               ],
             ),
             body: Builder(

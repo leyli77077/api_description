@@ -54,6 +54,10 @@ class CartService extends ChangeNotifier {
         } else {
           emit(current);
         }
+      } else if (event is DeleteLineEvent && current is LoadedState) {
+        var cart = await OrderRepository.update(
+            productId: event.productId, quantity: 0);
+        emit(LoadedState(cart));
       }
     } catch (e) {
       emit(ErrorState());
