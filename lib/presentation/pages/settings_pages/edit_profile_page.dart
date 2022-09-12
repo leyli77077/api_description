@@ -120,6 +120,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       width: 35,
                     ),
                     ElevatedButton(
+                      // ignore: deprecated_member_use
                       style: ElevatedButton.styleFrom(primary: Colors.green),
                       onPressed: () {},
                       child: const Text(

@@ -653,7 +653,6 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
   String get keyboardKeySelect => 'Select';
   @override
   String get keyboardKeySpace => 'Space';
-  @override
   String get keyboardKeyEisu => 'Eisu';
   @override
   String get keyboardKeyHangulMode => 'HangulMode';
@@ -957,4 +956,7 @@ class TmMaterialLocalizations extends GlobalMaterialLocalizations {
 
   @override
   String get unspecifiedDateRange => 'Sene aralygy';
+  
+  @override
+  String get menuBarMenuLabel => throw UnimplementedError();
 }

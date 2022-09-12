@@ -151,13 +151,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     Text("Option 3"),
                   ],
                 ),
-                actions: [
-                  FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text("Close")),
-                ],
+                // actions: [
+                //   FlatButton(
+                //       onPressed: () {
+                //         Navigator.of(context).pop();
+                //       },
+                //       child: const Text("Close")),
+                // ],
               );
             });
       },
