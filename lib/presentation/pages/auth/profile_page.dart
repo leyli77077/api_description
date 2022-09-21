@@ -129,8 +129,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                         onTap: () {
                                           OrderItem;
                                         },
-                                        leading: const Icon(Icons.card_travel),
-                                        title: Text("Order".trs),
+                                        title: IconButton(
+                                          icon: const Icon(Icons.card_travel),
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, OrderItem.routeName);
+                                          },
+                                        ),
                                       ),
                                     ],
                                   ),

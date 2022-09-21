@@ -2,9 +2,7 @@
 // import 'package:flutter_shop/domain/product/product_detail.dart';
 // import 'package:provider/provider.dart';
 
-// import '../../domain/product/product.dart';
 // import '../../infrastructure/repository/auth_repository.dart';
-
 
 // class LikeStatus extends StatelessWidget {
 //   final ProductDetail productDeatail;
@@ -14,7 +12,7 @@
 //   Widget build(BuildContext context) {
 //     return Consumer<AuthRepository>(
 //       builder: (context, value, child) => IconButton(
-//         onPressed: () async { 
+//         onPressed: () async {
 //           try {
 //             productDeatail.toggleFavourites(productDeatail.id.toString(), value.token, value.userId);
 //           } catch (error) {
@@ -42,3 +40,4 @@
 //     );
 //   }
 // }
+

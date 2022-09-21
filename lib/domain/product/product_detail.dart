@@ -13,7 +13,7 @@ class ProductDetail {
   final int? saleLimitQuantity;
   final bool isBundle;
   final bool isFavorite;
-  final String pics;
+  final List<String> pics;
 
   const ProductDetail({
     required this.id,
@@ -44,7 +44,7 @@ class ProductDetail {
       saleLimitQuantity: map['sale_limit_quantity'],
       isBundle: map['is_bundle'] ?? false,
       isFavorite: map['is_favorite'] ?? false,
-      pics: map['pics'] ?? '',
+      pics: List.from(map['pics'].map((e) => e.toString())),
     );
   }
 }

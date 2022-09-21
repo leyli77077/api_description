@@ -90,7 +90,7 @@ class ProductRepository {
         '${AppConstants.currentHost}/api/customers/product/detail?id=$id'));
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
-      dynamic data = result['data'];
+      dynamic data = result['data']['detail'];
       return ProductDetail.fromMap(data);
     } else {
       throw Exception();

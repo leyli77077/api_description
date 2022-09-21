@@ -33,4 +33,4 @@ class ProductDetailService extends ChangeNotifier {
       emit(ErrorState());
     }
   }
-}
+} 

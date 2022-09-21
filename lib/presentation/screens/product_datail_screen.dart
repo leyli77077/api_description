@@ -4,7 +4,6 @@ import '../../application/auth/service.dart' as auth;
 import '../../application/cart/service.dart' as cart;
 import '../../application/product/detail.dart';
 import '../../core/constants/colors.dart';
-import '../../domain/cart/cart.dart';
 import '../dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
 
@@ -110,19 +109,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     );
                   }
                 }),
-                Consumer<Cart>(
-                  builder: (BuildContext context, value, Widget? child) =>
-                      Badge(
-                    value: value.total.toString(),
-                    color: Colors.amber,
-                    child: IconButton(
-                      icon: const Icon(Icons.shopping_bag),
-                      onPressed: () {
-                        Navigator.pushNamed(context, CartPage.routeName);
-                      },
-                    ),
-                  ),
-                )
+                Selector<cart.CartService, cart.CartState>(
+                  selector: (context, cart) => cart.state,
+                  builder: (BuildContext context, state, Widget? child) {
+                    if (state is cart.LoadedState) {
+                      return Badge(
+                        value: state.cart.lines.length.toString(),
+                        color: Colors.amber,
+                        child: IconButton(
+                          icon: const Icon(Icons.shopping_bag),
+                          onPressed: () {
+                            Navigator.pushNamed(context, CartPage.routeName);
+                          },
+                        ),
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
+                ),
               ],
             ),
             body: Builder(
@@ -150,13 +155,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     });
                                   },
                                 ),
-                                items: [1, 2, 3, 4, 5]
+                                items: state.detail.pics
                                     .map(
                                       (e) => Container(
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
-                                            image:
-                                                NetworkImage(state.detail.pics),
+                                            image: NetworkImage(e),
                                             fit: BoxFit.cover,
                                           ),
                                         ),

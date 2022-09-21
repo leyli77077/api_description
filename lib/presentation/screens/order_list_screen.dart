@@ -7,6 +7,7 @@ class OrderItem extends StatelessWidget {
     Key? key,
     required this.lineCount,
   }) : super(key: key);
+  static const routeName = "/orderPage";
 
   @override
   Widget build(BuildContext context) {
