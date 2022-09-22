@@ -403,7 +403,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   productId: productId,
                 ),
               );
-              print('MerdanDev future end');
             } else {
               registerDialog(context);
             }
