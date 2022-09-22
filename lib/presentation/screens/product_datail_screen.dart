@@ -7,7 +7,6 @@ import '../../core/constants/colors.dart';
 import '../dialogs/register_dialog.dart';
 import 'package:provider/provider.dart';
 
-import '../pages/add_to_cart_page.dart';
 import '../pages/badge.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -119,7 +118,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         child: IconButton(
                           icon: const Icon(Icons.shopping_bag),
                           onPressed: () {
-                            Navigator.pushNamed(context, CartPage.routeName);
+                            // Navigator.pushNamed(context, CartPage.routeName);
                           },
                         ),
                       );
@@ -397,13 +396,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           height: 30.0,
         ),
         MaterialButton(
-          onPressed: () {
+          onPressed: () async {
             if (auth.AuthService.instance.state is auth.VerifiedState) {
               cart.CartService.instnance.add(
                 cart.AddEvent(
                   productId: productId,
                 ),
               );
+              print('MerdanDev future end');
             } else {
               registerDialog(context);
             }

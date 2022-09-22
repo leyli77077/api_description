@@ -78,6 +78,18 @@ class AuthRepository {
     }
   }
 
+  static Future<User> me() async {
+    var response = await ApiData.get(
+      Uri.parse('${AppConstants.currentHost}/api/customers/auth/me'),
+    );
+    var decoded = jsonDecode(response.body);
+    if (decoded['success'] == true) {
+      return User.fromMap(decoded['data']['user']);
+    } else {
+      throw SingleErrorException(error: decoded['message']);
+    }
+  }
+
   static Future<bool> userUpdate({
     required User user,
   }) async {

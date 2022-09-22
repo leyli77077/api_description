@@ -42,10 +42,10 @@ class AuthService extends ChangeNotifier {
   void add(AuthEvent event) async {
     emit(LoadingState());
     if (event is InitEvent) {
-      User? user = ConfigPreference.getUser();
       String? token = ConfigPreference.getToken();
-      if (user != null && token != null) {
+      if (token != null) {
         ApiData.accessToken = token;
+        User user = await AuthRepository.me();
         verify(VerifiedState(accessToken: token, user: user));
       } else {
         emit(NotVerifiedState());

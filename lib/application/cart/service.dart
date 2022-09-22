@@ -18,15 +18,16 @@ class CartService extends ChangeNotifier {
 
   void emit(CartState newState) {
     _state = newState;
+    print('MerdanDev state is $newState');
     notifyListeners();
   }
 
-  void add(CartEvent event) async {
-    var current = state;
+  Future<void> add(CartEvent event) async {
+    CartState current = state;
     emit(LoadingState());
     try {
       if (event is InitEvent) {
-        var cart = await OrderRepository.loadCart();
+        Cart cart = await OrderRepository.loadCart();
         emit(LoadedState(cart));
       } else if (event is AddEvent && current is LoadedState) {
         bool result = current.cart.lines
@@ -34,11 +35,11 @@ class CartService extends ChangeNotifier {
         if (result) {
           CartLine line = current.cart.lines
               .firstWhere((element) => element.product.id == event.productId);
-          var cart = await OrderRepository.update(
+          Cart cart = await OrderRepository.update(
               productId: event.productId, quantity: line.quantity + 1);
           emit(LoadedState(cart));
         } else {
-          var cart = await OrderRepository.update(
+          Cart cart = await OrderRepository.update(
               productId: event.productId, quantity: 1);
           emit(LoadedState(cart));
         }
@@ -48,7 +49,7 @@ class CartService extends ChangeNotifier {
         if (result) {
           CartLine line = current.cart.lines
               .firstWhere((element) => element.product.id == event.productId);
-          var cart = await OrderRepository.update(
+          Cart cart = await OrderRepository.update(
               productId: event.productId, quantity: line.quantity - 1);
           emit(LoadedState(cart));
         } else {

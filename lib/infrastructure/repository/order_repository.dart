@@ -101,7 +101,7 @@ class OrderRepository {
       dynamic decoded = jsonDecode(response.body);
       return Cart.fromMap(decoded['data']);
     } else {
-      throw Exception();
+      throw Exception([response.reasonPhrase]);
     }
   }
 }
