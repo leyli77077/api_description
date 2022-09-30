@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+
 import '../../core/constants/colors.dart';
 import '../../domain/order/order.dart';
 
-class OrderItem extends StatelessWidget {
-  final Order lineCount;
-  const OrderItem({
-    Key? key,
-    required this.lineCount,
-  }) : super(key: key);
-  static const routeName = "/orderPage";
+class OrderDetailScreen extends StatelessWidget {
+  final Order order;
+  static const String routeName = 'order-detail';
+
+  const OrderDetailScreen({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,55 +17,55 @@ class OrderItem extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
             size: 21,
           ),
         ),
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Order Details',
           style: AppFont.semiBold,
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                // Text(
-                //   "Order No: ${order.orderNumber}",
-                //   style: AppFont.semiBold.copyWith(
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-                Spacer(),
-                // Text(
-                //   order.createAt.toString(),
-                //   style: AppFont.regular
-                //       .copyWith(color: Colors.grey, fontSize: 14),
-                // ),
+                Text(
+                  "Order No: ${order.total}",
+                  style: AppFont.semiBold.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  order.status.toString(),
+                  style: AppFont.regular
+                      .copyWith(color: Colors.grey, fontSize: 14),
+                ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            // Text(
-            //   '${lineCount.listItemCart!.length} items',
-            //   style: AppFont.medium.copyWith(color: Colors.black, fontSize: 14),
-            // ),
-            SizedBox(
+            Text(
+              '${order.listItemCart!.length} items',
+              style: AppFont.medium.copyWith(color: Colors.black, fontSize: 14),
+            ),
+            const SizedBox(
               height: 20,
             ),
             ListView.builder(
-              itemCount: lineCount.listItemCart!.length,
+              itemCount: order.listItemCart!.length,
               shrinkWrap: true,
-              padding: EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
               itemBuilder: (_, index) {
-                // Product product = lineCount.listItemCart![index].product!;
+                // Product product = order.listItemCart![index].;
 
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -80,7 +79,7 @@ class OrderItem extends StatelessWidget {
                             color: Colors.grey.withOpacity(.1),
                             blurRadius: 1,
                             spreadRadius: 1,
-                            offset: Offset(2, 2),
+                            offset: const Offset(2, 2),
                           ),
                         ]),
                     child: Row(
@@ -91,11 +90,10 @@ class OrderItem extends StatelessWidget {
                           width: 120,
                           height: 120,
                           decoration: BoxDecoration(
-                            // image: DecorationImage(
-                            //   image: NetworkImage(product.urlImage!.first),
-                            //   fit: BoxFit.cover
-                            // ),
-                            borderRadius: BorderRadius.only(
+                            image: DecorationImage(
+                                image: NetworkImage(product.urlImage!.first),
+                                fit: BoxFit.cover),
+                            borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(8),
                                 bottomLeft: Radius.circular(8)),
                           ),
@@ -113,7 +111,7 @@ class OrderItem extends StatelessWidget {
                                 //   style: AppFont.semiBold.copyWith(
                                 //       color: Colors.black, fontSize: 16),
                                 // ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 9,
                                 ),
                                 Text(
@@ -123,7 +121,7 @@ class OrderItem extends StatelessWidget {
                                       fontSize: 13,
                                       fontWeight: FontWeight.w400),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 9,
                                 ),
                                 Row(
@@ -138,20 +136,21 @@ class OrderItem extends StatelessWidget {
                                                 color: Colors.grey,
                                               ),
                                               children: [
-                                                // TextSpan(
-                                                //   text:  product.inventory![0].color,
-                                                //   style:
-                                                //       AppFont.regular.copyWith(
-                                                //     fontSize: 13,
-                                                //     color: Colors.black,
-                                                //     fontWeight: FontWeight.w400,
-                                                //   ),
-                                                // ),
+                                                TextSpan(
+                                                  text: order.linesCount
+                                                      .toString(),
+                                                  style:
+                                                      AppFont.regular.copyWith(
+                                                    fontSize: 13,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
                                               ]),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     RichText(
@@ -164,22 +163,22 @@ class OrderItem extends StatelessWidget {
                                                 color: Colors.grey,
                                               ),
                                               children: [
-                                                // TextSpan(
-                                                //   text: product.inventory![0].size,
-                                                //   style:
-                                                //       AppFont.regular.copyWith(
-                                                //     fontSize: 13,
-                                                //     color: Colors.black,
-                                                //     fontWeight: FontWeight.w400,
-                                                //   ),
-                                                // ),
+                                                TextSpan(
+                                                  text: order.total.toString(),
+                                                  style:
+                                                      AppFont.regular.copyWith(
+                                                    fontSize: 13,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
                                               ]),
                                         ],
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Row(
@@ -198,7 +197,10 @@ class OrderItem extends StatelessWidget {
                                               ),
                                               children: [
                                                 // TextSpan(
-                                                //   text: lineCount.listItemCart![index].quantity.toString(),
+                                                //   text: order
+                                                //       .listItemCart![index]
+                                                //       .quantity
+                                                //       .toString(),
                                                 //   style:
                                                 //       AppFont.regular.copyWith(
                                                 //     fontSize: 13,
@@ -212,15 +214,15 @@ class OrderItem extends StatelessWidget {
                                     ),
                                     Align(
                                       alignment: Alignment.bottomRight,
-                                      // child: Text(
-                                      //   '${product.price.toString()} VND',
-                                      //   textAlign: TextAlign.right,
-                                      //   style: AppFont.medium.copyWith(
-                                      //     fontSize: 13,
-                                      //     fontWeight: FontWeight.bold,
-                                      //     color: Colors.black,
-                                      //   ),
-                                      // ),
+                                      child: Text(
+                                        '${product.price.toString()} VND',
+                                        textAlign: TextAlign.right,
+                                        style: AppFont.medium.copyWith(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
                                     )
                                   ],
                                 )
@@ -234,7 +236,7 @@ class OrderItem extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Text(
@@ -244,48 +246,45 @@ class OrderItem extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            buildOrderInformation(title: "Shipping Address", description: "akndjkdasnndjnajskn"),
-
-            SizedBox(
+            buildOrderInformation(
+                title: "Shipping Address", description: "ddddd"),
+            const SizedBox(
               height: 25,
             ),
-            buildOrderInformation(title: "Payment method", description: "akndjkdasnndjnajskn"),
-            SizedBox(
+            buildOrderInformation(
+                title: "Payment method", description: "ddddd"),
+            const SizedBox(
               height: 25,
             ),
             buildOrderInformation(title: "Total Amount", description: "133"),
-
           ],
         ),
       ),
     );
   }
-  Widget buildOrderInformation({required String title,required String description}){
+
+  Widget buildOrderInformation(
+      {required String title, required String description}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 2 ,
+          flex: 2,
           child: Text(
             '$title:',
             style: AppFont.medium.copyWith(
-                color: Colors.grey,
-                fontSize: 15,
-                fontWeight: FontWeight.w400),
+                color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),
           ),
         ),
-
         Expanded(
           flex: 3,
           child: Text(
             description,
             style: AppFont.medium.copyWith(
-                color: Colors.black,
-                fontSize: 15,
-                fontWeight: FontWeight.w500),
+                color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
           ),
         ),
       ],

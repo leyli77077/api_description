@@ -69,6 +69,7 @@ class AppFont {
     color: Colors.black,
     fontSize: 18,
   );
+
 }
 
 class AppColors {
@@ -82,3 +83,4 @@ Color hexToColor(String hex) {
   return Color(int.parse(hex.substring(1), radix: 16) +
       (hex.length == 7 ? 0xFF000000 : 0x00000000));
 }
+
