@@ -89,11 +89,11 @@ class OrderDetailScreen extends StatelessWidget {
                         Container(
                           width: 120,
                           height: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(product.urlImage!.first),
-                                fit: BoxFit.cover),
-                            borderRadius: const BorderRadius.only(
+                          decoration: const BoxDecoration(
+                            // image: DecorationImage(
+                            //     image: NetworkImage(product.urlImage!.first),
+                            //     fit: BoxFit.cover),
+                            borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(8),
                                 bottomLeft: Radius.circular(8)),
                           ),
@@ -195,7 +195,7 @@ class OrderDetailScreen extends StatelessWidget {
                                                 fontSize: 13,
                                                 color: Colors.grey,
                                               ),
-                                              children: [
+                                              children: const [
                                                 // TextSpan(
                                                 //   text: order
                                                 //       .listItemCart![index]
@@ -212,17 +212,17 @@ class OrderDetailScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    Align(
+                                    const Align(
                                       alignment: Alignment.bottomRight,
-                                      child: Text(
-                                        '${product.price.toString()} VND',
-                                        textAlign: TextAlign.right,
-                                        style: AppFont.medium.copyWith(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                      // child: Text(
+                                      //   '${product.price.toString()} VND',
+                                      //   textAlign: TextAlign.right,
+                                      //   style: AppFont.medium.copyWith(
+                                      //     fontSize: 13,
+                                      //     fontWeight: FontWeight.bold,
+                                      //     color: Colors.black,
+                                      //   ),
+                                      // ),
                                     )
                                   ],
                                 )
