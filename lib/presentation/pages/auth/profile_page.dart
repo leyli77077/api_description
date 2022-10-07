@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/presentation/screens/order_list_screen.dart';
+import 'package:flutter_shop/presentation/screens/my_order_screen.dart';
 import '../../../application/auth/service.dart';
 import '../../../core/constants/header_widget.dart';
 import '../../../core/l10n.dart';
@@ -127,15 +127,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                       ListTile(
                                         onTap: () {
-                                          OrderItem;
+                                          Navigator.pushNamed(context, const MyOrderScreen().toString());
                                         },
-                                        title: IconButton(
-                                          icon: const Icon(Icons.card_travel),
-                                          onPressed: () {
-                                            Navigator.pushNamed(
-                                                context, OrderItem.routeName);
-                                          },
-                                        ),
+                                        leading: const Icon(Icons.logout),
+                                        title: Text("logout".trs),
+                                      ),
+                                      ListTile(
+                                        onTap: () {
+                                          AuthService.instance
+                                              .add(LogoutEvent());
+                                        },
+                                        leading: const Icon(Icons.logout),
+                                        title: Text("logout".trs),
                                       ),
                                     ],
                                   ),

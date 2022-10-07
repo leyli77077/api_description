@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+
 import '../../core/constants/colors.dart';
 import '../../domain/order/order.dart';
 
-class OrderItem extends StatelessWidget {
-  final Order lineCount;
-  const OrderItem({
-    Key? key,
-    required this.lineCount,
-  }) : super(key: key);
-  static const routeName = "/orderPage";
+class OrderDetailScreen extends StatelessWidget {
+  final Order order;
+  static const String routeName = 'order-detail';
+
+  const OrderDetailScreen({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,37 +35,37 @@ class OrderItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              children: const [
-                // Text(
-                //   "Order No: ${order.orderNumber}",
-                //   style: AppFont.semiBold.copyWith(
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-                Spacer(),
-                // Text(
-                //   order.createAt.toString(),
-                //   style: AppFont.regular
-                //       .copyWith(color: Colors.grey, fontSize: 14),
-                // ),
+              children: [
+                Text(
+                  "Order No: ${order.total}",
+                  style: AppFont.semiBold.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  order.status.toString(),
+                  style: AppFont.regular
+                      .copyWith(color: Colors.grey, fontSize: 14),
+                ),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
             Text(
-              '${lineCount.listItemCart!.length} items',
+              '${order.listItemCart!.length} items',
               style: AppFont.medium.copyWith(color: Colors.black, fontSize: 14),
-             ),
+            ),
             const SizedBox(
               height: 20,
             ),
             ListView.builder(
-              itemCount: lineCount.listItemCart!.length,
+              itemCount: order.listItemCart!.length,
               shrinkWrap: true,
               padding: const EdgeInsets.all(0.0),
               itemBuilder: (_, index) {
-                // Product product = lineCount.listItemCart![index].product!;
+                // Product product = order.listItemCart![index].;
 
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -92,9 +91,8 @@ class OrderItem extends StatelessWidget {
                           height: 120,
                           decoration: const BoxDecoration(
                             // image: DecorationImage(
-                            //   image: NetworkImage(product.urlImage!.first),
-                            //   fit: BoxFit.cover
-                            // ),
+                            //     image: NetworkImage(product.urlImage!.first),
+                            //     fit: BoxFit.cover),
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(8),
                                 bottomLeft: Radius.circular(8)),
@@ -137,16 +135,17 @@ class OrderItem extends StatelessWidget {
                                                 fontSize: 13,
                                                 color: Colors.grey,
                                               ),
-                                              children: const [
-                                                // TextSpan(
-                                                //   text:  product.inventory![0].color,
-                                                //   style:
-                                                //       AppFont.regular.copyWith(
-                                                //     fontSize: 13,
-                                                //     color: Colors.black,
-                                                //     fontWeight: FontWeight.w400,
-                                                //   ),
-                                                // ),
+                                              children: [
+                                                TextSpan(
+                                                  text: order.linesCount
+                                                      .toString(),
+                                                  style:
+                                                      AppFont.regular.copyWith(
+                                                    fontSize: 13,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
                                               ]),
                                         ],
                                       ),
@@ -163,16 +162,16 @@ class OrderItem extends StatelessWidget {
                                                 fontSize: 13,
                                                 color: Colors.grey,
                                               ),
-                                              children: const [
-                                                // TextSpan(
-                                                //   text: product.inventory![0].size,
-                                                //   style:
-                                                //       AppFont.regular.copyWith(
-                                                //     fontSize: 13,
-                                                //     color: Colors.black,
-                                                //     fontWeight: FontWeight.w400,
-                                                //   ),
-                                                // ),
+                                              children: [
+                                                TextSpan(
+                                                  text: order.total.toString(),
+                                                  style:
+                                                      AppFont.regular.copyWith(
+                                                    fontSize: 13,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
                                               ]),
                                         ],
                                       ),
@@ -198,7 +197,10 @@ class OrderItem extends StatelessWidget {
                                               ),
                                               children: const [
                                                 // TextSpan(
-                                                //   text: lineCount.listItemCart![index].quantity.toString(),
+                                                //   text: order
+                                                //       .listItemCart![index]
+                                                //       .quantity
+                                                //       .toString(),
                                                 //   style:
                                                 //       AppFont.regular.copyWith(
                                                 //     fontSize: 13,
@@ -248,13 +250,12 @@ class OrderItem extends StatelessWidget {
               height: 20,
             ),
             buildOrderInformation(
-                title: "Shipping Address", description: "akndjkdasnndjnajskn"),
-
+                title: "Shipping Address", description: "ddddd"),
             const SizedBox(
               height: 25,
             ),
             buildOrderInformation(
-                title: "Payment method", description: "akndjkdasnndjnajskn"),
+                title: "Payment method", description: "ddddd"),
             const SizedBox(
               height: 25,
             ),

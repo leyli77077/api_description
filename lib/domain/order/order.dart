@@ -1,4 +1,5 @@
 import '../../core/parsers.dart';
+import '../cart/cart.dart';
 
 class Order {
   final int id;
@@ -8,6 +9,7 @@ class Order {
   final double total;
   final String totalText;
   final int linesCount;
+  List<Cart>? listItemCart;
   Order({
     required this.id,
     required this.reference,

@@ -1,3 +1,4 @@
+import '../order/order.dart';
 import '../product/product.dart';
 
 class CartLine {
@@ -8,6 +9,10 @@ class CartLine {
   final double total;
   final String totalText;
   final Product product;
+  List<Order> listOrder = [];
+
+
+  
   CartLine({
     required this.id,
     required this.quantity,

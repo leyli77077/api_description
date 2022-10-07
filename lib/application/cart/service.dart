@@ -18,6 +18,8 @@ class CartService extends ChangeNotifier {
 
   void emit(CartState newState) {
     _state = newState;
+    // ignore: avoid_print
+    print('MerdanDev state is $newState');
     notifyListeners();
   }
 

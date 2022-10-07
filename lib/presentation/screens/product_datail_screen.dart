@@ -117,6 +117,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         color: Colors.amber,
                         child: IconButton(
                           icon: const Icon(Icons.shopping_bag),
+                          color: Colors.blue,
                           onPressed: () {
                             // Navigator.pushNamed(context, CartPage.routeName);
                           },
