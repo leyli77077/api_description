@@ -24,7 +24,7 @@ class OrderProduct extends StatelessWidget {
               color: Colors.grey.withOpacity(.1),
               blurRadius: 1,
               spreadRadius: 1,
-              offset: Offset(2, 2),
+              offset: const Offset(2, 2),
             ),
           ]),
       child: Row(
@@ -39,11 +39,11 @@ class OrderProduct extends StatelessWidget {
                 image: NetworkImage(order.listItemCart!.first.lines.first.product.thumbPic),
                 fit: BoxFit.cover
               ),
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(8),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(8),
                   bottomLeft: Radius.circular(8)),
             ),
           ),
-          SizedBox(
+         const SizedBox(
             width: 5,
           ),
           Expanded(
@@ -62,7 +62,7 @@ class OrderProduct extends StatelessWidget {
                   //     fontWeight: FontWeight.bold,
                   //   ),
                   // ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
@@ -88,7 +88,7 @@ class OrderProduct extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Spacer(),
+                     const Spacer(),
                       RichText(
                         text: TextSpan(
                           children: [
@@ -112,7 +112,7 @@ class OrderProduct extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                 const SizedBox(
                     height: 10,
                   ),
                   Text(

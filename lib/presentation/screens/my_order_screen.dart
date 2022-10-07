@@ -9,6 +9,8 @@ import 'order_detail_screen.dart';
 import 'order_product.dart';
 
 class MyOrderScreen extends StatelessWidget {
+  const MyOrderScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final cartViewModel = Provider.of<CartLine>(context,listen: false);
@@ -16,18 +18,18 @@ class MyOrderScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
                   alignment: Alignment.topLeft,
-                  padding: EdgeInsets.all(0.0),
+                  padding: const EdgeInsets.all(0.0),
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios_outlined,
                     color: Colors.black,
                     size: 20,
@@ -39,7 +41,7 @@ class MyOrderScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Expanded(

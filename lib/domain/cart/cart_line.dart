@@ -10,6 +10,9 @@ class CartLine {
   final String totalText;
   final Product product;
   List<Order> listOrder = [];
+
+
+  
   CartLine({
     required this.id,
     required this.quantity,

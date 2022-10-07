@@ -18,25 +18,25 @@ class OrderItem extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
             size: 21,
           ),
         ),
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Order Details',
           style: AppFont.semiBold,
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              children: [
+              children: const [
                 // Text(
                 //   "Order No: ${order.orderNumber}",
                 //   style: AppFont.semiBold.copyWith(
@@ -51,20 +51,20 @@ class OrderItem extends StatelessWidget {
                 // ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            // Text(
-            //   '${lineCount.listItemCart!.length} items',
-            //   style: AppFont.medium.copyWith(color: Colors.black, fontSize: 14),
-            // ),
-            SizedBox(
+            Text(
+              '${lineCount.listItemCart!.length} items',
+              style: AppFont.medium.copyWith(color: Colors.black, fontSize: 14),
+             ),
+            const SizedBox(
               height: 20,
             ),
             ListView.builder(
               itemCount: lineCount.listItemCart!.length,
               shrinkWrap: true,
-              padding: EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
               itemBuilder: (_, index) {
                 // Product product = lineCount.listItemCart![index].product!;
 
@@ -80,7 +80,7 @@ class OrderItem extends StatelessWidget {
                             color: Colors.grey.withOpacity(.1),
                             blurRadius: 1,
                             spreadRadius: 1,
-                            offset: Offset(2, 2),
+                            offset: const Offset(2, 2),
                           ),
                         ]),
                     child: Row(
@@ -90,7 +90,7 @@ class OrderItem extends StatelessWidget {
                         Container(
                           width: 120,
                           height: 120,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             // image: DecorationImage(
                             //   image: NetworkImage(product.urlImage!.first),
                             //   fit: BoxFit.cover
@@ -113,7 +113,7 @@ class OrderItem extends StatelessWidget {
                                 //   style: AppFont.semiBold.copyWith(
                                 //       color: Colors.black, fontSize: 16),
                                 // ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 9,
                                 ),
                                 Text(
@@ -123,7 +123,7 @@ class OrderItem extends StatelessWidget {
                                       fontSize: 13,
                                       fontWeight: FontWeight.w400),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 9,
                                 ),
                                 Row(
@@ -137,7 +137,7 @@ class OrderItem extends StatelessWidget {
                                                 fontSize: 13,
                                                 color: Colors.grey,
                                               ),
-                                              children: [
+                                              children: const [
                                                 // TextSpan(
                                                 //   text:  product.inventory![0].color,
                                                 //   style:
@@ -151,7 +151,7 @@ class OrderItem extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     RichText(
@@ -163,7 +163,7 @@ class OrderItem extends StatelessWidget {
                                                 fontSize: 13,
                                                 color: Colors.grey,
                                               ),
-                                              children: [
+                                              children: const [
                                                 // TextSpan(
                                                 //   text: product.inventory![0].size,
                                                 //   style:
@@ -179,7 +179,7 @@ class OrderItem extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Row(
@@ -196,7 +196,7 @@ class OrderItem extends StatelessWidget {
                                                 fontSize: 13,
                                                 color: Colors.grey,
                                               ),
-                                              children: [
+                                              children: const [
                                                 // TextSpan(
                                                 //   text: lineCount.listItemCart![index].quantity.toString(),
                                                 //   style:
@@ -210,7 +210,7 @@ class OrderItem extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    Align(
+                                    const Align(
                                       alignment: Alignment.bottomRight,
                                       // child: Text(
                                       //   '${product.price.toString()} VND',
@@ -234,7 +234,7 @@ class OrderItem extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Text(
@@ -244,48 +244,46 @@ class OrderItem extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            buildOrderInformation(title: "Shipping Address", description: "akndjkdasnndjnajskn"),
+            buildOrderInformation(
+                title: "Shipping Address", description: "akndjkdasnndjnajskn"),
 
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            buildOrderInformation(title: "Payment method", description: "akndjkdasnndjnajskn"),
-            SizedBox(
+            buildOrderInformation(
+                title: "Payment method", description: "akndjkdasnndjnajskn"),
+            const SizedBox(
               height: 25,
             ),
             buildOrderInformation(title: "Total Amount", description: "133"),
-
           ],
         ),
       ),
     );
   }
-  Widget buildOrderInformation({required String title,required String description}){
+
+  Widget buildOrderInformation(
+      {required String title, required String description}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 2 ,
+          flex: 2,
           child: Text(
             '$title:',
             style: AppFont.medium.copyWith(
-                color: Colors.grey,
-                fontSize: 15,
-                fontWeight: FontWeight.w400),
+                color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w400),
           ),
         ),
-
         Expanded(
           flex: 3,
           child: Text(
             description,
             style: AppFont.medium.copyWith(
-                color: Colors.black,
-                fontSize: 15,
-                fontWeight: FontWeight.w500),
+                color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
           ),
         ),
       ],

@@ -127,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                       ListTile(
                                         onTap: () {
-                                          Navigator.pushNamed(context, MyOrderScreen().toString());
+                                          Navigator.pushNamed(context, const MyOrderScreen().toString());
                                         },
                                         leading: const Icon(Icons.logout),
                                         title: Text("logout".trs),

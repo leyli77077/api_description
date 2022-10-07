@@ -1,11 +1,11 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/presentation/pages/auth/user_page.dart';
+import 'package:provider/provider.dart';
 import '../../application/auth/service.dart';
 import '../../search.dart/serach_list.dart';
 import '../pages/add_to_cart_page.dart';
 import '../pages/homepage.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -40,9 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 100,
           ),
         ),
-        actions: [
-          Consumer<AuthService>(builder: (_, auth, __) => const SizedBox())
-        ],
+         actions: [
+        Consumer<AuthService>(builder: (_, auth, __) => const SizedBox())
+          ],
       ),
       body: PageView(
         controller: _pageController,
